@@ -1,0 +1,27 @@
+{
+  "name": "CIMiniProgram",
+  "version": "0.1.0",
+  "summary": "A short description of CIMiniProgram.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/jasonyuan1986/CIMiniProgram",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jasonyuan1986": "jasonyuan1986@gmail.com"
+  },
+  "source": {
+    "git": "https://gitlab.oneitfarm.com/basemodule-ios/ciminiprogram.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "CIMiniProgram/Classes/**/*",
+  "dependencies": {
+    "CINetworking": [
+
+    ]
+  }
+}

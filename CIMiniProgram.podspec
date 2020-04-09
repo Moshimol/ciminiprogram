@@ -24,12 +24,11 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/jasonyuan1986/CIMiniProgram'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'jasonyuan1986' => 'jasonyuan1986@gmail.com' }
-  s.source           = { :git => 'https://github.com/jasonyuan1986/CIMiniProgram.git', :tag => s.version.to_s }
+  s.author           = { 'yuanxin' => 'yuanxin86@corp-ci.com' }
+  s.source           = { :git => 'https://gitlab.oneitfarm.com/basemodule-ios/ciminiprogram.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
   s.source_files = 'CIMiniProgram/Classes/**/*'
   
   # s.resource_bundles = {
@@ -38,5 +37,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'CINetworking'
 end

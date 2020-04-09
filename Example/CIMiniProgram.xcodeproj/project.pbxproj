@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0BBCB005419196BA170089A6 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = CIMiniProgram.podspec; path = ../CIMiniProgram.podspec; sourceTree = "<group>"; };
+		0BBCB005419196BA170089A6 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CIMiniProgram.podspec; path = ../CIMiniProgram.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF36B769B4BE22291203EED /* Pods-CIMiniProgram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Example.debug.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CIMiniProgram_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CIMiniProgram_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,11 +62,11 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73353139D1BF3E130D3A80ED /* Pods-CIMiniProgram_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Tests.release.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Tests/Pods-CIMiniProgram_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C89EAFB948985404E147D262 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C89EAFB948985404E147D262 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D0C84C967B2BE5C08B0EF1EB /* Pods-CIMiniProgram_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Tests/Pods-CIMiniProgram_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7300B1FAC0C1566F35BC2BB /* Pods_CIMiniProgram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5574071E501B9D0B38E10B /* Pods-CIMiniProgram_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Example.release.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F19B1B4155A2C9E947EB1220 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F19B1B4155A2C9E947EB1220 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,6 @@
 				D0C84C967B2BE5C08B0EF1EB /* Pods-CIMiniProgram_Tests.debug.xcconfig */,
 				73353139D1BF3E130D3A80ED /* Pods-CIMiniProgram_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -259,6 +258,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -325,11 +325,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CIMiniProgram/CIMiniProgram.framework",
+				"${BUILT_PRODUCTS_DIR}/CINetworking/CINetworking.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CIMiniProgram.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CINetworking.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
