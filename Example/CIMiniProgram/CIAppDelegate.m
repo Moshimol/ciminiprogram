@@ -7,12 +7,21 @@
 //
 
 #import "CIAppDelegate.h"
+#import "CIViewController.h"
 
 @implementation CIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    CIViewController *vc = [[CIViewController alloc] init];
+    
+    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.window makeKeyAndVisible];
+    self.window.rootViewController = navigation;
+    
     return YES;
 }
 

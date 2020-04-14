@@ -7,6 +7,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'CIMiniProgram_Example' do
   pod 'CIMiniProgram', :path => '../'
+  pod 'SGQRCode'
+  pod 'Masonry'
+  pod 'MBProgressHUD'
 
   target 'CIMiniProgram_Tests' do
     inherit! :search_paths

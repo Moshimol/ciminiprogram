@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3474736507C2EFDA30907523 /* Pods_CIMiniProgram_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */; };
+		3E5F43C324445EF300895BE4 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */; };
+		3E5F43C424445EF300895BE4 /* MBProgressHUD+CodeScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */; };
+		3E5F43C524445EF300895BE4 /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43C224445EF300895BE4 /* QRCodeScanViewController.m */; };
+		3E5F43CB2444601E00895BE4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43C72444601E00895BE4 /* UIImage+Category.m */; };
+		3E5F43CC2444601E00895BE4 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43CA2444601E00895BE4 /* UIColor+Category.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -38,6 +43,15 @@
 
 /* Begin PBXFileReference section */
 		0BBCB005419196BA170089A6 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CIMiniProgram.podspec; path = ../CIMiniProgram.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3E5F43BB24445EF300895BE4 /* MBProgressHUD+CodeScan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CodeScan.h"; sourceTree = "<group>"; };
+		3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CodeScan.m"; sourceTree = "<group>"; };
+		3E5F43C124445EF300895BE4 /* QRCodeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScanViewController.h; sourceTree = "<group>"; };
+		3E5F43C224445EF300895BE4 /* QRCodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanViewController.m; sourceTree = "<group>"; };
+		3E5F43C72444601E00895BE4 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		3E5F43C82444601E00895BE4 /* UIColor+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
+		3E5F43C92444601E00895BE4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
+		3E5F43CA2444601E00895BE4 /* UIColor+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF36B769B4BE22291203EED /* Pods-CIMiniProgram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Example.debug.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CIMiniProgram_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CIMiniProgram_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +109,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E5F43B924445EF300895BE4 /* CodeScan */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F43BA24445EF300895BE4 /* Utils */,
+				3E5F43BE24445EF300895BE4 /* View */,
+			);
+			path = CodeScan;
+			sourceTree = "<group>";
+		};
+		3E5F43BA24445EF300895BE4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */,
+				3E5F43BB24445EF300895BE4 /* MBProgressHUD+CodeScan.h */,
+				3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3E5F43BE24445EF300895BE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F43BF24445EF300895BE4 /* View */,
+				3E5F43C024445EF300895BE4 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E5F43BF24445EF300895BE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E5F43C024445EF300895BE4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F43C124445EF300895BE4 /* QRCodeScanViewController.h */,
+				3E5F43C224445EF300895BE4 /* QRCodeScanViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E5F43C62444601E00895BE4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F43C72444601E00895BE4 /* UIImage+Category.m */,
+				3E5F43C82444601E00895BE4 /* UIColor+Category.h */,
+				3E5F43C92444601E00895BE4 /* UIImage+Category.h */,
+				3E5F43CA2444601E00895BE4 /* UIColor+Category.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		5D4D7A5672868D0B2F6DE25A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +212,8 @@
 		6003F593195388D20070C39A /* Example for CIMiniProgram */ = {
 			isa = PBXGroup;
 			children = (
+				3E5F43C62444601E00895BE4 /* Tools */,
+				3E5F43B924445EF300895BE4 /* CodeScan */,
 				6003F59C195388D20070C39A /* CIAppDelegate.h */,
 				6003F59D195388D20070C39A /* CIAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -248,6 +319,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = jasonyuan1986;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = U39HM55PYU;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -280,6 +354,7 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				3E5F43C324445EF300895BE4 /* MBProgressHUD.bundle in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -328,12 +403,22 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CIMiniProgram/CIMiniProgram.framework",
 				"${BUILT_PRODUCTS_DIR}/CINetworking/CINetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CIMiniProgram.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CINetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -388,8 +473,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* CIAppDelegate.m in Sources */,
+				3E5F43CC2444601E00895BE4 /* UIColor+Category.m in Sources */,
+				3E5F43C524445EF300895BE4 /* QRCodeScanViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* CIViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				3E5F43C424445EF300895BE4 /* MBProgressHUD+CodeScan.m in Sources */,
+				3E5F43CB2444601E00895BE4 /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +561,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -505,7 +594,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -517,13 +606,18 @@
 			baseConfigurationReference = 5CF36B769B4BE22291203EED /* Pods-CIMiniProgram_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
 				INFOPLIST_FILE = "CIMiniProgram/CIMiniProgram-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MARKETING_VERSION = 1.0.1;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ci123.miniprogram.platform;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -533,13 +627,18 @@
 			baseConfigurationReference = EE5574071E501B9D0B38E10B /* Pods-CIMiniProgram_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
 				INFOPLIST_FILE = "CIMiniProgram/CIMiniProgram-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MARKETING_VERSION = 1.0.1;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ci123.miniprogram.platform;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

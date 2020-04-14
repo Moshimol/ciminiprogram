@@ -9,7 +9,7 @@
     "file": "LICENSE"
   },
   "authors": {
-    "jasonyuan1986": "jasonyuan1986@gmail.com"
+    "yuanxin": "yuanxin86@corp-ci.com"
   },
   "source": {
     "git": "https://gitlab.oneitfarm.com/basemodule-ios/ciminiprogram.git",
@@ -19,7 +19,18 @@
     "ios": "8.0"
   },
   "source_files": "CIMiniProgram/Classes/**/*",
+  "resource_bundles": {
+    "CIMiniProgram": [
+      "CIMiniProgram/Assets/*.png"
+    ]
+  },
   "dependencies": {
+    "SSZipArchive": [
+
+    ],
+    "MJRefresh": [
+
+    ],
     "CINetworking": [
 
     ]

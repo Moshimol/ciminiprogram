@@ -16,6 +16,8 @@ PODS:
     - AFNetworking/NSURLSession
   - CIMiniProgram (0.1.0):
     - CINetworking
+    - MJRefresh
+    - SSZipArchive
   - CINetworking (0.1.5):
     - AFNetworking
   - FBSnapshotTestCase (2.1.4):
@@ -23,14 +25,27 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - MJRefresh (3.2.0)
+  - SGQRCode (3.0.1)
+  - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
   - CIMiniProgram (from `../`)
   - FBSnapshotTestCase
+  - Masonry
+  - MBProgressHUD
+  - SGQRCode
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SGQRCode
+    - SSZipArchive
   https://gitlab.oneitfarm.com/basemodule-ios/cibasemodulespec.git:
     - CINetworking
   trunk:
@@ -42,10 +57,15 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  CIMiniProgram: 4271c0f78343a0fd4fda29862d7b38facc98223c
+  CIMiniProgram: 75da28a4947ec70560f1d48c28aa037854fea414
   CINetworking: a944634a2f176b9fcf244b71150a19bf68abc75b
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
 
-PODFILE CHECKSUM: a088b15b526613cfe32761b9455dce3606f2f434
+PODFILE CHECKSUM: abc7a39f9be7848ac97f0a885a5c85d25b62d774
 
 COCOAPODS: 1.9.1
