@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>checkbox</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view id="checkbox" class="page">
+
+  <x-view class="container">
+    <x-view class="page-head">
+      <x-view class="page-head-title">checkbox</x-view>
+      <x-view class="page-head-line"></x-view>
+      <x-view class="page-head-desc"></x-view>
+    </x-view>
+
+    <x-view class="page-body">
+      <x-view class="page-section page-section-gap">
+        <x-view class="page-section-title">默认样式</x-view>
+        <x-view class="checkbox">
+          <x-checkbox value="cb" v-bind:checked="true" />选中
+        </x-view>
+        <x-view class="checkbox">
+          <x-checkbox value="cb" />未选中
+        </x-view>
+        <x-view class="checkbox">
+          <x-checkbox v-bind:checked="false" v-bind:disabled="true">禁用未选中</x-checkbox>
+        </x-view>
+        <x-view class="checkbox">
+          <x-checkbox v-bind:checked="true" v-bind:disabled="true">禁用选中</x-checkbox>
+        </x-view>
+      </x-view>
+      <x-view class="page-section page-section-gap">
+        <x-view class="page-section-title">自定义样式</x-view>
+        <x-view class="checkbox">
+          <x-checkbox value="cb" v-bind:checked="true" color="red" />选中
+        </x-view>
+        <x-view class="checkbox">
+          <x-checkbox value="cb" color="red" />未选中
+        </x-view>
+        <x-view class="checkbox">
+          <x-checkbox v-bind:checked="false" v-bind:disabled="true" color="red">禁用未选中</x-checkbox>
+        </x-view>
+        <x-view class="checkbox">
+          <x-checkbox v-bind:checked="true" v-bind:disabled="true" color="red">禁用选中</x-checkbox>
+        </x-view>
+      </x-view>
+      <x-view class="page-section">
+        <x-view class="page-section-title">推荐展示样式</x-view>
+        <x-view class="weui-cells weui-cells_after-title">
+          <x-checkbox-group v-on:change="checkboxChange">
+            <x-view class="weui-cell weui-check__label" v-for="item in items" v-bind:key="item.value">
+              <x-view class="weui-cell__hd">
+                <x-checkbox v-bind:value="item.value" v-bind:checked="item.checked" />
+              </x-view>
+              <x-view class="weui-cell__bd">{{item.name}}</x-view>
+            </x-view>
+          </x-checkbox-group>
+        </x-view>
+      </x-view>
+    </x-view>
+
+    <x-navigator class="page-foot" open-type="switchTab" url="/pages/components/index" hover-class="none">
+      <x-image class="icon-foot" src="../../../assets/icon_foot.png"></x-image>
+    </x-navigator>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

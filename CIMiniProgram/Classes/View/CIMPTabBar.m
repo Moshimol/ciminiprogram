@@ -7,7 +7,7 @@
 
 #import "CIMPTabBar.h"
 #import "CIMPPageModel.h"
-#import "CIMPUtils.h"
+#import <CICategories/CICategories.h>
 
 @interface CIMPTabBarItem : UITabBarItem
 
@@ -32,9 +32,9 @@
 - (void)setBackgroundColor:(NSString *)backgroundColor {
     _backgroundColor = backgroundColor;
 
-    UIColor *bgColor = [CIMPUtils MP_Color_Conversion:backgroundColor];
+    UIColor *bgColor = [UIColor ColorWithHexString:backgroundColor];
     if (bgColor) {
-        [self setBackgroundImage:[CIMPUtils imageFromColor:bgColor rect:CGRectMake(0, 0, 1, 1)]];
+        [self setBackgroundImage:[UIImage imageWithColor:bgColor size:CGSizeMake(1.0, 1.0)]];
     }
 }
 
@@ -63,23 +63,23 @@
     barItem.itemStyle = itemStyle;
     barItem.title = title;
     
-    UIColor *normalColor = [CIMPUtils MP_Color_Conversion:_color];
+    UIColor *normalColor = [UIColor ColorWithHexString:_color];
     if (normalColor) {
         [barItem setTitleTextAttributes:@{NSForegroundColorAttributeName: normalColor} forState:UIControlStateNormal];
     }
     
-    UIColor *selectedColor = [CIMPUtils MP_Color_Conversion:_selectedColor];
+    UIColor *selectedColor = [UIColor ColorWithHexString:_selectedColor];
     if (selectedColor) {
         [barItem setTitleTextAttributes:@{NSForegroundColorAttributeName: selectedColor} forState:UIControlStateSelected];
         self.tintColor = selectedColor;
     }
     
     if (iconPath) {
-        barItem.image = [[CIMPUtils imageWithImage:[UIImage imageWithContentsOfFile:iconPath] scaledToSize:CGSizeMake(30, 30)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        barItem.image = [[self imageWithImage:[UIImage imageWithContentsOfFile:iconPath] scaledToSize:CGSizeMake(30, 30)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-    
+
     if (selectedIconPath) {
-        barItem.selectedImage = [[CIMPUtils imageWithImage:[UIImage imageWithContentsOfFile:selectedIconPath] scaledToSize:CGSizeMake(30, 30)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        barItem.selectedImage = [[self imageWithImage:[UIImage imageWithContentsOfFile:selectedIconPath] scaledToSize:CGSizeMake(30, 30)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
 
     return barItem;
@@ -114,18 +114,18 @@
 }
 
 - (void)setStyle {
-    UIColor *bgColor = [CIMPUtils MP_Color_Conversion:self.backgroundColor];
+    UIColor *bgColor = [UIColor ColorWithHexString:_backgroundColor];
     if (bgColor) {
-        [self setBackgroundImage:[CIMPUtils imageFromColor:bgColor rect:CGRectMake(0, 0, 1, 1)]];
+        [self setBackgroundImage:[UIImage imageWithColor:bgColor size:CGSizeMake(1.0, 1.0)]];
     }
     
     for (UITabBarItem *barItem in self.items) {
-        UIColor *normalColor = [CIMPUtils MP_Color_Conversion:_color];
+        UIColor *normalColor = [UIColor ColorWithHexString:_color];
         if (normalColor) {
             [barItem setTitleTextAttributes:@{NSForegroundColorAttributeName: normalColor} forState:UIControlStateNormal];
         }
         
-        UIColor *selectedColor = [CIMPUtils MP_Color_Conversion:_selectedColor];
+        UIColor *selectedColor = [UIColor ColorWithHexString:_selectedColor];
         if (selectedColor) {
             [barItem setTitleTextAttributes:@{NSForegroundColorAttributeName: selectedColor} forState:UIControlStateSelected];
             self.tintColor = selectedColor;
@@ -146,6 +146,17 @@
     if (self.DidTapItemBlock) {
         self.DidTapItemBlock(item.itemStyle.pagePath,[self.items indexOfObject:item]);
     }
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    CGFloat scale = UIScreen.mainScreen.scale;
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, scale);
+    [image drawInRect:CGRectMake(0.0, 0.0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end

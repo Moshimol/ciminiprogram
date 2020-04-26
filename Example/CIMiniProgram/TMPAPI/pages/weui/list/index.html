@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>list</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="page__hd">
+    <x-view class="page__title">List</x-view>
+    <x-view class="page__desc">列表</x-view>
+  </x-view>
+  <x-view class="page__bd">
+    <x-view class="weui-cells__title">带说明的列表项</x-view>
+    <x-view class="weui-cells weui-cells_after-title">
+      <x-view class="weui-cell">
+        <x-view class="weui-cell__bd">标题文字</x-view>
+        <x-view class="weui-cell__ft">说明文字</x-view>
+      </x-view>
+    </x-view>
+
+    <x-view class="weui-cells__title">带图标、说明的列表项</x-view>
+    <x-view class="weui-cells weui-cells_after-title">
+      <x-view class="weui-cell weui-cell_example ">
+        <x-view class="weui-cell__hd">
+          <x-image v-bind:src="icon" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></x-image>
+        </x-view>
+        <x-view class="weui-cell__bd">标题文字</x-view>
+        <x-view class="weui-cell__ft">说明文字</x-view>
+      </x-view>
+      <x-view class="weui-cell weui-cell_example ">
+        <x-view class="weui-cell__hd">
+          <x-image v-bind:src="icon" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></x-image>
+        </x-view>
+        <x-view class="weui-cell__bd">标题文字</x-view>
+        <x-view class="weui-cell__ft">说明文字</x-view>
+      </x-view>
+    </x-view>
+
+    <x-view class="weui-cells__title">带跳转的列表项</x-view>
+    <x-view class="weui-cells weui-cells_after-title">
+      <x-navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <x-view class="weui-cell__bd">cell standard</x-view>
+        <x-view class="weui-cell__ft weui-cell__ft_in-access"></x-view>
+      </x-navigator>
+      <x-navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <x-view class="weui-cell__bd">cell standard</x-view>
+        <x-view class="weui-cell__ft weui-cell__ft_in-access"></x-view>
+      </x-navigator>
+    </x-view>
+
+    <x-view class="weui-cells__title">带说明、跳转的列表项</x-view>
+    <x-view class="weui-cells weui-cells_after-title">
+      <x-navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <x-view class="weui-cell__bd">cell standard</x-view>
+        <x-view class="weui-cell__ft weui-cell__ft_in-access">说明文字</x-view>
+      </x-navigator>
+      <x-navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <x-view class="weui-cell__bd">cell standard</x-view>
+        <x-view class="weui-cell__ft weui-cell__ft_in-access">说明文字</x-view>
+      </x-navigator>
+    </x-view>
+
+    <x-view class="weui-cells__title">带图标、说明、跳转的列表项</x-view>
+    <x-view class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <x-view class="weui-cell__hd">
+          <x-image v-bind:src="icon" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></x-image>
+        </x-view>
+        <x-view class="weui-cell__bd">cell standard</x-view>
+        <x-view class="weui-cell__ft weui-cell__ft_in-access">说明文字</x-view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_example weui-cell_access" hover-class="weui-cell_active">
+        <x-view class="weui-cell__hd">
+          <x-image v-bind:src="icon" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></x-image>
+        </x-view>
+        <x-view class="weui-cell__bd">cell standard</x-view>
+        <x-view class="weui-cell__ft weui-cell__ft_in-access">说明文字</x-view>
+      </navigator>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

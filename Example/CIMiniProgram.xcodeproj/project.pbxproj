@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3474736507C2EFDA30907523 /* Pods_CIMiniProgram_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */; };
+		3E53441924493D8900FFAF3E /* CIMPApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E53441824493D8900FFAF3E /* CIMPApiTest.m */; };
+		3E534424244988FB00FFAF3E /* TMPAPI in Resources */ = {isa = PBXBuildFile; fileRef = 3E534423244988FB00FFAF3E /* TMPAPI */; };
 		3E5F43C324445EF300895BE4 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */; };
 		3E5F43C424445EF300895BE4 /* MBProgressHUD+CodeScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */; };
 		3E5F43C524445EF300895BE4 /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43C224445EF300895BE4 /* QRCodeScanViewController.m */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		0BBCB005419196BA170089A6 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CIMiniProgram.podspec; path = ../CIMiniProgram.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3E53441824493D8900FFAF3E /* CIMPApiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CIMPApiTest.m; sourceTree = "<group>"; };
+		3E534423244988FB00FFAF3E /* TMPAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TMPAPI; sourceTree = "<group>"; };
 		3E5F43BB24445EF300895BE4 /* MBProgressHUD+CodeScan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CodeScan.h"; sourceTree = "<group>"; };
 		3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CodeScan.m"; sourceTree = "<group>"; };
@@ -52,6 +56,7 @@
 		3E5F43C82444601E00895BE4 /* UIColor+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		3E5F43C92444601E00895BE4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		3E5F43CA2444601E00895BE4 /* UIColor+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
+		3EAE2106244E9A6100B01A62 /* CIMiniProgram_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CIMiniProgram_Example.entitlements; sourceTree = "<group>"; };
 		40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF36B769B4BE22291203EED /* Pods-CIMiniProgram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Example.debug.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CIMiniProgram_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CIMiniProgram_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +183,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				3EAE2106244E9A6100B01A62 /* CIMiniProgram_Example.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for CIMiniProgram */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -212,6 +218,7 @@
 		6003F593195388D20070C39A /* Example for CIMiniProgram */ = {
 			isa = PBXGroup;
 			children = (
+				3E534423244988FB00FFAF3E /* TMPAPI */,
 				3E5F43C62444601E00895BE4 /* Tools */,
 				3E5F43B924445EF300895BE4 /* CodeScan */,
 				6003F59C195388D20070C39A /* CIAppDelegate.h */,
@@ -242,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				6003F5BB195388D20070C39A /* Tests.m */,
+				3E53441824493D8900FFAF3E /* CIMPApiTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -357,6 +365,7 @@
 				3E5F43C324445EF300895BE4 /* MBProgressHUD.bundle in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				3E534424244988FB00FFAF3E /* TMPAPI in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,22 +410,34 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CICamera/CICamera.framework",
+				"${BUILT_PRODUCTS_DIR}/CICategories/CICategories.framework",
 				"${BUILT_PRODUCTS_DIR}/CIMiniProgram/CIMiniProgram.framework",
 				"${BUILT_PRODUCTS_DIR}/CINetworking/CINetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CIPhotoBrowser/CIPhotoBrowser.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CICamera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CICategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CIMiniProgram.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CINetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CIPhotoBrowser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 			);
@@ -487,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				3E53441924493D8900FFAF3E /* CIMPApiTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +628,7 @@
 			baseConfigurationReference = 5CF36B769B4BE22291203EED /* Pods-CIMiniProgram_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -627,6 +650,7 @@
 			baseConfigurationReference = EE5574071E501B9D0B38E10B /* Pods-CIMiniProgram_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

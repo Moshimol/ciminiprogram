@@ -7,9 +7,9 @@
 //
 
 #import "CIMPNavigationView.h"
-#import "CIMPUtils.h"
 #import "CIMPDeviceMacro.h"
 #import "UIImage+CIMiniProgram.h"
+#import <CICategories/CICategories.h>
 
 
 @interface CIMPNavigationView ()
@@ -163,14 +163,15 @@
     
     [UIView animateWithDuration: duration delay:0.0 options:option animations:^{
         // front color
-        self.titleLabel.textColor = [CIMPUtils MP_Color_Conversion:frontColor];
-        self.activityView.color = [CIMPUtils MP_Color_Conversion:frontColor];
-        self.leftButton.tintColor = [CIMPUtils MP_Color_Conversion:frontColor];
-        self.moreButton.tintColor = [CIMPUtils MP_Color_Conversion:frontColor];
-        self.exitButton.tintColor = [CIMPUtils MP_Color_Conversion:frontColor];
+        UIColor *color = [UIColor ColorWithHexString:frontColor];
+        self.titleLabel.textColor = color;
+        self.activityView.color = color;
+        self.leftButton.tintColor = color;
+        self.moreButton.tintColor = color;
+        self.exitButton.tintColor = color;
         
         // background color
-        self.backgroundColor = [CIMPUtils MP_Color_Conversion:bgColor];
+        self.backgroundColor = [UIColor ColorWithHexString:bgColor];
     } completion:^(BOOL finished) {
         
     }];

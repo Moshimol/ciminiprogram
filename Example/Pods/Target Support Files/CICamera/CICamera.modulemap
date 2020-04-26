@@ -1,0 +1,6 @@
+framework module CICamera {
+  umbrella header "CICamera-umbrella.h"
+
+  export *
+  module * { export * }
+}

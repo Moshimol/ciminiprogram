@@ -6,7 +6,7 @@
 //
 
 #import "CIMPPageModel.h"
-#import "CIMPUtils.h"
+#import <CICategories/CICategories.h>
 
 @implementation CIMPTabbarItemStyle
 
@@ -61,8 +61,8 @@
 //解析Style
 + (CIMPPageStyle *) parseWindowStyleData:(NSDictionary *)window {
     CIMPPageStyle *model = [CIMPPageStyle new];
-    model.navigationBarBackgroundColor = [CIMPUtils MP_Color_Conversion:window[@"navigationBarBackgroundColor"]];
-    model.backgroundColor = [CIMPUtils MP_Color_Conversion:window[@"backgroundColor"]];
+    model.navigationBarBackgroundColor = [UIColor ColorWithHexString:window[@"navigationBarBackgroundColor"]];
+    model.backgroundColor = [UIColor ColorWithHexString:window[@"backgroundColor"]];
     model.backgroundTextStyle = window[@"backgroundTextStyle"];
     model.navigationBarTextStyle = window[@"navigationBarTextStyle"];
     model.navigationBarTitleText = window[@"navigationBarTitleText"];

@@ -1,6 +1,6 @@
 {
   "name": "CIMiniProgram",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "summary": "A short description of CIMiniProgram.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/jasonyuan1986/CIMiniProgram",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://gitlab.oneitfarm.com/basemodule-ios/ciminiprogram.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "CIMiniProgram/Classes/**/*",
   "resource_bundles": {
@@ -24,6 +24,11 @@
       "CIMiniProgram/Assets/*.png"
     ]
   },
+  "frameworks": [
+    "UIKit",
+    "MapKit",
+    "CoreServices"
+  ],
   "dependencies": {
     "SSZipArchive": [
 
@@ -32,6 +37,15 @@
 
     ],
     "CINetworking": [
+
+    ],
+    "CIPhotoBrowser": [
+
+    ],
+    "CICamera": [
+
+    ],
+    "CICategories": [
 
     ]
   }

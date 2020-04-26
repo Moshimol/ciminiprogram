@@ -21,6 +21,8 @@
 #define kRGBA(r,g,b,a)   [UIColor colorWithRed:((r) / 255.0) green:((g) / 255.0) blue:((b) / 255.0) alpha:(a)]
 #define kRGBHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define kRGBAHex(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
+#define kDocumentsPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]
+#define kMiniProgramPath [kDocumentsPath stringByAppendingPathComponent:@"MiniProgram"]
 
 #ifdef DEBUG
 
@@ -221,8 +223,36 @@
 }
 
 - (void)downloadBtnClicked:(id)sender {
-//    [CIMPApp createDirectory];
     NSString *downloadURL = self.urlTextView.text;
+    
+    if ([downloadURL isEqualToString:@"TMPAPI"]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"TMPAPI" ofType:nil];
+        NSLog(@"path: %@", path);
+        NSString *tmpapiPath = [kMiniProgramPath stringByAppendingString:@"/TMPAPI"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:tmpapiPath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:tmpapiPath error:nil];
+        }
+        NSError *error = nil;
+        [[NSFileManager defaultManager] copyItemAtPath:path toPath:tmpapiPath error:&error];
+        if (error) {
+            NSLog(@"error: %@", error);
+            return;
+        }
+        CIMPAppInfo *appInfo = [CIMPAppInfo new];
+        appInfo.appId = @"TMPAPI";
+        appInfo.appPath = @"TMPAPI";
+        
+        CIMPApp *mpApp = [[CIMPApp alloc] initWithAppInfo:appInfo];
+        NSArray *titles = @[@"test1", @"test2"];
+        [mpApp setMoreButton:titles action:^(NSInteger index) {
+            NSLog(@"click button %ld", (long)index);
+        }];
+        [mpApp startAppWithEntrance:self.navigationController completion:^(BOOL success, NSString * _Nonnull msg) {
+            NSLog(@"%@", msg);
+        }];
+        return;
+    }
+    
     CIMPAppInfo *appInfo = [[CIMPAppInfo alloc] init];
     appInfo.appId = _appIdTextField.text;
     CIMPApp *app = [[CIMPApp alloc] initWithAppInfo:appInfo];

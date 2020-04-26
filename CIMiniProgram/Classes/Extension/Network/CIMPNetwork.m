@@ -11,6 +11,7 @@
 #import "CIMPAppManager.h"
 #import "CIMPApp.h"
 #import <CINetworking/CINetworking.h>
+#import <CoreServices/CoreServices.h>
 
 @implementation CIMPNetwork
 
@@ -101,6 +102,7 @@
     NSDictionary *header = param[@"header"];
     NSNumber *timeout = param[@"timeout"];
     NSString *filePath = param[@"filePath"];
+    __block NSString *tempFilePath = @"";
     
     if (timeout) {
         [CINetworking sharedInstance].timeoutInterval = [timeout doubleValue];
@@ -116,23 +118,40 @@
         }];
     }
     
-    [[CINetworking sharedInstance] downloadTask:request parameters:nil progress:^(NSProgress * _Nonnull progress) {
+    NSURLSessionDownloadTask *downloadTask = [[CINetworking sharedInstance] downloadTask:request parameters:nil progress:^(NSProgress * _Nonnull progress) {
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         CIMPApp *app = [CIMPAppManager sharedManager].currentApp;
+        NSString *destination = @"";
         
-        NSString *destination = [NSString stringWithFormat:@"file://%@/%@/%@", kMiniProgramPKGPath, app.appInfo.appId, filePath];
+        if (filePath) {
+            destination = [NSString stringWithFormat:@"file://%@/%@/%@", kMiniProgramPath, app.appInfo.appId, filePath];
+        } else {
+            NSDate *date = [NSDate date];
+            NSTimeInterval time = [date timeIntervalSince1970]*1000;
+            destination = [NSString stringWithFormat:@"file://%@/%@/temp/%f", kMiniProgramPath, app.appInfo.appId, time];
+            
+            tempFilePath = [NSString stringWithFormat:@"/temp/%f", time];
+        }
+        
         return [NSURL URLWithString:destination];
-    } success:^(NSURLResponse * _Nonnull response, NSURL * _Nonnull filePath) {
+    } success:^(NSURLResponse * _Nonnull response, NSURL * _Nonnull fileDownloadPath) {
         if (success) {
-            NSDictionary *result = @{@"filePath": filePath};
-            success(result);
+            NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+            if (filePath) {
+                NSDictionary *result = @{@"errMsg": @"ok", @"filePath": filePath, @"statusCode": @(urlResponse.statusCode)};
+                success(result);
+            } else {
+                NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePath": tempFilePath, @"statusCode": @(urlResponse.statusCode)};
+                success(result);
+            }
         }
     } failure:^(NSURLResponse * _Nonnull response, NSError * _Nonnull error) {
         if (fail) {
             fail(@{@"errMsg": @"fail", @"message": error.localizedDescription});
         }
     }];
+    [downloadTask resume];
 }
 
 + (void)uploadFile:(NSDictionary *)param success:(void (^)(NSDictionary * _Nonnull))success fail:(void (^)(NSDictionary * _Nonnull))fail {
@@ -152,7 +171,8 @@
         }
     }
     CIMPApp *app = [CIMPAppManager sharedManager].currentApp;
-    NSString *fullPath = [NSString stringWithFormat:@"file://%@/%@/%@", kMiniProgramPKGPath, app.appInfo.appId, filePath];
+    NSString *fullPath = [kMiniProgramPath stringByAppendingString:[NSString stringWithFormat:@"/%@%@", app.appInfo.appId, filePath]];
+    
     if (![kFileManager fileExistsAtPath:fullPath]) {
         if (fail) {
             fail(@{@"errMsg": @"fail", @"message": @"filePath指向的文件不存在"});
@@ -190,9 +210,23 @@
             [request setValue:obj forHTTPHeaderField:key];
         }];
     }
+    
+    NSURLSessionDataTask *uploadTask = [[CINetworking sharedInstance] uploadTask:request progress:^(NSProgress * _Nonnull progress) {
+        
+    } success:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject) {
+        if (success) {
+            success(@{@"errMsg": @"ok"});
+        }
+    } failure:^(NSURLResponse * _Nonnull response, NSError * _Nonnull error) {
+        if (fail) {
+            fail(@{@"errMsg": @"fail"});
+        }
+    }];
+    [uploadTask resume];
 }
 
 + (NSString *)mimeTypeForFileAtPath:(NSString *)path {
+    
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)[path pathExtension], NULL);
     CFStringRef MIMEType = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType);
     CFRelease(UTI);

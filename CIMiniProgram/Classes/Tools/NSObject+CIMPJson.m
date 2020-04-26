@@ -25,31 +25,3 @@
 }
 
 @end
-
-@implementation NSDictionary (CIMPJson)
-
-- (NSString *)mp_jsonString {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
-    if (!data) {
-        return nil;
-    }
-    
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return jsonString;
-}
-
-@end
-
-@implementation NSArray (CIMPJson)
-
-- (NSString *)mp_jsonString {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
-    if (!data) {
-        return nil;
-    }
-    
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return jsonString;
-}
-
-@end

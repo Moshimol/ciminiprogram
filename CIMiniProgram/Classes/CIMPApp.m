@@ -95,7 +95,7 @@
         BOOL success = [fileData writeToFile:filePath atomically:YES];
         if (success) {
             MPLog(@"保存文件成功");
-            NSString *destinamePath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, self.appInfo.appId];
+            NSString *destinamePath = [NSString stringWithFormat:@"%@/%@/Source", kMiniProgramPath, self.appInfo.appId];
             if ([kFileManager fileExistsAtPath:destinamePath]) {
                 [kFileManager removeItemAtPath:destinamePath error:nil];
             }
@@ -172,8 +172,10 @@
         }
         return;
     }
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, self.appInfo.appId];
-    if ([kFileManager fileExistsAtPath:filePath]) {
+    NSString *appPath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, self.appInfo.appId];
+    if ([kFileManager fileExistsAtPath:appPath]) {
+        NSString *tmpDir = [appPath stringByAppendingString:@"/temp"];
+        [kFileManager createDirectoryAtPath:tmpDir withIntermediateDirectories:YES attributes:nil error:nil];
         _manager = [[CIMPManager alloc] initWithAppInfo:self.appInfo];
         _manager.startRootCompletion = completion;
         [_manager setupEntrance:entrance];

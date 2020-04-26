@@ -198,21 +198,33 @@ fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CICamera/CICamera.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CICategories/CICategories.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CIMiniProgram/CIMiniProgram.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CINetworking/CINetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CIPhotoBrowser/CIPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CICamera/CICamera.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CICategories/CICategories.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CIMiniProgram/CIMiniProgram.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CINetworking/CINetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CIPhotoBrowser/CIPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework"
 fi

@@ -7,7 +7,7 @@
 
 #import "CIMPShowActionSheet.h"
 #import <UIKit/UIKit.h>
-#import "CIMPUtils.h"
+#import <CICategories/CICategories.h>
 #import "CIMPAppManager.h"
 #import "CIMPApp.h"
 
@@ -37,7 +37,7 @@
             
         }];
         
-        [action setValue:[CIMPUtils MP_Color_Conversion:itemColor] forKey:@"titleTextColor"];
+        [action setValue:[UIColor ColorWithHexString:itemColor] forKey:@"titleTextColor"];
         [alertCtrl addAction:action];
     }];
     

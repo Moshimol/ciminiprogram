@@ -12,14 +12,16 @@
 #import "CIMPToastView.h"
 #import "CIMPLoadingView.h"
 #import "CIMPNavigationView.h"
-#import "CIMPUtils.h"
 #import "CIMPDeviceMacro.h"
 #import "NSObject+CIMPJson.h"
 #import "UITextField+LimitLength.h"
 #import "CIScriptMessageHandlerDelegate.h"
+#import "CIMPAppManager.h"
+#import "CIMPApp.h"
 #import "CIMPLog.h"
 #import <MJRefresh/MJRefresh.h>
 #import <WebKit/WebKit.h>
+#import <CICategories/CICategories.h>
 
 
 @interface CIMPPageBaseViewController () <WKScriptMessageHandler, UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
@@ -196,7 +198,8 @@
     NSArray *urlQueryArray = [url componentsSeparatedByString:@"?"];
     
     NSString *filePath = [NSString stringWithFormat:@"file://%@", urlQueryArray.firstObject];
-    NSString *rootPath = [NSString stringWithFormat:@"file://%@", self.pageModel.pageRootDir];
+//    NSString *rootPath = [NSString stringWithFormat:@"file://%@", self.pageModel.pageRootDir];
+    NSString *rootPath = [NSString stringWithFormat:@"file://%@", kMiniProgramPath];
     NSError *error = nil;
     NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString: filePath] encoding:NSUTF8StringEncoding error:&error];
     if (html) {
@@ -347,7 +350,7 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelText style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
         }];
-        UIColor *kCancelColor = [CIMPUtils MP_Color_Conversion:cancelColor];
+        UIColor *kCancelColor = [UIColor ColorWithHexString:cancelColor];
         [cancelAction setValue:kCancelColor forKey:@"titleTextColor"];
         [alertController addAction:cancelAction];
     }
@@ -355,7 +358,7 @@
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:confirmText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIColor *kConfirmColor = [CIMPUtils MP_Color_Conversion:confirmColor];
+    UIColor *kConfirmColor = [UIColor ColorWithHexString:confirmColor];
     [confirmAction setValue:kConfirmColor forKey:@"titleTextColor"];
     [alertController addAction:confirmAction];
     [self presentViewController:alertController animated:YES completion:^{
@@ -403,7 +406,7 @@
         self.pageModel.pageStyle.navigationBarTextStyle = @"white";
     }
     
-    self.pageModel.pageStyle.navigationBarBackgroundColor = [CIMPUtils MP_Color_Conversion:bgColor];
+    self.pageModel.pageStyle.navigationBarBackgroundColor = [UIColor ColorWithHexString:bgColor];
 }
 
 #pragma mark - 自定义
@@ -512,7 +515,7 @@
     
     // MARK: - Set Input Text Color
     NSString *color = self.inputParam[@"color"];
-    self.inputField.textColor = [CIMPUtils MP_Color_Conversion:color];
+    self.inputField.textColor = [UIColor ColorWithHexString:color];
     
     // MARK: - Set Selection
     NSNumber *selectionStart = self.inputParam[@"selection-start"];
@@ -533,7 +536,7 @@
 }
 
 - (void)bridgeCallback:(NSString *)callbackId params:(NSDictionary<NSString *,NSObject *> *)params {
-    NSString *paramString = [params mp_jsonString];
+    NSString *paramString = [params jsonPrettyStringEncoded];
     NSString *javascriptString = [NSString stringWithFormat:@"serviceBridge.invokeCallbackHandler('%@', %@)", callbackId, paramString];
     [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         MPLog(@"callback complete, id is %@", callbackId);
@@ -602,8 +605,8 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     NSLog(@"input should begin editing.");
     CGFloat keyboardHeight = IS_IPHONE_X ? 480 : 400;
-    if (kScreenHeight - textField.frame.origin.y - textField.frame.size.height < keyboardHeight) {
-        CGFloat offsetHeight = keyboardHeight + textField.frame.origin.y + textField.frame.size.height - kScreenHeight;
+    if (UIScreen.mainScreen.bounds.size.height - textField.frame.origin.y - textField.frame.size.height < keyboardHeight) {
+        CGFloat offsetHeight = keyboardHeight + textField.frame.origin.y + textField.frame.size.height - UIScreen.mainScreen.bounds.size.height;
         self.webView.scrollView.contentOffset = CGPointMake(0.0, offsetHeight);
     }
     return YES;
@@ -627,7 +630,7 @@
     NSLog(@"inputField did end editing.");
     NSString *uid = self.inputParam[@"uid"];
     NSDictionary *param = @{@"value": textField.text, @"uid": uid};
-    NSString *paramJson = [param mp_jsonString];
+    NSString *paramJson = [param jsonPrettyStringEncoded];
     NSString *javascriptString = [NSString stringWithFormat:@"eval(serviceBridge.subscribeHandler('MP-input-blur', %@))", paramJson];
     [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         textField.hidden = YES;
@@ -638,7 +641,7 @@
     NSString *currentString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSString *uid = self.inputParam[@"uid"];
     NSDictionary *param = @{@"value": currentString, @"uid": uid};
-    NSString *paramJson = [param mp_jsonString];
+    NSString *paramJson = [param jsonPrettyStringEncoded];
     NSString *javascriptString = [NSString stringWithFormat:@"eval(serviceBridge.subscribeHandler('MP-input-input', %@))", paramJson];
     [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         NSLog(@"eval complete");
@@ -655,7 +658,7 @@
     NSLog(@"input should return.");
     NSString *uid = self.inputParam[@"uid"];
     NSDictionary *param = @{@"value": textField.text, @"uid": uid};
-    NSString *paramJson = [param mp_jsonString];
+    NSString *paramJson = [param jsonPrettyStringEncoded];
     NSString *javascriptString = [NSString stringWithFormat:@"serviceBridge.subscribeHandler('MP-input-confirm', %@)", paramJson];
     [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
             

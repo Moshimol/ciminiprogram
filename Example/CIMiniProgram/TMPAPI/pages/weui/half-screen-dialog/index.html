@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>half-screen-dialog</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="page__hd">
+    <x-view class="page__title">Half Screen Dialog</x-view>
+    <x-view class="page__desc">半屏弹窗，辅助完成当前页面任务时；提醒用户并引导用户的下一步操作；用户主动发起的任务时。</x-view>
+  </x-view>
+  <x-view class="page__bd">
+    <x-view class="weui-btn-area">
+      <x-button class="weui-btn" type="default" v-on:tap="openDialog">Half Screen Dialog</x-button>
+    </x-view>
+    <x-view class="weui-demo-dialog" v-bind:class="istrue ? 'weui-demo-dialog_show' : ''">
+      <x-view class="weui-mask" v-on:tap="closeDialog"></x-view>
+      <x-view class="weui-half-screen-dialog" v-on:tap.stop="stopEvent">
+        <x-view class="weui-half-screen-dialog__hd">
+          <x-view class="weui-half-screen-dialog__hd__side">
+            <x-view v-on:tap="closeDialog" class="weui-icon-btn weui-icon-btn_close">关闭</x-view>
+          </x-view>
+          <x-view class="weui-half-screen-dialog__hd__main">
+            <x-text class="weui-half-screen-dialog__title">标题</x-text>
+            <x-text class="weui-half-screen-dialog__subtitle">标题</x-text>
+          </x-view>
+          <x-view class="weui-half-screen-dialog__hd__side">
+            <x-view class="weui-icon-btn weui-icon-btn_more">更多</x-view>
+          </x-view>
+        </x-view>
+        <x-view class="weui-half-screen-dialog__bd">
+          <x-view class="weui-half-screen-dialog__desc">
+            辅助描述内容，可根据实际需要安排
+          </x-view>
+          <x-view class="weui-half-screen-dialog__tips">
+            辅助提示内容，可根据实际需要安排
+          </x-view>
+        </x-view>
+        <x-view class="weui-half-screen-dialog__ft">
+          <x-button type="default" class="weui-btn">辅助操作</x-button>
+          <x-button type="primary" class="weui-btn">主操作</x-button>
+        </x-view>
+      </x-view>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

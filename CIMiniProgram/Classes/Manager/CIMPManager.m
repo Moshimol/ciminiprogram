@@ -35,7 +35,7 @@
         _pageManager = [CIMPPageManager new];
 //        _extensionApi = [[WHHybridExtension alloc] init];
         _pageApi = [[CIMPPageApi alloc] initWithPageManager:_pageManager];
-        _pageApi.basePath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, _appInfo.appId];
+        _pageApi.basePath = [NSString stringWithFormat:@"%@/%@/Source", kMiniProgramPath, _appInfo.appId];
         
         self.pageManager.mpManager = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRefresh:) name:@"onPullDownRefresh" object:nil];
@@ -55,13 +55,13 @@
 - (void)startApp {
     MPLog(@"load_miniprogram_app");
     
-    NSURL *fileURL = [kMiniProgramURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/app-config.json", _appInfo.appId]];
+    NSURL *fileURL = [kMiniProgramURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/Source/app-config.json", _appInfo.appId]];
     NSData *appData = [[NSData alloc] initWithContentsOfURL:fileURL];
     NSDictionary *config = [appData mp_jsonObject];
 
     if (config) {
         self.pageManager.config = config;
-        NSString *basePath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, _appInfo.appId];
+        NSString *basePath = [NSString stringWithFormat:@"%@/%@/Source", kMiniProgramPath, _appInfo.appId];
         NSDictionary *tabBar = config[@"tabBar"];
         if (tabBar) {
             [self.pageManager startPage:basePath pagePath:tabBar[@"list"][0][@"pagePath"] isRoot:YES openNewPage:YES isTabPage:YES completion:nil];

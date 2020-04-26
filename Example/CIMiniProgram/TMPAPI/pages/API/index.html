@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../framework/framework.css" rel="stylesheet" />
+  <link href="../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>小程序接口能力展示</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page" style="display: flex; flex-direction: column;">
+  <x-view style="overflow-y: auto;">
+    <x-view class="container" v-if="isSetTabBarPage">
+      <x-view class="page-head">
+        <x-view class="page-head-title">tabBar</x-view>
+        <x-view class="page-head-line"></x-view>
+        <x-view class="page-head-desc"></x-view>
+      </x-view>
+
+      <x-view class="page-body">
+        <x-view class="btn-area">
+          <x-button v-on:tap="setTabBarBadge">
+            {{ !hasSetTabBarBadge ? '设置tab徽标' : '移除tab徽标' }}
+          </x-button>
+          <x-button v-on:tap="showTabBarRedDot">
+            {{ !hasShownTabBarRedDot ?  '显示红点' : '移除红点'}}
+          </x-button>
+          <x-button v-on:tap="customStyle">
+            {{ !hasCustomedStyle ? '自定义Tab样式' : '移除自定义样式'}}
+          </x-button>
+          <x-button v-on:tap="customItem">
+            {{ !hasCustomedItem ? '自定义Tab信息' : '移除自定义信息' }}
+          </x-button>
+          <x-button v-on:tap="hideTabBar">
+            {{ !hasHiddenTabBar ? '隐藏TabBar' : '显示TabBar' }}
+          </x-button>
+        </x-view>
+
+        <x-view class="btn-area">
+          <x-button type="primary" v-on:tap="leaveSetTabBarPage">返回上一级</x-button>
+        </x-view>
+      </x-view>
+
+      <x-navigator class="page-foot" open-type="switchTab" url="/pages/components/index" hover-class="none">
+        <x-image class="icon-foot" src="../../assets/icon_foot.png"></x-image>
+      </x-navigator>
+    </x-view>
+    <x-view v-else class="index">
+      <x-view class="index-hd">
+        <x-image class="index-logo" src="../../assets/logo-API.png"></x-image>
+        <x-view class="index-desc">以下将演示小程序接口能力
+          <!-- ，具体属性参数详见 <x-navigator url="pages/doc-web-view/doc-web-view"
+            class="weui-agree__link">小程序开发文档</x-navigator> -->
+          。</x-view>
+      </x-view>
+      <x-view class="index-bd">
+        <x-view class="kind-list">
+          <x-view v-for="item in list" v-bind:key="item.id">
+            <x-view class="kind-list-item">
+              <x-view v-bind:id="item.id" class="kind-list-item-hd"
+                v-bind:class="item.open ? 'kind-list-item-hd-show' : ''" v-on:tap="() => { kindToggle(item.id) }">
+                <x-view class="kind-list-text">{{item.name}}</x-view>
+                <!-- <x-image class="kind-list-img" v-bind:src="`../../assets/${item.id}.png`"></x-image> -->
+              </x-view>
+              <x-view class="kind-list-item-bd" v-bind:class="item.open ? 'kind-list-item-bd-show' : ''">
+                <x-view class="navigator-box" v-bind:class="item.open ? 'navigator-box-show' : ''">
+                  <x-view v-for="page in item.pages" v-bind:key="item">
+                    <x-navigator v-bind:url="`/pages/API/${page.url}`" class="navigator"
+                      v-if="page.url !== 'show-tab-bar/index' && page.url !== 'hide-tab-bar/index'">
+                      <x-view class="navigator-text">{{page.zh}}</x-view>
+                      <x-view class="navigator-arrow"></x-view>
+                    </x-navigator>
+                    <x-view v-else class="navigator" v-on:tap="enterSetTabBarPage">
+                      <x-view class="navigator-text">{{page.zh}}</x-view>
+                      <x-view class="navigator-arrow"></x-view>
+                    </x-view>
+                  </x-view>
+                </x-view>
+              </x-view>
+            </x-view>
+          </x-view>
+        </x-view>
+      </x-view>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../framework/vue.js"></script>
+  <script src="../../framework/framework.js"></script>
+  <script src="../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

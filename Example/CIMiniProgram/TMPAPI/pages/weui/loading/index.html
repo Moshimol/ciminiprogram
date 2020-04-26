@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>loading</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="page__hd">
+    <x-view class="page__title">Loading</x-view>
+    <x-view class="page__desc">加载中</x-view>
+  </x-view>
+  <x-view class="page__bd">
+    <x-view class="weui-loading__wrp">
+      <x-view class="weui-loading"></x-view>
+    </x-view>
+    <x-view class="weui-loading__wrp">
+      <x-view class="loading wx_dot_loading"></x-view>
+    </x-view>
+    <x-view class="weui-loading__wrp">
+      <x-view class="loading wx_dot_loading wx_dot_loading_white"></x-view>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

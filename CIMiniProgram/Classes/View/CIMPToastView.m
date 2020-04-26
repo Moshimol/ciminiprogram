@@ -6,7 +6,6 @@
 //
 
 #import "CIMPToastView.h"
-#import "CIMPUtils.h"
 #import "CIMPFileMacro.h"
 #import "CIMPAppManager.h"
 #import "UIImage+CIMiniProgram.h"

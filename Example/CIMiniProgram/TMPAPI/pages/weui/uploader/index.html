@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>uploader</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="page__hd">
+    <x-view class="page__title">Uploader</x-view>
+    <x-view class="page__desc">上传组件</x-view>
+  </x-view>
+  <x-view class="page__bd">
+    <x-view class="weui-cells">
+      <x-view class="weui-cell">
+        <x-view class="weui-cell__bd">
+          <x-view class="weui-uploader">
+            <x-view class="weui-uploader__hd">
+              <x-view class="weui-uploader__overview">
+                <x-view class="weui-uploader__title">图片上传</x-view>
+                <x-view class="weui-uploader__info">{{files.length}}/2</x-view>
+              </x-view>
+              <x-view class="weui-uploader__tips">
+                上传提示
+              </x-view>
+            </x-view>
+            <x-view class="weui-uploader__bd">
+              <x-view class="weui-uploader__files" id="uploaderFiles">
+                <x-view v-for="item in files" v-bind:key="item">
+                  <x-view class="weui-uploader__file" v-on:tap="previewImage" v-bind:id="item">
+                    <x-image class="weui-uploader__img" v-bind:src="item" mode="aspectFill"></x-image>
+                  </x-view>
+                </x-view>
+                <x-view class="weui-uploader__file">
+                  <x-image class="weui-uploader__img" src="../../../assets/pic_160.png" mode="aspectFill"></x-image>
+                </x-view>
+                <x-view class="weui-uploader__file">
+                  <x-image class="weui-uploader__img" src="../../../assets/pic_160.png" mode="aspectFill"></x-image>
+                </x-view>
+                <x-view class="weui-uploader__file weui-uploader__file_status">
+                  <x-image class="weui-uploader__img" src="../../../assets/pic_160.png" mode="aspectFill"></x-image>
+                  <x-view class="weui-uploader__file-content">
+                    <x-view class="weui-loading"></x-view>
+                  </x-view>
+                </x-view>
+                <x-view class="weui-uploader__file weui-uploader__file_status">
+                  <x-image class="weui-uploader__img" src="../../../assets/pic_160.png" mode="aspectFill"></x-image>
+                  <x-view class="weui-uploader__file-content">
+                    <x-icon type="warn" size="23" color="#F43530"></x-icon>
+                  </x-view>
+                </x-view>
+                <x-view class="weui-uploader__file weui-uploader__file_status">
+                  <x-image class="weui-uploader__img" src="../../../assets/pic_160.png" mode="aspectFill"></x-image>
+                  <x-view class="weui-uploader__file-content">50%</x-view>
+                </x-view>
+              </x-view>
+              <x-view class="weui-uploader__input-box">
+                <x-view class="weui-uploader__input" v-on:tap="chooseImage"></x-view>
+              </x-view>
+            </x-view>
+          </x-view>
+        </x-view>
+      </x-view>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

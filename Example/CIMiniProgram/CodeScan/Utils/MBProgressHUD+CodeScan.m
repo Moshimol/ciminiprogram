@@ -15,15 +15,15 @@
     if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.label.text = message;
-    hud.label.font = [UIFont systemFontOfSize:15];
+    hud.labelText = message;
+    hud.labelFont = [UIFont systemFontOfSize:15];
     
     // bezelView.color 自定义progress背景色（默认为白色）
-    hud.bezelView.color = [UIColor blackColor];
+    hud.backgroundColor = [UIColor blackColor];
     // 内容的颜色
-    hud.contentColor = [UIColor whiteColor];
+    hud.color = [UIColor whiteColor];
     
-    [hud hideAnimated:YES afterDelay:5];
+    [hud hide:YES afterDelay:5];
     // 隐藏时从父控件上移除
     hud.removeFromSuperViewOnHide = YES;
     return hud;
@@ -33,9 +33,9 @@
     if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.label.text = message;
-    hud.label.font = [UIFont systemFontOfSize:15];
-    [hud hideAnimated:YES afterDelay:5];
+    hud.labelText = message;
+    hud.labelFont = [UIFont systemFontOfSize:15];
+    [hud hide:YES afterDelay:5];
     // 隐藏时从父控件上移除
     hud.removeFromSuperViewOnHide = YES;
     return hud;
@@ -46,13 +46,13 @@
     if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.label.text = message;
-    hud.label.font = [UIFont systemFontOfSize:15];
+    hud.labelText = message;
+    hud.labelFont = [UIFont systemFontOfSize:15];
     
     // bezelView.color 自定义progress背景色（默认为白色）
-    hud.bezelView.color = [UIColor blackColor];
+    hud.backgroundColor = [UIColor blackColor];
     // 内容的颜色
-    hud.contentColor = [UIColor whiteColor];
+    hud.color = [UIColor whiteColor];
     
     // 设置图片
     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"MBProgressHUD.bundle/%@", icon]]];
@@ -64,7 +64,7 @@
     hud.removeFromSuperViewOnHide = YES;
     
     // 1秒之后再消失
-    [hud hideAnimated:YES afterDelay:1.0];
+    [hud hide:YES afterDelay:1.0];
 }
 
 /** 显示加载成功的 MBProgressHUD */
@@ -89,15 +89,15 @@
     if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.label.text = message;
-    hud.label.font = [UIFont systemFontOfSize:15];
+    hud.labelText = message;
+    hud.labelFont = [UIFont systemFontOfSize:15];
     
     // bezelView.color 自定义progress背景色（默认为白色）
-    hud.bezelView.color = [UIColor blackColor];
+    hud.backgroundColor = [UIColor blackColor];
     // 内容的颜色
-    hud.contentColor = [UIColor whiteColor];
+    hud.color = [UIColor whiteColor];
     
-    [hud hideAnimated:YES afterDelay:10];
+    [hud hide:YES afterDelay:10];
     // 隐藏时从父控件上移除
     hud.removeFromSuperViewOnHide = YES;
     return hud;
@@ -108,15 +108,15 @@
 + (void)cs_showMBProgressHUDWithOnlyMessage:(NSString *)message delayTime:(CGFloat)time {
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:[[[UIApplication sharedApplication] delegate] window]] ;
     hud.mode = MBProgressHUDModeText;
-    hud.label.text = message;
-    hud.label.font = [UIFont systemFontOfSize:15.0];
+    hud.labelText = message;
+    hud.labelFont = [UIFont systemFontOfSize:15.0];
     hud.removeFromSuperViewOnHide = YES;
-    hud.bezelView.color = [UIColor blackColor];
-    hud.contentColor = [UIColor whiteColor];
-    [hud showAnimated:YES];
-    [[[[UIApplication sharedApplication] delegate] window] addSubview:hud];
+    hud.backgroundColor = [UIColor blackColor];
+    hud.color = [UIColor whiteColor];
+    [hud showAnimated:YES whileExecutingBlock:nil];
     
-    [hud hideAnimated:YES afterDelay:time];
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:hud];
+    [hud hide:YES afterDelay:time];
 }
 
 @end

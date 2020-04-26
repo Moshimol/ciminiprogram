@@ -8,10 +8,10 @@
 #import "CIMPTabBarViewController.h"
 #import "CIMPTabBar.h"
 #import "CIMPNavigationView.h"
-#import "CIMPUtils.h"
 #import "CIMPDeviceMacro.h"
 #import "CIMPLog.h"
 #import "NSObject+CIMPJson.h"
+#import <CICategories/CICategories.h>
 
 @interface CIMPTabBarViewController ()
 
@@ -353,7 +353,7 @@
         self.currentController.pageModel.pageStyle.navigationBarTextStyle = @"white";
     }
     
-    self.currentController.pageModel.pageStyle.navigationBarBackgroundColor = [CIMPUtils MP_Color_Conversion:bgColor];
+    self.currentController.pageModel.pageStyle.navigationBarBackgroundColor = [UIColor ColorWithHexString:bgColor];
 }
 
 @end

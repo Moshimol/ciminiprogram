@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>progress</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="page__hd">
+    <x-view class="page__title">Progress</x-view>
+    <x-view class="page__desc">进度条，这里采用小程序原生的progress</x-view>
+  </x-view>
+  <x-view class="page__bd page__bd_spacing">
+    <x-view class="weui-progress">
+      <x-view class="weui-progress__bar">
+        <x-progress v-bind:percent="0" stroke-width="3"></x-progress>
+      </x-view>
+      <x-view class="weui-progress__opr">
+        <x-icon type="cancel" size="22"></x-icon>
+      </x-view>
+    </x-view>
+    <x-view class="weui-progress">
+      <x-view class="weui-progress__bar">
+        <x-progress v-bind:percent="50" stroke-width="3"></x-progress>
+      </x-view>
+      <x-view class="weui-progress__opr">
+        <x-icon type="cancel" size="22"></x-icon>
+      </x-view>
+    </x-view>
+    <x-view class="weui-progress">
+      <x-view class="weui-progress__bar">
+        <x-progress v-bind:percent="80" stroke-width="3"></x-progress>
+      </x-view>
+      <x-view class="weui-progress__opr">
+        <x-icon type="cancel" size="22"></x-icon>
+      </x-view>
+    </x-view>
+    <x-view class="weui-progress">
+      <x-view class="weui-progress__bar">
+        <x-progress v-bind:percent="progress" stroke-width="3"></x-progress>
+      </x-view>
+      <x-view class="weui-progress__opr">
+        <x-icon type="cancel" size="22"></x-icon>
+      </x-view>
+    </x-view>
+    <x-view class="weui-btn-area">
+      <x-button type="primary" v-on:tap="upload" v-bind:disabled="disabled">上传</x-button>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

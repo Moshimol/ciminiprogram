@@ -7,9 +7,20 @@
 
 #import "CIMPBaseViewController.h"
 #import "CIMPDeviceMacro.h"
-#import "CIMPUtils.h"
+#import "CIIMPImage.h"
+#import "CIMPFileMacro.h"
+#import "CIMPAppManager.h"
+#import "CIMPApp.h"
+#import <CIPhotoBrowser/CIPhotoBrowser.h>
+#import <CICamera/CICamera.h>
+#import <CICategories/CICategories.h>
 
-@interface CIMPBaseViewController () <UIGestureRecognizerDelegate>
+typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
+
+@interface CIMPBaseViewController () <UIGestureRecognizerDelegate, CIPhotoBrowserDataSource, UIDocumentPickerDelegate>
+
+@property (nonatomic, copy) NSArray<NSString *> *urls;
+@property (nonatomic, copy) ChooseFileCallback chooseFileCallback;
 
 @end
 
@@ -212,6 +223,145 @@
     // 子类实现
 }
 
+#pragma mark - 图片
+#pragma mark -
+
+- (void)previewImage:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    self.urls = param[@"urls"];
+    
+    if (!self.urls || self.urls.count == 0) {
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"urls参数为空"});
+        }
+    }
+    
+    CIPhotoBrowser *browser = [[CIPhotoBrowser alloc] initWithDataSource:self];
+    browser.shouldHideToolBar = YES;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:browser];
+    navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
+    [self presentViewController:navigationController animated:YES completion:^{
+        if (callback) {
+            callback(@{@"errMsg": @"ok"});
+        }
+    }];
+    
+    NSString *current = param[@"current"];
+    if (current) {
+        NSUInteger index = [self.urls indexOfObject:current];
+        [browser setCurrentPhotoIndex:index];
+    }
+}
+
+- (void)chooseImage:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    NSArray *sourceType = param[@"sourceType"];
+    if (!sourceType || ![sourceType isKindOfClass:NSArray.class]) {
+        sourceType = @[@"album", @"camera"];
+    }
+
+    if (sourceType.count == 1) {
+        NSString *type = sourceType[0];
+        
+        if ([type isEqualToString:@"album"]) {
+            NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
+            NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
+            [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> *photos, NSArray *assets) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        } else if ([type isEqualToString:@"camera"]) {
+            [self takePhoto:^(NSArray<UIImage *> *photos, NSArray *assets) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        } else {
+            if (callback) {
+                callback(@{@"errMsg": @"fail", @"message": @"参数sourceType的值不合法"});
+            }
+            return;
+        }
+    } else if (sourceType.count == 2) {
+        UIAlertController *chooseAction = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
+            NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
+            [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> * photos, NSArray *assets) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        }];
+        UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self takePhoto:^(NSArray<UIImage *> * photos, NSArray * assets) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [chooseAction dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [chooseAction addAction:album];
+        [chooseAction addAction:takePhoto];
+        [chooseAction addAction:cancel];
+        [self presentViewController:chooseAction animated:YES completion:nil];
+    } else {
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"参数sourceType不合法"});
+        }
+        return;
+    }
+}
+
+- (void)chooseFile:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    if (callback) {
+        self.chooseFileCallback = callback;
+    }
+    NSArray *types = @[@"public.image", @"public.data"];
+    UIDocumentPickerViewController *documentController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:types inMode:UIDocumentPickerModeOpen];
+    documentController.delegate = self;
+    documentController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:documentController animated:YES completion:nil];
+}
+
+#pragma mark - 扫码
+#pragma mark -
+
+- (void)scanCode:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    [CICameraManager sharedInstance].scanCompletionHandler = ^(NSString * _Nonnull result) {
+        if (callback) {
+            callback(@{@"errMsg": @"ok", @"result": result});
+        }
+    };
+    [[CICameraManager sharedInstance] setMode:MODE_SCAN With:self];
+}
+
 #pragma mark - 下拉刷新
 #pragma mark -
 
@@ -236,6 +386,69 @@
         // Fallback on earlier versions
         return UIStatusBarStyleDefault;
     }
+}
+
+#pragma mark - CIPhotoBrowserDataSource
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(CIPhotoBrowser *)photoBrowser {
+    return self.urls.count;
+}
+
+- (id<MWPhoto>)photoBrowser:(CIPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    NSString *urlString = self.urls[index];
+    CIPhoto *photo = [[CIPhoto alloc] initWithURL:[NSURL URLWithString:urlString]];
+    return photo;
+}
+
+- (void)takePhoto:(void (^)(NSArray<UIImage *> *, NSArray *))complete {
+    [CICameraManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets) {
+        if (complete) {
+            complete(photos, assets);
+        }
+    };
+    
+    [[CICameraManager sharedInstance] setMode:MODE_PICTURE With:self];
+}
+
+- (void)chooseFromAlbum:(NSNumber *)count sizeType:(NSArray<NSString *> *)sizeType completion:(void (^)(NSArray<UIImage *> *, NSArray *))completion {
+    [CIGalleryManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets) {
+        if (completion) {
+            completion(photos, assets);
+        }
+    };
+    [[CIGalleryManager sharedInstance] setCount:[count intValue]];
+    [[CIGalleryManager sharedInstance] createAlbum:self];
+}
+
+#pragma mark - UIDocumentPicker delegate
+#pragma mark -
+
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url {
+    BOOL canAccessingResource = [url startAccessingSecurityScopedResource];
+    if(canAccessingResource) {
+        NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init];
+        NSError *error;
+        [fileCoordinator coordinateReadingItemAtURL:url options:0 error:&error byAccessor:^(NSURL *newURL) {
+            NSData *fileData = [NSData dataWithContentsOfURL:newURL];
+            NSString *fileName = [fileData md5String];
+            NSString *appPath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, [CIMPAppManager sharedManager].currentApp.appInfo.appId];
+            NSString *tempDir = [appPath stringByAppendingString:@"/temp/"];
+//            [fileData writeToFile:[tempDir stringByAppendingString:fileName] atomically:YES];
+            [kFileManager createFileAtPath:[tempDir stringByAppendingString:fileName] contents:fileData attributes:nil];
+            if (self.chooseFileCallback) {
+                NSArray *tempFilePaths = @[[@"/temp/" stringByAppendingString:fileName]];
+                NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                self.chooseFileCallback(result);
+            }
+            
+        }];
+        if (error) {
+            // error handing
+        }
+    } else {
+        // startAccessingSecurityScopedResource fail
+    }
+    [url stopAccessingSecurityScopedResource];
 }
 
 @end

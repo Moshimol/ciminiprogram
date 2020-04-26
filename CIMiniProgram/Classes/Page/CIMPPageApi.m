@@ -10,8 +10,10 @@
 #import "CIMPPageBaseViewController.h"
 #import "CIMPTabBarViewController.h"
 #import "CIMPNetwork.h"
+#import "CIIMPImage.h"
 #import "CIMPDataCache.h"
 #import "CIMPShowActionSheet.h"
+#import "CIMPFileMacro.h"
 #import "CIMPLog.h"
 
 @interface CIMPPageApi ()
@@ -304,6 +306,54 @@
             [vc bridgeCallback:callbackId params:complete];
         }];
     }
+    // MARK: - 媒体
+    // MARK: - 图片
+    else if ([command isEqualToString:@"previewImage"]) {
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc previewImage:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"saveImageToPhotosAlbum"]) {
+        NSString *filePath = param[@"filePath"];
+        if (!filePath) {
+            NSDictionary *result = @{@"errMsg": @"fail", @"message": @"filePath参数为空"};
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+            return;
+        }
+        NSString *fullPath = [kMiniProgramPath stringByAppendingString:filePath];
+        if (![kFileManager fileExistsAtPath:fullPath]) {
+            NSDictionary *result = @{@"errMsg": @"fail", @"message": @"文件不存在"};
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+            return;
+        }
+        UIImage *image = [UIImage imageWithContentsOfFile:fullPath];
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+    } else if ([command isEqualToString:@"getImageInfo"]) {
+        [CIIMPImage getImageInfo:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"compressImage"]) {
+        [CIIMPImage compressImage:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"chooseImage"]) {
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc chooseImage:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"chooseFile"]) {
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc chooseFile:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    }
     // MARK: - 设备
     // MARK: - 剪贴板
     else if ([command isEqualToString:@"setClipboardData"]) {
@@ -311,7 +361,11 @@
     }
     // MARK: - 扫码
     else if ([command isEqualToString:@"scanCode"]) {
-        
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc scanCode:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
     }
     // MARK: - 罗盘
     else if ([command isEqualToString:@"startCompass"]) {

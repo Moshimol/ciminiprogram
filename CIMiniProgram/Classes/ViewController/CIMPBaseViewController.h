@@ -82,6 +82,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setTabBarStyle:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
 
+// MARK: - 图片
+- (void)previewImage:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
+- (void)chooseImage:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
+- (void)chooseFile:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
 // MARK: - 表单
 
 - (void)setInputPosition:(NSDictionary *)param completion:(void(^ __nullable)(void))completion;
@@ -95,6 +102,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setInputBlur:(NSDictionary *)param completion:(void(^ __nullable)(void))completion;
 
 - (void)hideKeyboard;
+
+// MARK: - 扫码
+
+- (void)scanCode:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
 
 // MARK: - JSBridge
 

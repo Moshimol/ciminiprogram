@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>button</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="container">
+
+    <x-view class="page-head">
+      <x-view class="page-head-title">button</x-view>
+      <x-view class="page-head-line"></x-view>
+      <x-view class="page-head-desc"></x-view>
+    </x-view>
+
+    <x-view class="page-body">
+      <x-view class="btn-area" id="buttonContainer">
+        <x-button class="button" type="primary">页面主操作 Normal</x-button>
+        <x-button class="button" type="primary" loading="true">页面主操作 Loading</x-button>
+        <x-button class="button" type="primary" disabled="true">页面主操作 Disabled</x-button>
+
+        <x-button class="button" type="default">页面次要操作 Normal</x-button>
+        <x-button class="button" type="default" disabled="true">页面次要操作 Disabled</x-button>
+
+        <x-button class="button" type="warn">警告类操作 Normal</x-button>
+        <x-button class="button" type="warn" disabled="true">警告类操作 Disabled</x-button>
+
+        <x-view class="x-button-sp-area">
+          <x-button class="button" type="primary" plain="true">按钮</x-button>
+          <x-button class="button" type="primary" disabled="true" plain="true">不可点击的按钮</x-button>
+
+          <x-button class="button" type="default" plain="true">按钮</x-button>
+          <x-button class="button" type="default" disabled="true" plain="true">按钮</x-button>
+
+          <x-button class="mini-btn button" type="primary" size="mini">按钮</x-button>
+          <x-button class="mini-btn button" type="default" size="mini">按钮</x-button>
+          <x-button class="mini-btn button" type="warn" size="mini">按钮</x-button>
+        </x-view>
+      </x-view>
+    </x-view>
+
+    <x-navigator class="page-foot" open-type="switchTab" url="/pages/components/index" hover-class="none">
+      <x-image class="icon-foot" src="../../../assets/icon_foot.png"></x-image>
+    </x-navigator>
+
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

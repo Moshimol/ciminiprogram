@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <link href="../../../framework/framework.css" rel="stylesheet" />
+  <link href="../../../app.css" rel="stylesheet" />
+  
+  <link href="./index.css" rel="stylesheet" />
+  
+  <title>演示</title>
+</head>
+
+<body>
+  <div id="page">
+    <x-view class="page">
+  <x-view class="page__hd">
+    <x-view class="page__title">ActionSheet</x-view>
+    <x-view class="page__desc">弹出式菜单</x-view>
+  </x-view>
+  <x-view class="page__bd">
+    <x-view class="weui-btn-area">
+      <x-button class="weui-btn" type="default" v-on:tap="open">原生 ActionSheet</x-button>
+      <x-button class="weui-btn" type="default" v-on:tap="openDialog">模拟 ActionSheet</x-button>
+    </x-view>
+  </x-view>
+  <x-view class="weui-demo-dialog" v-bind:class="istrue ? 'weui-demo-dialog_show' : ''">
+    <x-view class="weui-mask" v-on:tap="closeDialog"></x-view>
+    <x-view class="weui-actionsheet" v-bind:class="istrue ? 'weui-actionsheet_toggle' : ''" v-on:tap.stop="stopEvent">
+      <x-view class="weui-actionsheet__title">
+        <x-view class="weui-actionsheet__title-text">这是一个标题，可以为一行或者两行。</x-view>
+      </x-view>
+      <x-view class="weui-actionsheet__menu">
+        <x-view class="weui-actionsheet__cell">示例菜单</x-view>
+        <x-view class="weui-actionsheet__cell">示例菜单</x-view>
+        <x-view class="weui-actionsheet__cell weui-actionsheet__cell_warn">负向菜单</x-view>
+      </x-view>
+      <x-view class="weui-actionsheet__action">
+        <x-view class="weui-actionsheet__cell" v-on:tap="closeDialog">取消</x-view>
+      </x-view>
+    </x-view>
+  </x-view>
+</x-view>  </div>
+  <script src="../../../framework/vue.js"></script>
+  <script src="../../../framework/framework.js"></script>
+  <script src="../../../framework/bridge.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

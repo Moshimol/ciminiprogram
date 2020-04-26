@@ -21,16 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface NSDictionary (CIMPJson)
-
-- (NSString *)mp_jsonString;
-
-@end
-
-@interface NSArray (CIMPJson)
-
-- (NSString *)mp_jsonString;
-
-@end
-
 NS_ASSUME_NONNULL_END

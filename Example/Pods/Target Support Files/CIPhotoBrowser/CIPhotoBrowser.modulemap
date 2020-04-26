@@ -1,0 +1,6 @@
+framework module CIPhotoBrowser {
+  umbrella header "CIPhotoBrowser-umbrella.h"
+
+  export *
+  module * { export * }
+}
