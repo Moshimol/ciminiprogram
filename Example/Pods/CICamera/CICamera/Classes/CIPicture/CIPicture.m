@@ -18,7 +18,9 @@
 @interface CIPicture() <TZImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
-    BOOL _isSelectOriginalPhoto;
+    BOOL _isAllowPickingVideo;
+    BOOL _isAllowPickingImage;
+    BOOL _isAllowPickingGif;
 }
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
@@ -36,6 +38,11 @@
         self.selectedMaxCount = 9;
         _selectedAssets = [[NSMutableArray alloc] init];
         _selectedPhotos = [[NSMutableArray alloc] init];
+        _isAlbumWithCamera = YES;
+        _isAllowPickingVideo = YES;
+        _isAllowPickingImage = YES;
+        _isAllowPickingGif = YES;
+        _isSelectOriginalPhoto = NO;
     }
     return self;
 }
@@ -46,6 +53,12 @@
            _imagePickerVc.delegate = self;
        }
        return _imagePickerVc;
+}
+
+- (void)IsAllowPickingVideo:(BOOL)isAllowPickingVideo IsAllowPickingImage:(BOOL)isAllowPickingImage isAllowPickingGif:(BOOL)isAllowPickingGif {
+    _isAllowPickingGif = isAllowPickingGif;
+    _isAllowPickingImage = isAllowPickingImage;
+    _isAllowPickingVideo = isAllowPickingVideo;
 }
 
 - (void)showCameraWithPresentViewController:(id)presentViewController {
@@ -152,7 +165,9 @@
     [_selectedPhotos addObject:image];
     
     if (self.completeHandler) {
-        self.completeHandler(_selectedPhotos, _selectedAssets);
+        self.completeHandler(_selectedPhotos, _selectedAssets, _isSelectOriginalPhoto);
+        [_selectedAssets removeAllObjects];
+        [_selectedPhotos removeAllObjects];
     }
     if ([asset isKindOfClass:[PHAsset class]]) {
         PHAsset *phAsset = asset;
@@ -185,8 +200,8 @@
         // 1.设置目前已经选中的图片数组
         tzImagePickerVc.selectedAssets = _selectedAssets; // 目前已经选中的图片数组
     }
-    tzImagePickerVc.allowTakePicture = YES; // 在内部显示拍照按钮
-    tzImagePickerVc.allowTakeVideo = YES;   // 在内部显示拍视频按
+    tzImagePickerVc.allowTakePicture = self.isAlbumWithCamera; // 在内部显示拍照按钮
+    tzImagePickerVc.allowTakeVideo = self.isAlbumWithCamera;   // 在内部显示拍视频按
     tzImagePickerVc.videoMaximumDuration = 30; // 视频最大拍摄时间
     [tzImagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
         imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
@@ -216,10 +231,10 @@
     
     // 3. Set allow picking video & photo & originalPhoto or not
     // 3. 设置是否可以选择视频/图片/原图
-    tzImagePickerVc.allowPickingVideo = YES;
-    tzImagePickerVc.allowPickingImage = YES;
+    tzImagePickerVc.allowPickingVideo = _isAllowPickingVideo;
+    tzImagePickerVc.allowPickingImage = _isAllowPickingImage;
     tzImagePickerVc.allowPickingOriginalPhoto = YES;
-    tzImagePickerVc.allowPickingGif = YES;
+    tzImagePickerVc.allowPickingGif = _isAllowPickingGif;
     tzImagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
     
     // 4. 照片排列按修改时间升序
@@ -297,7 +312,7 @@
     // You can get the photos by block, the same as by delegate.
     // 你可以通过block或者代理，来得到用户选择的照片.
     [tzImagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-
+        self.isSelectOriginalPhoto = isSelectOriginalPhoto;
     }];
     
     tzImagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -342,13 +357,16 @@
         [self.operationQueue addOperation:operation];
     }
     if (self.completeHandler) {
-        self.completeHandler(_selectedPhotos, _selectedAssets);
+        self.completeHandler(_selectedPhotos, _selectedAssets, _isSelectOriginalPhoto);
+        [_selectedAssets removeAllObjects];
+        [_selectedPhotos removeAllObjects];
+        [picker clearAllSelectedModels];
     }
 }
 
 // 如果用户选择了一个视频且allowPickingMultipleVideo是NO，下面的代理方法会被执行
 //如果allowPickingMultipleVideo是YES，将会调用imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(PHAsset *)asset {
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(PHAsset *)asset  {
     _selectedPhotos = [NSMutableArray arrayWithArray:@[coverImage]];
     _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
     // open this code to send video / 打开这段代码发送视频
@@ -362,7 +380,10 @@
         NSLog(@"视频导出失败:%@,error:%@",errorMessage, error);
     }];
     if (self.completeHandler) {
-        self.completeHandler(_selectedPhotos, _selectedAssets);
+        self.completeHandler(_selectedPhotos, _selectedAssets, _isSelectOriginalPhoto);
+        [_selectedAssets removeAllObjects];
+        [_selectedPhotos removeAllObjects];
+        [picker clearAllSelectedModels];
     }
 }
 
@@ -372,7 +393,10 @@
     _selectedPhotos = [NSMutableArray arrayWithArray:@[animatedImage]];
     _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
     if (self.completeHandler) {
-        self.completeHandler(_selectedPhotos, _selectedAssets);
+        self.completeHandler(_selectedPhotos, _selectedAssets, _isSelectOriginalPhoto);
+        [_selectedAssets removeAllObjects];
+        [_selectedPhotos removeAllObjects];
+        [picker clearAllSelectedModels];
     }
 }
 

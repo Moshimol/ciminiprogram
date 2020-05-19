@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CIMPNetwork : NSObject
 
-+ (void)request:(NSDictionary *)param success:(void(^)(NSDictionary *))success fail:(void(^)(NSDictionary *))fail;
++ (void)request:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
 
-+ (void)downloadFile:(NSDictionary *)param success:(void(^)(NSDictionary *))success fail:(void(^)(NSDictionary *))fail;
++ (void)downloadFile:(NSDictionary *)param progress:(void(^)(NSString *, NSDictionary *))progress callback:(void(^)(NSDictionary *))callback;
 
-+ (void)uploadFile:(NSDictionary *)param success:(void(^)(NSDictionary *))success fail:(void(^)(NSDictionary *))fail;
++ (void)uploadFile:(NSDictionary *)param progress:(void(^)(NSString *, NSDictionary *))progress callback:(void(^)(NSDictionary *))callback;
 
 @end
 

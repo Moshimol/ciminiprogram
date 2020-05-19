@@ -14,13 +14,14 @@ PODS:
   - AFNetworking/Serialization (4.0.0)
   - AFNetworking/UIKit (4.0.0):
     - AFNetworking/NSURLSession
-  - CICamera (0.1.8)
+  - CICamera (0.2.0)
   - CICategories (0.1.0)
   - CIMiniProgram (0.2.0):
     - CICamera
     - CICategories
     - CINetworking
     - CIPhotoBrowser
+    - CIViewFile
     - MJRefresh
     - SSZipArchive
   - CINetworking (0.1.5):
@@ -28,6 +29,8 @@ PODS:
   - CIPhotoBrowser (0.1.4):
     - Masonry
     - MWPhotoBrowser
+  - CIViewFile (0.1.2):
+    - SSZipArchive
   - DACircularProgress (2.3.1)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
@@ -71,6 +74,7 @@ SPEC REPOS:
     - CICategories
     - CINetworking
     - CIPhotoBrowser
+    - CIViewFile
 
 EXTERNAL SOURCES:
   CIMiniProgram:
@@ -78,11 +82,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: d9fdf484a3c723ec3c558a41cc5754c7e845ee77
-  CICamera: e75eee295ffa2021949c5a779e380b37ebab8f0e
+  CICamera: 63c53d0f7d3dd3f1642ecbd4d468c616d43d8c4b
   CICategories: 15c92c86129bf98aad35472785d7871307c99305
-  CIMiniProgram: c59235e419743ff36abd71e25bce013aef196f0a
+  CIMiniProgram: f2849c7858952c0900a5863cc5641067ae33f496
   CINetworking: a944634a2f176b9fcf244b71150a19bf68abc75b
   CIPhotoBrowser: 215287a596078ffbe6e2d6bc2d6e7c63182a4026
+  CIViewFile: 733291ea107a693394e7ecffa85f2b3730544636
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201

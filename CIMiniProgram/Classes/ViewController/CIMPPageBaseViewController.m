@@ -538,9 +538,23 @@
 - (void)bridgeCallback:(NSString *)callbackId params:(NSDictionary<NSString *,NSObject *> *)params {
     NSString *paramString = [params jsonPrettyStringEncoded];
     NSString *javascriptString = [NSString stringWithFormat:@"serviceBridge.invokeCallbackHandler('%@', %@)", callbackId, paramString];
-    [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        MPLog(@"callback complete, id is %@", callbackId);
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            MPLog(@"callback complete, id is %@", callbackId);
+        }];
+    });
+}
+
+- (void)bridgeEvent:(NSString *)callbackId eventName:(NSString *)eventName params:(NSDictionary<NSString *,NSObject *> *)params {
+    NSMutableDictionary *result = params.mutableCopy;
+    [result setValue:callbackId forKey:@"callbackId"];
+    NSString *paramString = [result jsonPrettyStringEncoded];
+    NSString *javascriptString = [NSString stringWithFormat:@"eval(serviceBridge.subscribeHandler('%@', %@))", eventName, paramString];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            NSLog(@"eval complete");
+        }];
+    });
 }
 
 #pragma mark - WK Javascript message handler

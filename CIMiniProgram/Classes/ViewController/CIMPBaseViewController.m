@@ -14,13 +14,20 @@
 #import <CIPhotoBrowser/CIPhotoBrowser.h>
 #import <CICamera/CICamera.h>
 #import <CICategories/CICategories.h>
+#import <CIViewFile/CIFileViewHelper.h>
+#import <CoreLocation/CoreLocation.h>
 
 typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
+typedef void(^GetLocationCallBack)(NSDictionary *result);
 
-@interface CIMPBaseViewController () <UIGestureRecognizerDelegate, CIPhotoBrowserDataSource, UIDocumentPickerDelegate>
+@interface CIMPBaseViewController () <UIGestureRecognizerDelegate, CIPhotoBrowserDataSource, UIDocumentPickerDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, copy) NSArray<NSString *> *urls;
 @property (nonatomic, copy) ChooseFileCallback chooseFileCallback;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) NSString *callbackId;
+@property (nonatomic, copy) GetLocationCallBack getLocationCallback;
 
 @end
 
@@ -120,6 +127,10 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
 }
 
 - (void)bridgeCallback:(NSString *)callbackId params:(NSDictionary<NSString *,NSObject *> *)params {
+    // 子类实现
+}
+
+- (void)bridgeEvent:(NSString *)callbackId eventName:(NSString *)eventName params:(NSDictionary<NSString *,NSObject *> *)params {
     // 子类实现
 }
 
@@ -265,7 +276,7 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
         if ([type isEqualToString:@"album"]) {
             NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
-            [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> *photos, NSArray *assets) {
+            [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
                 for (UIImage *image in photos) {
                     NSString *filePath = [CIIMPImage writeImageToFile:image];
@@ -277,7 +288,7 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
                 }
             }];
         } else if ([type isEqualToString:@"camera"]) {
-            [self takePhoto:^(NSArray<UIImage *> *photos, NSArray *assets) {
+            [self takePhoto:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
                 for (UIImage *image in photos) {
                     NSString *filePath = [CIIMPImage writeImageToFile:image];
@@ -299,7 +310,7 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
         UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
-            [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> * photos, NSArray *assets) {
+            [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> * photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
                 for (UIImage *image in photos) {
                     NSString *filePath = [CIIMPImage writeImageToFile:image];
@@ -312,7 +323,7 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
             }];
         }];
         UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self takePhoto:^(NSArray<UIImage *> * photos, NSArray * assets) {
+            [self takePhoto:^(NSArray<UIImage *> * photos, NSArray * assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
                 for (UIImage *image in photos) {
                     NSString *filePath = [CIIMPImage writeImageToFile:image];
@@ -348,6 +359,145 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
     documentController.delegate = self;
     documentController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:documentController animated:YES completion:nil];
+}
+
+#pragma mark - 视频
+#pragma mark -
+
+- (void)chooseVideo:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    
+}
+
+- (void)chooseMedia:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    NSArray *sourceType = param[@"sourceType"];
+    if (!sourceType || ![sourceType isKindOfClass:NSArray.class]) {
+        sourceType = @[@"album", @"camera"];
+    }
+
+    if (sourceType.count == 1) {
+        NSString *type = sourceType[0];
+        
+        if ([type isEqualToString:@"album"]) {
+            NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
+            NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
+            NSArray *mediaType = param[@"mediaType"];
+            [self chooseFromAlbum:count sizeType:sizeType mediaType:mediaType completion:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        } else if ([type isEqualToString:@"camera"]) {
+            [self takePhoto:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        } else {
+            if (callback) {
+                callback(@{@"errMsg": @"fail", @"message": @"参数sourceType的值不合法"});
+            }
+            return;
+        }
+    } else if (sourceType.count == 2) {
+        UIAlertController *chooseAction = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
+            NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
+            NSArray *mediaType = param[@"mediaType"];
+            [self chooseFromAlbum:count sizeType:sizeType mediaType:mediaType completion:^(NSArray<UIImage *> * photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        }];
+        UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self takePhoto:^(NSArray<UIImage *> * photos, NSArray * assets, BOOL isSelectOriginalPhoto) {
+                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                for (UIImage *image in photos) {
+                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                    [tempFilePaths addObject:filePath];
+                }
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    callback(result);
+                }
+            }];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [chooseAction dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [chooseAction addAction:album];
+        [chooseAction addAction:takePhoto];
+        [chooseAction addAction:cancel];
+        [self presentViewController:chooseAction animated:YES completion:nil];
+    } else {
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"参数sourceType不合法"});
+        }
+        return;
+    }
+}
+
+#pragma mark - 定位
+#pragma mark -
+
+- (void)getLocation:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.delegate = self;
+//    self.getLocationParam = param;
+    self.getLocationCallback = callback;
+    NSString *type = param[@"type"];
+    BOOL altitude = [param[@"altitude"] boolValue];
+    BOOL isHighAccuracy = [param[@"isHighAccuracy"] boolValue];
+    NSNumber *highAccuracyExpireTime = param[@"highAccuracyExpireTime"];
+    if (isHighAccuracy) {
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    [self.locationManager requestLocation];
+}
+
+#pragma mark - 文件
+#pragma mark -
+
+- (void)openDocument:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
+     NSString *filePath = param[@"filePath"];
+    if (!filePath) {
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"filePath参数为空"});
+            return;
+        }
+    }
+    NSString *appPath = [kMiniProgramPath stringByAppendingPathComponent:[CIMPAppManager sharedManager].currentApp.appInfo.appId];
+    NSString *fullPath = [appPath stringByAppendingPathComponent:filePath];
+    NSArray *pathArr = [fullPath componentsSeparatedByString:@"/"];
+    NSString *fileName = pathArr.lastObject;
+    NSURL *fileURL = [NSURL fileURLWithPath:fullPath];
+    BOOL res = [CIFileViewHelper canPreviewItem:fileURL];
+    if (res) {
+        [CIFileViewHelper showFileWithName:fileName path:fullPath rootViewController:self];
+    } else {
+        UIDocumentInteractionController *_documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+        [_documentInteractionController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+    }
 }
 
 #pragma mark - 扫码
@@ -400,22 +550,50 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
     return photo;
 }
 
-- (void)takePhoto:(void (^)(NSArray<UIImage *> *, NSArray *))complete {
-    [CICameraManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets) {
+- (void)takePhoto:(void (^)(NSArray<UIImage *> *, NSArray *, BOOL))complete {
+    [CICameraManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL isSelectOriginalPhoto) {
         if (complete) {
-            complete(photos, assets);
+            complete(photos, assets, isSelectOriginalPhoto);
         }
     };
     
     [[CICameraManager sharedInstance] setMode:MODE_PICTURE With:self];
 }
 
-- (void)chooseFromAlbum:(NSNumber *)count sizeType:(NSArray<NSString *> *)sizeType completion:(void (^)(NSArray<UIImage *> *, NSArray *))completion {
-    [CIGalleryManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets) {
+- (void)chooseFromAlbum:(NSNumber *)count sizeType:(NSArray<NSString *> *)sizeType completion:(void (^)(NSArray<UIImage *> *, NSArray *, BOOL))completion {
+    [CIGalleryManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL isSelectOriginalPhoto) {
         if (completion) {
-            completion(photos, assets);
+            completion(photos, assets, isSelectOriginalPhoto);
         }
     };
+    [[CIGalleryManager sharedInstance] setAlbumWithCamera:NO];
+    [[CIGalleryManager sharedInstance] IsAllowPickingVideo:NO IsAllowPickingImage:YES isAllowPickingGif:YES];
+    [[CIGalleryManager sharedInstance] setCount:[count intValue]];
+    [[CIGalleryManager sharedInstance] createAlbum:self];
+}
+
+- (void)chooseFromAlbum:(NSNumber *)count sizeType:(NSArray<NSString *> *)sizeType mediaType:(NSArray<NSString *> *)mediaType completion:(void (^)(NSArray<UIImage *> *, NSArray *, BOOL))completion {
+    [CIGalleryManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL isSelectOriginalPhoto) {
+        if (completion) {
+            completion(photos, assets, isSelectOriginalPhoto);
+        }
+    };
+    if (mediaType) {
+        if (mediaType.count == 1) {
+            NSString *type = mediaType[0];
+            if ([type isEqualToString:@"image"]) {
+                [[CIGalleryManager sharedInstance] IsAllowPickingVideo:NO IsAllowPickingImage:YES isAllowPickingGif:YES];
+            } else if ([type isEqualToString:@"video"]) {
+                [[CIGalleryManager sharedInstance] IsAllowPickingVideo:YES IsAllowPickingImage:NO isAllowPickingGif:NO];
+            }
+        } else {
+            [[CIGalleryManager sharedInstance] IsAllowPickingVideo:YES IsAllowPickingImage:YES isAllowPickingGif:YES];
+        }
+    } else {
+        [[CIGalleryManager sharedInstance] IsAllowPickingVideo:YES IsAllowPickingImage:YES isAllowPickingGif:YES];
+    }
+    [[CIGalleryManager sharedInstance] setAlbumWithCamera:NO];
+    
     [[CIGalleryManager sharedInstance] setCount:[count intValue]];
     [[CIGalleryManager sharedInstance] createAlbum:self];
 }
@@ -436,8 +614,8 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
 //            [fileData writeToFile:[tempDir stringByAppendingString:fileName] atomically:YES];
             [kFileManager createFileAtPath:[tempDir stringByAppendingString:fileName] contents:fileData attributes:nil];
             if (self.chooseFileCallback) {
-                NSArray *tempFilePaths = @[[@"/temp/" stringByAppendingString:fileName]];
-                NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                NSDictionary *tempFile = @{@"path": [@"/temp/" stringByAppendingString:fileName]};
+                NSDictionary *result = @{@"errMsg": @"ok", @"tempFile": tempFile};
                 self.chooseFileCallback(result);
             }
             
@@ -449,6 +627,24 @@ typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
         // startAccessingSecurityScopedResource fail
     }
     [url stopAccessingSecurityScopedResource];
+}
+
+#pragma mark - CLLocationManagerDelegate
+#pragma mark -
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    for (CLLocation *location in locations) {
+        NSLog(@"altitude is %.2f, lautitude is %.2f, longitude is %.2f", location.altitude, location.coordinate.latitude, location.coordinate.longitude);
+        NSDictionary *result = @{@"errMsg": @"ok", @"lautitude": @(location.coordinate.latitude), @"longitude": @(location.coordinate.longitude), @"altitude": @(location.altitude)};
+        if (self.getLocationCallback) {
+            self.getLocationCallback(result);
+        }
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+   
 }
 
 @end

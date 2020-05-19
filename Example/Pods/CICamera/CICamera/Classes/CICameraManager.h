@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CICameraManager : NSObject
 
 //  回调
-@property (nonatomic, strong) void (^pictureCompleteHandler)(NSArray<UIImage *> *photos,NSArray *assets);
+@property (nonatomic, strong) void (^pictureCompleteHandler)(NSArray<UIImage *> *photos,NSArray *assets, BOOL isSelectOriginalPhoto);
 @property (nonatomic, strong) NSString *savePathString;
 @property (nonatomic, strong) void (^scanCompletionHandler)(NSString *result);
 

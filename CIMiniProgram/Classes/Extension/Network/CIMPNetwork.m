@@ -8,6 +8,7 @@
 #import "CIMPNetwork.h"
 #import "CIMPAppInfo.h"
 #import "CIMPFileMacro.h"
+#import "CIMPNetworkManager.h"
 #import "CIMPAppManager.h"
 #import "CIMPApp.h"
 #import <CINetworking/CINetworking.h>
@@ -15,11 +16,11 @@
 
 @implementation CIMPNetwork
 
-+ (void)request:(NSDictionary *)param success:(void (^)(NSDictionary *))success fail:(void (^)(NSDictionary * _Nonnull))fail {
++ (void)request:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback; {
     NSString *urlString = param[@"url"];
     if (!urlString) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": @"url为空"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"url为空"});
         }
         return;
     }
@@ -54,10 +55,10 @@
     }
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/plain", nil];
-    [manager request:urlString method:requestMethod headers:header parameters:data progress:^(NSProgress * _Nonnull progress) {
+    NSURLSessionTask *requestTask = [manager request:urlString method:requestMethod headers:header parameters:data progress:^(NSProgress * _Nonnull progress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
+        if (callback) {
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
             NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             NSDictionary *fields = [response allHeaderFields];
@@ -68,11 +69,9 @@
             } else {
                 cookies = @[];
             }
-            if (success) {
-                NSDictionary *result = @{@"errMsg": @"ok", @"data": responseString, @"statusCode": @(response.statusCode), @"header": fields, @"cookies": cookies};
-                success(result);
-            }
             
+            NSDictionary *result = @{@"errMsg": @"ok", @"data": responseString, @"statusCode": @(response.statusCode), @"header": fields, @"cookies": cookies};
+            callback(result);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
@@ -84,18 +83,19 @@
         } else {
             cookies = @[];
         }
-        if (success) {
+        if (callback) {
             NSDictionary *result = @{@"errMsg": @"ok", @"data": error.localizedDescription, @"statusCode": @(response.statusCode), @"header": fields, @"cookies": cookies};
-            success(result);
+            callback(result);
         }
     }];
+    [[CIMPNetworkManager sharedManager].tasks setObject:requestTask forKey:param[@"callbackId"]];
 }
 
-+ (void)downloadFile:(NSDictionary *)param success:(void (^)(NSDictionary * _Nonnull))success fail:(void (^)(NSDictionary * _Nonnull))fail {
++ (void)downloadFile:(NSDictionary *)param progress:(nonnull void (^)(NSString * _Nonnull, NSDictionary * _Nonnull))progress callback:(nonnull void (^)(NSDictionary * _Nonnull))callback {
     NSString *urlString = param[@"url"];
     if (!urlString) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": @"url参数为空"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"url参数为空"});
             return;
         }
     }
@@ -118,10 +118,28 @@
         }];
     }
     
-    NSURLSessionDownloadTask *downloadTask = [[CINetworking sharedInstance] downloadTask:request parameters:nil progress:^(NSProgress * _Nonnull progress) {
-        
+    NSURLSessionDownloadTask *downloadTask = [[CINetworking sharedInstance] downloadTask:request parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        NSDictionary *result = @{@"progress": @(downloadProgress.fractionCompleted), @"totalBytesWritten": @(downloadProgress.completedUnitCount), @"totalBytesExpectedToWrite": @(downloadProgress.totalUnitCount)};
+        if (progress) {
+            progress(@"MP-downloadFile-onProgressUpdate", result);
+        }
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        NSDictionary *fields = [httpResponse allHeaderFields];
+        NSString *contentDisposition = fields[@"Content-Disposition"];
+        NSString *suffix = @"";
+        
+        if (contentDisposition) {
+            NSArray<NSString *> *suffixArr = [contentDisposition componentsSeparatedByString:@"filename="];
+            if (suffixArr.count == 2) {
+                NSString *fileName = suffixArr[1];
+                fileName = [fileName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                NSArray *nameArr = [fileName componentsSeparatedByString:@"."];
+                suffix = [NSString stringWithFormat:@".%@", nameArr.lastObject];
+            }
+        }
         CIMPApp *app = [CIMPAppManager sharedManager].currentApp;
+        
         NSString *destination = @"";
         
         if (filePath) {
@@ -129,44 +147,44 @@
         } else {
             NSDate *date = [NSDate date];
             NSTimeInterval time = [date timeIntervalSince1970]*1000;
-            destination = [NSString stringWithFormat:@"file://%@/%@/temp/%f", kMiniProgramPath, app.appInfo.appId, time];
+            destination = [NSString stringWithFormat:@"file://%@/%@/temp/%.0f%@", kMiniProgramPath, app.appInfo.appId, time * 1000000, suffix];
             
-            tempFilePath = [NSString stringWithFormat:@"/temp/%f", time];
+            tempFilePath = [NSString stringWithFormat:@"/temp/%.0f%@", time * 1000000, suffix];
         }
-        
         return [NSURL URLWithString:destination];
     } success:^(NSURLResponse * _Nonnull response, NSURL * _Nonnull fileDownloadPath) {
-        if (success) {
+        if (callback) {
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
             if (filePath) {
                 NSDictionary *result = @{@"errMsg": @"ok", @"filePath": filePath, @"statusCode": @(urlResponse.statusCode)};
-                success(result);
+                callback(result);
             } else {
                 NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePath": tempFilePath, @"statusCode": @(urlResponse.statusCode)};
-                success(result);
+                callback(result);
             }
         }
     } failure:^(NSURLResponse * _Nonnull response, NSError * _Nonnull error) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": error.localizedDescription});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": error.localizedDescription});
         }
     }];
     [downloadTask resume];
+    [[CIMPNetworkManager sharedManager].tasks setObject:downloadTask forKey:param[@"callbackId"]];
 }
 
-+ (void)uploadFile:(NSDictionary *)param success:(void (^)(NSDictionary * _Nonnull))success fail:(void (^)(NSDictionary * _Nonnull))fail {
++ (void)uploadFile:(NSDictionary *)param progress:(nonnull void (^)(NSString * _Nonnull, NSDictionary * _Nonnull))progress callback:(nonnull void (^)(NSDictionary * _Nonnull))callback {
     NSString *urlString = param[@"url"];
     if (!urlString) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": @"url参数为空"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"url参数为空"});
             return;
         }
     }
 
     NSString *filePath = param[@"filePath"];
     if (!filePath) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": @"filePath参数为空"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"filePath参数为空"});
             return;
         }
     }
@@ -174,16 +192,16 @@
     NSString *fullPath = [kMiniProgramPath stringByAppendingString:[NSString stringWithFormat:@"/%@%@", app.appInfo.appId, filePath]];
     
     if (![kFileManager fileExistsAtPath:fullPath]) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": @"filePath指向的文件不存在"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"filePath指向的文件不存在"});
             return;
         }
     }
 
     NSString *name = param[@"name"];
     if (!name) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail", @"message": @"name参数为空"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"name参数为空"});
             return;
         }
     }
@@ -211,18 +229,22 @@
         }];
     }
     
-    NSURLSessionDataTask *uploadTask = [[CINetworking sharedInstance] uploadTask:request progress:^(NSProgress * _Nonnull progress) {
-        
+    NSURLSessionDataTask *uploadTask = [[CINetworking sharedInstance] uploadTask:request progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSDictionary *result = @{@"progress": @(uploadProgress.fractionCompleted), @"totalBytesWritten": @(uploadProgress.completedUnitCount), @"totalBytesExpectedToWrite": @(uploadProgress.totalUnitCount)};
+        if (progress) {
+            progress(@"MP-uploadFile-onProgressUpdate", result);
+        }
     } success:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject) {
-        if (success) {
-            success(@{@"errMsg": @"ok"});
+        if (callback) {
+            callback(@{@"errMsg": @"ok"});
         }
     } failure:^(NSURLResponse * _Nonnull response, NSError * _Nonnull error) {
-        if (fail) {
-            fail(@{@"errMsg": @"fail"});
+        if (callback) {
+            callback(@{@"errMsg": @"fail"});
         }
     }];
     [uploadTask resume];
+    [[CIMPNetworkManager sharedManager].tasks setObject:uploadTask forKey:param[@"callbackId"]];
 }
 
 + (NSString *)mimeTypeForFileAtPath:(NSString *)path {

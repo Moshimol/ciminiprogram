@@ -42,12 +42,20 @@ static CIGalleryManager* _instance = nil;
     self.ciPicture.selectedMaxCount = count;
 }
 
+- (void) IsAllowPickingVideo:(BOOL)isAllowPickingVideo IsAllowPickingImage:(BOOL)isAllowPickingImage isAllowPickingGif:(BOOL)isAllowPickingGif {
+    [self.ciPicture IsAllowPickingVideo:isAllowPickingVideo IsAllowPickingImage:isAllowPickingImage isAllowPickingGif:isAllowPickingGif];
+}
+
 - (void)createAlbum:(UIViewController *)presentViewController {
     WS(ws);
-    self.ciPicture.completeHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets) {
-        ws.pictureCompleteHandler(photos, assets);
+    self.ciPicture.completeHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL _isSelectOriginalPhoto) {
+        ws.pictureCompleteHandler(photos, assets, _isSelectOriginalPhoto);
     };
     [self.ciPicture showAlbumWithPresentViewController: presentViewController];
+}
+
+- (void)setAlbumWithCamera:(BOOL)isOpen {
+    self.ciPicture.isAlbumWithCamera = isOpen;
 }
 
 - (void)setMinFileSize {

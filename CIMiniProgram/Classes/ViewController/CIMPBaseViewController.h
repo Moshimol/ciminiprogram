@@ -89,6 +89,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)chooseFile:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
 
+// MARK: - 视频
+
+- (void)chooseVideo:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
+- (void)chooseMedia:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
 // MARK: - 表单
 
 - (void)setInputPosition:(NSDictionary *)param completion:(void(^ __nullable)(void))completion;
@@ -103,13 +109,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)hideKeyboard;
 
+// MARK: - 定位
+- (void)getLocation:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
+// MARK: - 文件
+
+- (void)openDocument:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
 // MARK: - 扫码
 
 - (void)scanCode:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
 
 // MARK: - JSBridge
 
-- (void)bridgeCallback:(NSString *)callbackId params:(NSDictionary<NSString *,NSObject *> *)params;
+- (void)bridgeCallback:(NSString *)callbackId params:(NSDictionary<NSString *, NSObject *> *)params;
+
+- (void)bridgeEvent:(NSString *)callbackId eventName:(NSString *)eventName params:(NSDictionary<NSString *, NSObject *> *)params;
 
 @end
 

@@ -84,28 +84,25 @@
     // MARK: - 界面
     // MARK: - 网络
     else if ([command isEqualToString:@"request"]) {
-        [CIMPNetwork request:param success:^(NSDictionary * _Nonnull result) {
+        [CIMPNetwork request:param callback:^(NSDictionary * _Nonnull result) {
             CIMPBaseViewController *vc = [self.pageManager.pageStack top];
             [vc bridgeCallback:callbackId params:result];
-        } fail:^(NSDictionary * _Nonnull error) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeCallback:callbackId params:error];
         }];
     } else if ([command isEqualToString:@"downloadFile"]) {
-        [CIMPNetwork downloadFile:param success:^(NSDictionary * _Nonnull result) {
+        [CIMPNetwork downloadFile:param progress:^(NSString * _Nonnull eventName, NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeEvent:callbackId eventName:eventName params:result];
+        } callback:^(NSDictionary * _Nonnull result) {
             CIMPBaseViewController *vc = [self.pageManager.pageStack top];
             [vc bridgeCallback:callbackId params:result];
-        } fail:^(NSDictionary * _Nonnull error) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeCallback:callbackId params:error];
         }];
     } else if ([command isEqualToString:@"uploadFile"]) {
-        [CIMPNetwork uploadFile:param success:^(NSDictionary * _Nonnull result) {
+        [CIMPNetwork uploadFile:param progress:^(NSString * _Nonnull eventName, NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeEvent:callbackId eventName:eventName params:result];
+        } callback:^(NSDictionary * _Nonnull result) {
             CIMPBaseViewController *vc = [self.pageManager.pageStack top];
             [vc bridgeCallback:callbackId params:result];
-        } fail:^(NSDictionary * _Nonnull error) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeCallback:callbackId params:error];
         }];
     }
     // MARK: - 交互
@@ -354,6 +351,24 @@
             [vc bridgeCallback:callbackId params:result];
         }];
     }
+    // MARK: - 视频
+    else if ([command isEqualToString:@"chooseMedia"]) {
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc chooseMedia:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"chooseVideo"]) {
+        
+    }
+    // MARK: - 文件
+    else if ([command isEqualToString:@"openDocument"]) {
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc openDocument:param callback:^(NSDictionary * _Nonnull result) {
+            
+        }];
+    }
+    
     // MARK: - 设备
     // MARK: - 剪贴板
     else if ([command isEqualToString:@"setClipboardData"]) {
@@ -375,7 +390,11 @@
     }
     // MARK: - 位置
     else if ([command isEqualToString:@"getLocation"]) {
-        
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc getLocation:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
     } else if ([command isEqualToString:@"startLocationUpdate"]) {
         
     } else if ([command isEqualToString:@"stopLocationUpdate"]) {

@@ -23,7 +23,7 @@
         return;
     }
     
-    NSString *path = [[kMiniProgramPath stringByAppendingString:[CIMPAppManager sharedManager].currentApp.appInfo.appId] stringByAppendingString:src];
+    NSString *path = [[kMiniProgramPath stringByAppendingString:[NSString stringWithFormat:@"/%@", [CIMPAppManager sharedManager].currentApp.appInfo.appId]] stringByAppendingString:src];
     if ([kFileManager fileExistsAtPath:path]) {
         UIImage *image = [UIImage imageWithContentsOfFile:path];
         if (!image) {

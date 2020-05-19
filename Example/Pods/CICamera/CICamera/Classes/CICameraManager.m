@@ -10,9 +10,8 @@
 #import "CIScan/CIScan.h"
 #import "CIVideo/CIVideo.h"
 #import "CIPicture/CIPicture.h"
-
+#define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
 static CICameraManager* _instance = nil;
-
 @interface CICameraManager()
 
 @property (nonatomic, strong) CIPicture *ciPicture;
