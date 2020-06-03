@@ -11,14 +11,19 @@
 #import "CIMPTabBarViewController.h"
 #import "CIMPNetwork.h"
 #import "CIIMPImage.h"
+#import "CIMPVideo.h"
 #import "CIMPDataCache.h"
 #import "CIMPShowActionSheet.h"
 #import "CIMPFileMacro.h"
+#import "CIMPFIle.h"
+#import "CIMPAppManager.h"
+#import "CIMPApp.h"
 #import "CIMPLog.h"
 
 @interface CIMPPageApi ()
 
 @property (nonatomic, weak) CIMPPageManager *pageManager;
+@property (nonatomic, copy) NSString *callbackId;
 
 @end
 
@@ -33,6 +38,7 @@
 
 - (void)receive:(NSString *)command param:(NSDictionary *)param {
     NSString *callbackId = param[@"callbackId"];
+    self.callbackId = callbackId;
     if (!callbackId) {
         CIMPBaseViewController *vc = [self.pageManager.pageStack top];
         [vc bridgeCallback:callbackId params:@{@"errMsg": @"callbackId为空"}];
@@ -319,7 +325,7 @@
             [vc bridgeCallback:callbackId params:result];
             return;
         }
-        NSString *fullPath = [kMiniProgramPath stringByAppendingString:filePath];
+        NSString *fullPath = [kMiniProgramPath stringByAppendingString:[NSString stringWithFormat:@"/%@%@", [CIMPAppManager sharedManager].currentApp.appInfo.appId, filePath]];
         if (![kFileManager fileExistsAtPath:fullPath]) {
             NSDictionary *result = @{@"errMsg": @"fail", @"message": @"文件不存在"};
             CIMPBaseViewController *vc = [self.pageManager.pageStack top];
@@ -359,7 +365,40 @@
             [vc bridgeCallback:callbackId params:result];
         }];
     } else if ([command isEqualToString:@"chooseVideo"]) {
-        
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc chooseVideo:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"getVideoInfo"]) {
+        [CIMPVideo getVideoInfo:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"saveVideoToPhotosAlbum"]) {
+        NSString *filePath = param[@"filePath"];
+        if (!filePath) {
+            NSDictionary *result = @{@"errMsg": @"fail", @"message": @"filePath参数为空"};
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+            return;
+        }
+//        NSString *fullPath = [kMiniProgramPath stringByAppendingString:filePath];
+        if (![kFileManager fileExistsAtPath:filePath]) {
+            NSDictionary *result = @{@"errMsg": @"fail", @"message": @"文件不存在"};
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+            return;
+        }
+        BOOL compatible = UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(filePath);
+        if (compatible) {
+            UISaveVideoAtPathToSavedPhotosAlbum(filePath, self, @selector(video:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+        } else {
+            NSDictionary *result = @{@"errMsg": @"fail", @"message": @"文件格式不兼容"};
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+            return;
+        }
     }
     // MARK: - 文件
     else if ([command isEqualToString:@"openDocument"]) {
@@ -367,8 +406,29 @@
         [vc openDocument:param callback:^(NSDictionary * _Nonnull result) {
             
         }];
+    } else if ([command isEqualToString:@"saveFile"]) {
+        [CIMPFile saveFile:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"removeSavedFile"]) {
+        [CIMPFile removeSavedFile:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"getSavedFileInfo"]) {
+        [CIMPFile getSavedFileInfo:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"getSavedFileList"]) {
+        [CIMPFile getSavedFileList:param callback:^(NSDictionary * _Nonnull result) {
+            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+            [vc bridgeCallback:callbackId params:result];
+        }];
+    } else if ([command isEqualToString:@"getFileInfo"]) {
+        
     }
-    
     // MARK: - 设备
     // MARK: - 剪贴板
     else if ([command isEqualToString:@"setClipboardData"]) {
@@ -477,6 +537,36 @@
 - (void)hideKeyboard {
     CIMPBaseViewController *vc = [self.pageManager.pageStack top];
     [vc hideKeyboard];
+}
+
+#pragma mark - 保存图片到相册回调
+#pragma mark -
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error) {
+        NSDictionary *result = @{@"errMsg": @"fail", @"message": error.localizedDescription};
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc bridgeCallback:self.callbackId params:result];
+    } else {
+        NSDictionary *result = @{@"errMsg": @"ok", @"message": @"保存图片到相册成功"};
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc bridgeCallback:self.callbackId params:result];
+    }
+}
+
+#pragma mark - 保存视频到相册回调
+#pragma mark -
+
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error) {
+        NSDictionary *result = @{@"errMsg": @"fail", @"message": error.localizedDescription};
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc bridgeCallback:self.callbackId params:result];
+    } else {
+        NSDictionary *result = @{@"errMsg": @"ok", @"message": @"保存视频到相册成功"};
+        CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+        [vc bridgeCallback:self.callbackId params:result];
+    }
 }
 
 @end

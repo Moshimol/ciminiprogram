@@ -5,13 +5,13 @@
 [![License](https://img.shields.io/cocoapods/l/CIMiniProgram.svg?style=flat)](https://cocoapods.org/pods/CIMiniProgram)
 [![Platform](https://img.shields.io/cocoapods/p/CIMiniProgram.svg?style=flat)](https://cocoapods.org/pods/CIMiniProgram)
 
-## Example
+## 示例
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 
-## Installation
+## 安装
 
 CIMiniProgram is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -20,7 +20,13 @@ it, simply add the following line to your Podfile:
 pod 'CIMiniProgram'
 ```
 
-## Author
+## 说明
+已完成以下功能：
+1. previewImage
+2. chooseMedia
+3. chooseVideo
+
+## 作者
 
 jasonyuan1986, jasonyuan1986@gmail.com
 

@@ -365,7 +365,67 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
 #pragma mark -
 
 - (void)chooseVideo:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
-    
+    NSArray *sourceType = param[@"sourceType"];
+    if (!sourceType || ![sourceType isKindOfClass:NSArray.class]) {
+        sourceType = @[@"album", @"camera"];
+    }
+
+    if (sourceType.count == 1) {
+        NSString *type = sourceType[0];
+        
+        if ([type isEqualToString:@"album"]) {
+            BOOL compressed = [param[@"compressed"] boolValue];
+            [self chooseVideoFromAlbum:compressed completion:^(NSString * _Nonnull videoPathString) {
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePath": videoPathString};
+                    callback(result);
+                }
+            }];
+        } else if ([type isEqualToString:@"camera"]) {
+            [self takeVideo:^(NSString *savingPath) {
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePath": savingPath};
+                    callback(result);
+                }
+            }];
+        } else {
+            if (callback) {
+                callback(@{@"errMsg": @"fail", @"message": @"参数sourceType的值不合法"});
+            }
+            return;
+        }
+    } else if (sourceType.count == 2) {
+        UIAlertController *chooseAction = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            BOOL compressed = [param[@"compressed"] boolValue];
+            [self chooseVideoFromAlbum:compressed completion:^(NSString * _Nonnull videoPathString) {
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePath": videoPathString};
+                    callback(result);
+                }
+            }];
+        }];
+        UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self takeVideo:^(NSString *savingPath) {
+                if (callback) {
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePath": savingPath};
+                    callback(result);
+                }
+            }];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [chooseAction dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [chooseAction addAction:album];
+        [chooseAction addAction:takePhoto];
+        [chooseAction addAction:cancel];
+        [self presentViewController:chooseAction animated:YES completion:nil];
+    } else {
+        if (callback) {
+            callback(@{@"errMsg": @"fail", @"message": @"参数sourceType不合法"});
+        }
+        return;
+    }
 }
 
 - (void)chooseMedia:(NSDictionary *)param callback:(void (^)(NSDictionary * _Nonnull))callback {
@@ -382,13 +442,14 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
             NSArray *mediaType = param[@"mediaType"];
             [self chooseFromAlbum:count sizeType:sizeType mediaType:mediaType completion:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                NSMutableArray *tempFiles = @[].mutableCopy;
                 for (UIImage *image in photos) {
                     NSString *filePath = [CIIMPImage writeImageToFile:image];
-                    [tempFilePaths addObject:filePath];
+                    NSDictionary *tempFilePath = @{@"tempFilePath": filePath};
+                    [tempFiles addObject:tempFilePath];
                 }
                 if (callback) {
-                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFiles": tempFiles};
                     callback(result);
                 }
             }];
@@ -417,13 +478,14 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
             NSArray *mediaType = param[@"mediaType"];
             [self chooseFromAlbum:count sizeType:sizeType mediaType:mediaType completion:^(NSArray<UIImage *> * photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-                NSMutableArray *tempFilePaths = @[].mutableCopy;
+                NSMutableArray *tempFiles = @[].mutableCopy;
                 for (UIImage *image in photos) {
                     NSString *filePath = [CIIMPImage writeImageToFile:image];
-                    [tempFilePaths addObject:filePath];
+                    NSDictionary *tempFilePath = @{@"tempFilePath": filePath};
+                    [tempFiles addObject:tempFilePath];
                 }
                 if (callback) {
-                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
+                    NSDictionary *result = @{@"errMsg": @"ok", @"tempFiles": tempFiles};
                     callback(result);
                 }
             }];
@@ -546,8 +608,15 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
 
 - (id<MWPhoto>)photoBrowser:(CIPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     NSString *urlString = self.urls[index];
-    CIPhoto *photo = [[CIPhoto alloc] initWithURL:[NSURL URLWithString:urlString]];
-    return photo;
+    if ([urlString hasPrefix:@"http"] || [urlString hasPrefix:@"https"]) {
+        CIPhoto *photo = [[CIPhoto alloc] initWithURL:[NSURL URLWithString:urlString]];
+        return photo;
+    } else {
+        NSString *path = [[kMiniProgramPath stringByAppendingString:[NSString stringWithFormat:@"/%@", [CIMPAppManager sharedManager].currentApp.appInfo.appId]] stringByAppendingString:urlString];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        CIPhoto *photo = [[CIPhoto alloc] initWithImage:image];
+        return photo;
+    }
 }
 
 - (void)takePhoto:(void (^)(NSArray<UIImage *> *, NSArray *, BOOL))complete {
@@ -560,6 +629,13 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
     [[CICameraManager sharedInstance] setMode:MODE_PICTURE With:self];
 }
 
+- (void)takeVideo:(void (^)(NSString *))complete {
+    [[CICameraManager sharedInstance] setMode:MODE_VIDEO With:self];
+    if (complete) {
+        complete([CICameraManager sharedInstance].savePathString);
+    }
+}
+
 - (void)chooseFromAlbum:(NSNumber *)count sizeType:(NSArray<NSString *> *)sizeType completion:(void (^)(NSArray<UIImage *> *, NSArray *, BOOL))completion {
     [CIGalleryManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL isSelectOriginalPhoto) {
         if (completion) {
@@ -569,6 +645,21 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
     [[CIGalleryManager sharedInstance] setAlbumWithCamera:NO];
     [[CIGalleryManager sharedInstance] IsAllowPickingVideo:NO IsAllowPickingImage:YES isAllowPickingGif:YES];
     [[CIGalleryManager sharedInstance] setCount:[count intValue]];
+    [[CIGalleryManager sharedInstance] createAlbum:self];
+}
+
+- (void)chooseVideoFromAlbum:(BOOL)compressed completion:(void (^)(NSString * _Nonnull videoPathString))completion {
+    [CIGalleryManager sharedInstance].pictureCompleteHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL isSelectOriginalPhoto) {
+        
+    };
+    [CIGalleryManager sharedInstance].videoSelectedCompleteHandler = ^(NSString * _Nonnull videoPathString) {
+        if (completion) {
+            completion(videoPathString);
+        }
+    };
+    [CIGalleryManager sharedInstance].isSelectedVideoCompressed = NO;
+    [[CIGalleryManager sharedInstance] setAlbumWithCamera:NO];
+    [[CIGalleryManager sharedInstance] IsAllowPickingVideo:YES IsAllowPickingImage:NO isAllowPickingGif:NO];
     [[CIGalleryManager sharedInstance] createAlbum:self];
 }
 
@@ -635,8 +726,8 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     for (CLLocation *location in locations) {
-        NSLog(@"altitude is %.2f, lautitude is %.2f, longitude is %.2f", location.altitude, location.coordinate.latitude, location.coordinate.longitude);
-        NSDictionary *result = @{@"errMsg": @"ok", @"lautitude": @(location.coordinate.latitude), @"longitude": @(location.coordinate.longitude), @"altitude": @(location.altitude)};
+        NSLog(@"altitude is %.2f, latitude is %.2f, longitude is %.2f", location.altitude, location.coordinate.latitude, location.coordinate.longitude);
+        NSDictionary *result = @{@"errMsg": @"ok", @"latitude": @(location.coordinate.latitude), @"longitude": @(location.coordinate.longitude), @"altitude": @(location.altitude)};
         if (self.getLocationCallback) {
             self.getLocationCallback(result);
         }

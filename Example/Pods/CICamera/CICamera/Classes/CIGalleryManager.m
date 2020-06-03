@@ -42,6 +42,10 @@ static CIGalleryManager* _instance = nil;
     self.ciPicture.selectedMaxCount = count;
 }
 
+- (void)setIsSelectedVideoCompressed:(BOOL)isSelectedVideoCompressed {
+    self.ciPicture.isSelectedVideoCompressed = isSelectedVideoCompressed;
+}
+
 - (void) IsAllowPickingVideo:(BOOL)isAllowPickingVideo IsAllowPickingImage:(BOOL)isAllowPickingImage isAllowPickingGif:(BOOL)isAllowPickingGif {
     [self.ciPicture IsAllowPickingVideo:isAllowPickingVideo IsAllowPickingImage:isAllowPickingImage isAllowPickingGif:isAllowPickingGif];
 }
@@ -49,7 +53,14 @@ static CIGalleryManager* _instance = nil;
 - (void)createAlbum:(UIViewController *)presentViewController {
     WS(ws);
     self.ciPicture.completeHandler = ^(NSArray<UIImage *> * _Nonnull photos, NSArray * _Nonnull assets, BOOL _isSelectOriginalPhoto) {
-        ws.pictureCompleteHandler(photos, assets, _isSelectOriginalPhoto);
+        if (ws.pictureCompleteHandler) {
+            ws.pictureCompleteHandler(photos, assets, _isSelectOriginalPhoto);
+        }
+    };
+    self.ciPicture.videoSelectedCompleteHandler = ^(NSString * _Nonnull videoPathString) {
+        if (ws.videoSelectedCompleteHandler) {
+            ws.videoSelectedCompleteHandler(videoPathString);
+        }
     };
     [self.ciPicture showAlbumWithPresentViewController: presentViewController];
 }

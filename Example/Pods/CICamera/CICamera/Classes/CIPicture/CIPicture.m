@@ -43,6 +43,7 @@
         _isAllowPickingImage = YES;
         _isAllowPickingGif = YES;
         _isSelectOriginalPhoto = NO;
+        _isSelectedVideoCompressed = YES;
     }
     return self;
 }
@@ -370,10 +371,14 @@
     _selectedPhotos = [NSMutableArray arrayWithArray:@[coverImage]];
     _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
     // open this code to send video / 打开这段代码发送视频
-    [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:AVAssetExportPresetLowQuality success:^(NSString *outputPath) {
+    NSString *videoPresentName = self.isSelectedVideoCompressed ? AVAssetExportPresetLowQuality : AVAssetExportPresetHighestQuality;
+    [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:videoPresentName success:^(NSString *outputPath) {
         // NSData *data = [NSData dataWithContentsOfFile:outputPath];
-        NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
+//        NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
         self.savePathString = outputPath;
+        if (self.videoSelectedCompleteHandler) {
+            self.videoSelectedCompleteHandler(outputPath);
+        }
         // Export completed, send video here, send by outputPath or NSData
         // 导出完成，在这里写上传代码，通过路径或者通过NSData上传
     } failure:^(NSString *errorMessage, NSError *error) {

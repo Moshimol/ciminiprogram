@@ -205,17 +205,9 @@
 
 - (void)onAppEnterBackground {
     [self.manager.pageManager resetNavigationBarHidden];
-//    [self.manager.service callSubscribeHandlerWithEvent:@"onAppEnterBackground" jsonParam:[@{@"mode": @"hang"} wdh_jsonString]];
 }
 
 - (void)onAppEnterForeground {
-    
-//    [self.manager.service callSubscribeHandlerWithEvent:@"onAppEnterForeground" jsonParam: @"{}"];
-    
-    //重置UserAgent
-    NSString *userAgent = [[[UIWebView alloc] init] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    NSString * customUA = [userAgent stringByAppendingFormat:@" Hera(JSBridgeVersion/3.0)"];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : customUA}];
 }
 
 @end

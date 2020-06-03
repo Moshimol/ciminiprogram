@@ -19,6 +19,7 @@
 #import "CIMPNetwork.h"
 #import "CIMPNetworkManager.h"
 #import "CIMPShowActionSheet.h"
+#import "CIMPVideo.h"
 #import "CIMPAppInfo.h"
 #import "CIMPManager.h"
 #import "CIMPManagerProtocol.h"

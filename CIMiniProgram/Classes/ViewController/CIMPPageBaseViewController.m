@@ -31,10 +31,8 @@
 @property (nonatomic, strong) NSMutableArray<CIMPToastView *> *toastViews;
 @property (nonatomic, assign) CGPoint keyBoardPoint;
 @property (nonatomic, strong) UITextField *inputField;
-@property (nonatomic, strong) NSDictionary *inputParam;
+@property (nonatomic, copy) NSDictionary *inputParam;
 @property (nonatomic, assign) CGPoint keyBoardShowContentOffset;
-@property (nonatomic, assign) BOOL isAppear;
-@property (nonatomic, assign) BOOL isWebLoaded;
 
 @end
 
@@ -47,8 +45,6 @@
     [super viewDidLoad];
     
     self.isBack = NO;
-    self.isAppear = NO;
-    self.isWebLoaded = NO;
     self.isFirstViewAppear = YES;
     self.toastViews = @[].mutableCopy;
     
@@ -93,14 +89,12 @@
     
     [CIMPLoadingView startAnimationInView:self.view];
     
-    self.isAppear = YES;
-    if (self.isAppear && self.isWebLoaded) {
-        MPLog(@"<page>: %@ onReady", [self.pageModel wholePageUrl]);
-        NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onReady('%@'))", self.pageModel.query];
-        [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-            
-        }];
-    }
+    MPLog(@"<page>: %@ onShow", [self.pageModel wholePageUrl]);
+    NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onShow('%@'))", self.pageModel.query];
+    [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        
+    }];
+    
     MPLog(@"<page>: %@ didAppear", [self.pageModel wholePageUrl]);
 }
 
@@ -110,11 +104,16 @@
     if (self.inputField.isFirstResponder) {
         [self.inputField resignFirstResponder];
     }
+    
+    MPLog(@"<page>: %@ onHide", [self.pageModel wholePageUrl]);
+    NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onHide('%@'))", self.pageModel.query];
+    [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        
+    }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    self.isAppear = NO;
     [self.pageManager activePageDidDisappear:self];
     
     // 防止收不到stopRefresh事件而造成下拉刷新不停止的情况
@@ -652,15 +651,15 @@
 }             // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *currentString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSString *uid = self.inputParam[@"uid"];
-    NSDictionary *param = @{@"value": currentString, @"uid": uid};
-    NSString *paramJson = [param jsonPrettyStringEncoded];
-    NSString *javascriptString = [NSString stringWithFormat:@"eval(serviceBridge.subscribeHandler('MP-input-input', %@))", paramJson];
-    [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSLog(@"eval complete");
-    }];
-    NSLog(@"input text is %@", currentString);
+//    NSString *currentString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//    NSString *uid = self.inputParam[@"uid"];
+//    NSDictionary *param = @{@"value": currentString, @"uid": uid};
+//    NSString *paramJson = [param jsonPrettyStringEncoded];
+//    NSString *javascriptString = [NSString stringWithFormat:@"eval(serviceBridge.subscribeHandler('MP-input-input', %@))", paramJson];
+//    [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//        NSLog(@"eval complete");
+//    }];
+//    NSLog(@"input text is %@", currentString);
     return YES;
 }   // return NO to not change text
 
@@ -691,15 +690,13 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"estimatedProgress"]) {
         if (self.webView.estimatedProgress >= 1.0) {
-            self.isWebLoaded = YES;
             self.webView.scrollView.contentOffset = CGPointMake(0.0, 1.0);
             self.webView.scrollView.contentOffset = CGPointMake(0.0, -1.0);
-            if (self.isWebLoaded && self.isAppear) {
-                NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onReady('%@'))", self.pageModel.query];
-                [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                    
-                }];
-            }
+            MPLog(@"<page>: %@ onReady", [self.pageModel wholePageUrl]);
+            NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onReady('%@'))", self.pageModel.query];
+            [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                
+            }];
         }
     }
 }

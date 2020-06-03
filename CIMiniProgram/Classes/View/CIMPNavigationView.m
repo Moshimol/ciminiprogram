@@ -88,6 +88,13 @@
     }
 }
 
+#pragma mark - Setter and Getter
+
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    self.titleLabel.text = _title;
+}
+
 #pragma mark - User Interaction
 
 - (void)leftButtonAction:(UIButton *)btn {

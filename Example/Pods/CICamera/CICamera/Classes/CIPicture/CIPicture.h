@@ -14,9 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) int selectedMaxCount;
 @property (nonatomic, strong) void(^completeHandler)(NSArray<UIImage *> *photos,NSArray *assets, BOOL isSelectOriginalPhoto);
+@property (nonatomic, strong) void(^videoSelectedCompleteHandler)(NSString *videoPathString);
 @property (nonatomic, strong) NSString *savePathString;
 @property (nonatomic, assign) BOOL isAlbumWithCamera;
 @property (nonatomic, assign) BOOL isSelectOriginalPhoto;
+@property (nonatomic, assign) BOOL isSelectedVideoCompressed;
 
 - (void) showAlbumWithPresentViewController: (UIViewController *)presentViewController;
 - (void) showCameraWithPresentViewController: (UIViewController *)presentViewController;

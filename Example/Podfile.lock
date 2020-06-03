@@ -14,9 +14,9 @@ PODS:
   - AFNetworking/Serialization (4.0.0)
   - AFNetworking/UIKit (4.0.0):
     - AFNetworking/NSURLSession
-  - CICamera (0.2.0)
+  - CICamera (0.2.2)
   - CICategories (0.1.0)
-  - CIMiniProgram (0.2.0):
+  - CIMiniProgram (0.3.0):
     - CICamera
     - CICategories
     - CINetworking
@@ -82,9 +82,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: d9fdf484a3c723ec3c558a41cc5754c7e845ee77
-  CICamera: 63c53d0f7d3dd3f1642ecbd4d468c616d43d8c4b
+  CICamera: 178fdc8285e3a6cc1784e3c7ef0cdc4c0777e9aa
   CICategories: 15c92c86129bf98aad35472785d7871307c99305
-  CIMiniProgram: f2849c7858952c0900a5863cc5641067ae33f496
+  CIMiniProgram: 89baefe4c00de789e20437575c27b8b324af8df2
   CINetworking: a944634a2f176b9fcf244b71150a19bf68abc75b
   CIPhotoBrowser: 215287a596078ffbe6e2d6bc2d6e7c63182a4026
   CIViewFile: 733291ea107a693394e7ecffa85f2b3730544636

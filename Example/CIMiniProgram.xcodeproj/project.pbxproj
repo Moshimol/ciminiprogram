@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		3474736507C2EFDA30907523 /* Pods_CIMiniProgram_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */; };
 		3E53441924493D8900FFAF3E /* CIMPApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E53441824493D8900FFAF3E /* CIMPApiTest.m */; };
-		3E534424244988FB00FFAF3E /* TMPAPI in Resources */ = {isa = PBXBuildFile; fileRef = 3E534423244988FB00FFAF3E /* TMPAPI */; };
 		3E5F43C324445EF300895BE4 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */; };
 		3E5F43C424445EF300895BE4 /* MBProgressHUD+CodeScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */; };
 		3E5F43C524445EF300895BE4 /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43C224445EF300895BE4 /* QRCodeScanViewController.m */; };
 		3E5F43CB2444601E00895BE4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43C72444601E00895BE4 /* UIImage+Category.m */; };
 		3E5F43CC2444601E00895BE4 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F43CA2444601E00895BE4 /* UIColor+Category.m */; };
+		3EA326BC247B668C00572995 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA326BB247B668C00572995 /* MapKit.framework */; };
+		3EA326BE247B679C00572995 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA326BD247B679C00572995 /* GameKit.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -46,7 +47,6 @@
 /* Begin PBXFileReference section */
 		0BBCB005419196BA170089A6 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CIMiniProgram.podspec; path = ../CIMiniProgram.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3E53441824493D8900FFAF3E /* CIMPApiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CIMPApiTest.m; sourceTree = "<group>"; };
-		3E534423244988FB00FFAF3E /* TMPAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TMPAPI; sourceTree = "<group>"; };
 		3E5F43BB24445EF300895BE4 /* MBProgressHUD+CodeScan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CodeScan.h"; sourceTree = "<group>"; };
 		3E5F43BC24445EF300895BE4 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		3E5F43BD24445EF300895BE4 /* MBProgressHUD+CodeScan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CodeScan.m"; sourceTree = "<group>"; };
@@ -56,6 +56,8 @@
 		3E5F43C82444601E00895BE4 /* UIColor+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		3E5F43C92444601E00895BE4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		3E5F43CA2444601E00895BE4 /* UIColor+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
+		3EA326BB247B668C00572995 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3EA326BD247B679C00572995 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3EAE2106244E9A6100B01A62 /* CIMiniProgram_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CIMiniProgram_Example.entitlements; sourceTree = "<group>"; };
 		40D376256813DA7BE5CFE1A3 /* Pods_CIMiniProgram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF36B769B4BE22291203EED /* Pods-CIMiniProgram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CIMiniProgram_Example.debug.xcconfig"; path = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +97,8 @@
 			files = (
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
+				3EA326BC247B668C00572995 /* MapKit.framework in Frameworks */,
+				3EA326BE247B679C00572995 /* GameKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				D73F1C58700EF3E228F31DC6 /* Pods_CIMiniProgram_Example.framework in Frameworks */,
 			);
@@ -205,6 +209,8 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EA326BD247B679C00572995 /* GameKit.framework */,
+				3EA326BB247B668C00572995 /* MapKit.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -218,7 +224,6 @@
 		6003F593195388D20070C39A /* Example for CIMiniProgram */ = {
 			isa = PBXGroup;
 			children = (
-				3E534423244988FB00FFAF3E /* TMPAPI */,
 				3E5F43C62444601E00895BE4 /* Tools */,
 				3E5F43B924445EF300895BE4 /* CodeScan */,
 				6003F59C195388D20070C39A /* CIAppDelegate.h */,
@@ -329,6 +334,7 @@
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = U39HM55PYU;
+						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -365,7 +371,6 @@
 				3E5F43C324445EF300895BE4 /* MBProgressHUD.bundle in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				3E534424244988FB00FFAF3E /* TMPAPI in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,16 +636,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
 				INFOPLIST_FILE = "CIMiniProgram/CIMiniProgram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ci123.miniprogram.platform;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -653,16 +661,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
 				INFOPLIST_FILE = "CIMiniProgram/CIMiniProgram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ci123.miniprogram.platform;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

@@ -11,6 +11,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CIMPFile : NSObject
 
++ (void)saveFile:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
++ (void)removeSavedFile:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
++ (void)getSavedFileInfo:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
++ (void)getSavedFileList:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
++ (void)getFileInfo:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback;
+
 @end
 
 NS_ASSUME_NONNULL_END
