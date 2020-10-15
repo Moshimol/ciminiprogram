@@ -16,7 +16,7 @@
 
 @implementation CIMPNetwork
 
-+ (void)request:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback; {
++ (void)request:(NSDictionary *)param callback:(void(^)(NSDictionary *))callback {
     NSString *urlString = param[@"url"];
     if (!urlString) {
         if (callback) {
@@ -70,12 +70,16 @@
                 cookies = @[];
             }
             
-            NSDictionary *result = @{@"errMsg": @"ok", @"data": responseString, @"statusCode": @(response.statusCode), @"header": fields, @"cookies": cookies};
+            NSDictionary *result = @{@"errMsg": @"ok",
+                                     @"data": responseString ? responseString : @"",
+                                     @"statusCode": @(response.statusCode),
+                                     @"header": fields ? fields : @"",
+                                     @"cookies": cookies ? cookies : @[]};
+            
             callback(result);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-        NSDictionary *fields = [response allHeaderFields];
         NSString *cookieString = [[response allHeaderFields] valueForKey:@"Set-Cookie"];
         NSArray *cookies = nil;
         if (cookieString) {
@@ -84,7 +88,10 @@
             cookies = @[];
         }
         if (callback) {
-            NSDictionary *result = @{@"errMsg": @"ok", @"data": error.localizedDescription, @"statusCode": @(response.statusCode), @"header": fields, @"cookies": cookies};
+            NSDictionary *result = @{@"errMsg": [NSString stringWithFormat:@"%@:fail",param[@"url"] ? param[@"url"] : @""],
+                                     @"data": error.localizedDescription ? error.localizedDescription  : @"",
+                                     @"statusCode": @(response.statusCode),
+                                     @"cookies": cookies ? cookies : @[]};
             callback(result);
         }
     }];

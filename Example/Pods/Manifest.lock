@@ -16,7 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - CICamera (0.2.2)
   - CICategories (0.1.0)
-  - CIMiniProgram (0.3.0):
+  - CIMiniProgram (0.4.0):
     - CICamera
     - CICategories
     - CINetworking
@@ -58,7 +58,7 @@ DEPENDENCIES:
   - SGQRCode
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - DACircularProgress
     - FBSnapshotTestCase
@@ -84,7 +84,7 @@ SPEC CHECKSUMS:
   AFNetworking: d9fdf484a3c723ec3c558a41cc5754c7e845ee77
   CICamera: 178fdc8285e3a6cc1784e3c7ef0cdc4c0777e9aa
   CICategories: 15c92c86129bf98aad35472785d7871307c99305
-  CIMiniProgram: 89baefe4c00de789e20437575c27b8b324af8df2
+  CIMiniProgram: 0c6266e8e9a148ff2bd56038eec27e8d29a3a491
   CINetworking: a944634a2f176b9fcf244b71150a19bf68abc75b
   CIPhotoBrowser: 215287a596078ffbe6e2d6bc2d6e7c63182a4026
   CIViewFile: 733291ea107a693394e7ecffa85f2b3730544636
@@ -100,4 +100,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b6eeb970c68c8996c632477e53a5e720f788c1f4
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

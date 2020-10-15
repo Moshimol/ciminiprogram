@@ -47,7 +47,13 @@
             self.iconView.frame = CGRectZero;
         }
     } else {
-        NSString *iconPath = [NSString stringWithFormat:@"%@/%@%@", kMiniProgramPath, [CIMPAppManager sharedManager].currentApp.appInfo.appId, imagePath];
+        NSString *iconPath = [NSString stringWithFormat:@"%@/%@/Source/%@", kMiniProgramPath, [CIMPAppManager sharedManager].currentApp.appInfo.appId, imagePath];
+        
+        // 重新确定路径
+        if ([imagePath hasPrefix:@"../.."]) {
+            iconPath=[iconPath stringByReplacingOccurrencesOfString:@"../../"withString:@""];
+        }
+        
         UIImage *customIcon = [UIImage imageWithContentsOfFile:iconPath];
         _iconView.image = customIcon;
         _iconView.hidden = NO;

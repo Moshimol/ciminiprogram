@@ -164,6 +164,8 @@
     self.webView.backgroundColor = UIColor.whiteColor;
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
+    self.webView.scrollView.bounces = false;
+    
     [self.view addSubview:self.webView];
     
     Class WKContentViewClass = NSClassFromString(@"WKContentView");
@@ -316,7 +318,10 @@
     NSString *title = param[@"title"];
     NSString *icon = param[@"icon"];
     NSString *imagePath = param[@"image"];
-    int duration = param[@"duration"] ? [param[@"duration"] intValue] : 2;
+    
+    // 默认的时间是1500 毫秒
+    int duration = param[@"duration"] ? [param[@"duration"] intValue] : 1500;
+    
     BOOL mask = [param[@"mask"] boolValue];
     
     CIMPToastView *toast = [CIMPToastView showInView:self.view text:title icon:icon image:imagePath mask:mask duration:duration];

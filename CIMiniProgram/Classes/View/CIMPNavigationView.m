@@ -92,7 +92,7 @@
 
 - (void)setTitle:(NSString *)title {
     _title = title;
-    self.titleLabel.text = _title;
+    self.titleLabel.text = title;
 }
 
 #pragma mark - User Interaction

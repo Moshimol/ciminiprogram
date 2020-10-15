@@ -296,6 +296,7 @@
             NSString *visitPagePath = pagePath;
             NSArray *pagePathArray = [visitPagePath componentsSeparatedByString:@"?"];
             if (pagePathArray.count >= 2) {
+                pagePath = pagePathArray.firstObject;
                 model.query = pagePathArray[1];
             }
             
@@ -345,7 +346,10 @@
         NSString *visitPagePath = pagePath;
         
         NSArray *pagePathArray = [visitPagePath componentsSeparatedByString:@"?"];
+        
         if (pagePathArray.count >= 2) {
+            // 如果有参数 则需要改变pagePath 参数会导致key的不同
+            pagePath = pagePathArray.firstObject;
             model.query = pagePathArray[1];
         }
         
