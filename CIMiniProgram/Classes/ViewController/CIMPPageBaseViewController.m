@@ -89,12 +89,14 @@
     
     [CIMPLoadingView startAnimationInView:self.view];
     
-    MPLog(@"<page>: %@ onShow", [self.pageModel wholePageUrl]);
-    NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onShow('%@'))", self.pageModel.query];
-    [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        
-    }];
-    
+    if (self.isSuccessOnReady) {
+        MPLog(@"<page>: %@ onShow", [self.pageModel wholePageUrl]);
+        NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onShow('%@'))", self.pageModel.query];
+        [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            
+        }];
+    }
+   
     MPLog(@"<page>: %@ didAppear", [self.pageModel wholePageUrl]);
 }
 
@@ -561,6 +563,10 @@
     });
 }
 
+#pragma mark - 私有方法
+
+#pragma mark -
+
 #pragma mark - WK Javascript message handler
 #pragma mark -
 
@@ -699,8 +705,19 @@
             self.webView.scrollView.contentOffset = CGPointMake(0.0, -1.0);
             MPLog(@"<page>: %@ onReady", [self.pageModel wholePageUrl]);
             NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onReady('%@'))", self.pageModel.query];
+            
+            __weak typeof(self) weakSelf = self;
+            
             [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                 
+                // 执行完成onReady 在去执行onShow
+                MPLog(@"<page>: %@ onShow", [self.pageModel wholePageUrl]);
+                NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onShow('%@'))", weakSelf.pageModel.query];
+                [weakSelf.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                    if (!error) {
+                        weakSelf.isSuccessOnReady = YES;
+                    }
+                }];
             }];
         }
     }
