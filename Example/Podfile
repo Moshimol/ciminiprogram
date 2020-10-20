@@ -10,6 +10,7 @@ target 'CIMiniProgram_Example' do
   pod 'SGQRCode'
   pod 'Masonry'
   pod 'MBProgressHUD'
+  pod 'SVProgressHUD'
 
   target 'CIMiniProgram_Tests' do
     inherit! :search_paths

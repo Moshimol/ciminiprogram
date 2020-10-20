@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isRoot;
 
-// 是否已经加载过onReady
-@property (nonatomic, assign) BOOL isSuccessOnReady;
 
 - (void)loadData;
 

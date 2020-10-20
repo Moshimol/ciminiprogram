@@ -49,6 +49,7 @@ PODS:
   - SDWebImage/Core (3.8.3)
   - SGQRCode (3.0.1)
   - SSZipArchive (2.2.3)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - CIMiniProgram (from `../`)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD
   - SGQRCode
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -69,6 +71,7 @@ SPEC REPOS:
     - SDWebImage
     - SGQRCode
     - SSZipArchive
+    - SVProgressHUD
   https://gitlab.oneitfarm.com/basemodule-ios/cibasemodulespec.git:
     - CICamera
     - CICategories
@@ -97,7 +100,8 @@ SPEC CHECKSUMS:
   SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: b6eeb970c68c8996c632477e53a5e720f788c1f4
+PODFILE CHECKSUM: 5b921c782c1b091fd3287e6b7a9adde3a98995fa
 
 COCOAPODS: 1.9.3

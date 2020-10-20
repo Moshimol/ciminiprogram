@@ -28,6 +28,11 @@
 
 @property (nonatomic, assign) BOOL isBack;
 @property (nonatomic, assign) BOOL isFirstViewAppear;
+// 是否已经加载过onReady
+@property (nonatomic, assign) BOOL isSuccessOnReady;
+// 是不是第一次加载
+@property (nonatomic, assign) BOOL isNotNeedOnShow;
+
 @property (nonatomic, strong) NSMutableArray<CIMPToastView *> *toastViews;
 @property (nonatomic, assign) CGPoint keyBoardPoint;
 @property (nonatomic, strong) UITextField *inputField;
@@ -89,13 +94,15 @@
     
     [CIMPLoadingView startAnimationInView:self.view];
     
-    if (self.isSuccessOnReady) {
+    if (self.isSuccessOnReady && !self.isNotNeedOnShow) {
         MPLog(@"<page>: %@ onShow", [self.pageModel wholePageUrl]);
         NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onShow('%@'))", self.pageModel.query];
         [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
             
         }];
     }
+    
+    self.isNotNeedOnShow = NO;
    
     MPLog(@"<page>: %@ didAppear", [self.pageModel wholePageUrl]);
 }
@@ -201,7 +208,6 @@
     NSArray *urlQueryArray = [url componentsSeparatedByString:@"?"];
     
     NSString *filePath = [NSString stringWithFormat:@"file://%@", urlQueryArray.firstObject];
-//    NSString *rootPath = [NSString stringWithFormat:@"file://%@", self.pageModel.pageRootDir];
     NSString *rootPath = [NSString stringWithFormat:@"file://%@", kMiniProgramPath];
     NSError *error = nil;
     NSString *html = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString: filePath] encoding:NSUTF8StringEncoding error:&error];
@@ -253,14 +259,14 @@
         
         if (navigationBarTextStyle != nil ) {
             if  ([navigationBarTextStyle isEqualToString:@"black"])  {
-                self.naviView.titleLabel.textColor = [UIColor blackColor];
-                self.naviView.leftButton.tintColor = [UIColor blackColor];
-                self.naviView.moreButton.tintColor = [UIColor blackColor];
+                self.naviView.titleLabel.textColor =
+                self.naviView.leftButton.tintColor =
+                self.naviView.moreButton.tintColor =
                 self.naviView.exitButton.tintColor = [UIColor blackColor];
             } else {
-                self.naviView.titleLabel.textColor = UIColor.whiteColor;
-                self.naviView.leftButton.tintColor = [UIColor whiteColor];
-                self.naviView.moreButton.tintColor = [UIColor whiteColor];
+                self.naviView.titleLabel.textColor =
+                self.naviView.leftButton.tintColor =
+                self.naviView.moreButton.tintColor =
                 self.naviView.exitButton.tintColor = [UIColor whiteColor];
             }
         }
@@ -709,15 +715,8 @@
             __weak typeof(self) weakSelf = self;
             
             [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                
-                // 执行完成onReady 在去执行onShow
-                MPLog(@"<page>: %@ onShow", [self.pageModel wholePageUrl]);
-                NSString *javascriptString = [NSString stringWithFormat:@"eval(Bridge.LifeCycle.onShow('%@'))", weakSelf.pageModel.query];
-                [weakSelf.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                    if (!error) {
-                        weakSelf.isSuccessOnReady = YES;
-                    }
-                }];
+                weakSelf.isSuccessOnReady = YES;
+                weakSelf.isNotNeedOnShow = YES;
             }];
         }
     }

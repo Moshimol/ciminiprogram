@@ -12,6 +12,9 @@
 #import <Masonry/Masonry.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CIMiniProgram/CIMiniProgram.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+
+#import "NSString+Date.h"
 
 #define kScreenWidth    [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight   [UIScreen mainScreen].bounds.size.height
@@ -55,10 +58,18 @@
     [[NSUserDefaults standardUserDefaults] setValue:sharedData forKey:@"MiniProgram"];
     
     [self setupViews];
+    [self setDeafultSVHUD];
 }
 
 #pragma mark - Private
 #pragma mark -
+
+// 对弹框进行默认设置
+- (void)setDeafultSVHUD {
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setMaximumDismissTimeInterval:3.0];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+}
 
 - (void)setupViews {
     UILabel *urlTitleLabel = [[UILabel alloc] init];
@@ -86,6 +97,8 @@
     [self.view addSubview:_appIdTextField];
     
     UIButton *scanButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    scanButton.layer.cornerRadius = 5.0;
+    scanButton.layer.masksToBounds = YES;
     [scanButton setTitle:@"扫一扫获取地址" forState:UIControlStateNormal];
     [scanButton setTitleColor:kRGBA(255, 255, 255, 0.8) forState:UIControlStateNormal];
     [scanButton setBackgroundImage:[UIImage imageWithColor:kRGB(62, 142, 226)] forState:UIControlStateNormal];
@@ -93,6 +106,8 @@
     [self.view addSubview:scanButton];
     
     UIButton *downloadButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    downloadButton.layer.cornerRadius = 5.0;
+    downloadButton.layer.masksToBounds = YES;
     [downloadButton setTitle:@"下载小程序" forState:UIControlStateNormal];
     [downloadButton setTitleColor:kRGBA(255, 255, 255, 0.8) forState:UIControlStateNormal];
     [downloadButton setBackgroundImage:[UIImage imageWithColor:kRGB(62, 142, 226)] forState:UIControlStateNormal];
@@ -154,8 +169,8 @@
     
     [_mpListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(miniProgramListLabel.mas_bottom);
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-49);
     }];
     
@@ -223,6 +238,29 @@
 }
 
 - (void)downloadBtnClicked:(id)sender {
+    // 当文字为0的时候，则需要
+    if (self.urlTextView.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入小程序下载地址"];
+        return;
+    }
+    
+    if (self.appIdTextField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请输入APPlD，默认将会给当前时间戳"];
+        // 默认给当前时间戳
+        self.appIdTextField.text = [NSString ciTimestamp];
+        return;
+    }
+    
+    // 判断是不是已经存在相同的APPleID
+    
+    if ([self.mpList containsObject:self.appIdTextField.text]) {
+        // 如果已经存在  则将会重新赋值
+        self.appIdTextField.text = [NSString ciTimestamp];
+    }
+    
+    // 点击下载键盘收起来
+    [self.urlTextView endEditing:YES];
+    
     NSString *downloadURL = self.urlTextView.text;
     
     if ([downloadURL isEqualToString:@"TMPAPI"]) {
@@ -285,6 +323,7 @@
 #pragma mark -
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MiniProgramListCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MiniProgramListCell"];
@@ -294,6 +333,10 @@
     cell.textLabel.textColor = UIColor.blackColor;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -323,6 +366,8 @@
 #pragma mark -
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     CIMPAppInfo *appInfo = [CIMPAppInfo new];
     appInfo.appId = _mpList[indexPath.row];
     appInfo.appPath = @"1234";
@@ -339,12 +384,6 @@
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
