@@ -23,6 +23,8 @@
 #import <WebKit/WebKit.h>
 #import <CICategories/CICategories.h>
 
+#import "CIMPHomeTitleLoadingView.h"
+#import "CIIMPImage.h"
 
 @interface CIMPPageBaseViewController () <WKScriptMessageHandler, UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
 
@@ -32,12 +34,15 @@
 @property (nonatomic, assign) BOOL isSuccessOnReady;
 // 是不是第一次加载
 @property (nonatomic, assign) BOOL isNotNeedOnShow;
+// 是不是正在加载中
+@property (nonatomic, assign) BOOL isLoadding;
 
 @property (nonatomic, strong) NSMutableArray<CIMPToastView *> *toastViews;
 @property (nonatomic, assign) CGPoint keyBoardPoint;
 @property (nonatomic, strong) UITextField *inputField;
 @property (nonatomic, copy) NSDictionary *inputParam;
 @property (nonatomic, assign) CGPoint keyBoardShowContentOffset;
+@property (nonatomic,strong) CIMPHomeTitleLoadingView *titleLoaddingView;
 
 @end
 
@@ -54,7 +59,15 @@
     self.toastViews = @[].mutableCopy;
     
     [self setupViews];
-    [self loadData];
+    
+    // 只有需要加载和root里，才会有启动的动画
+    if (self.isNeedLoading && self.isRoot) {
+        [self beginLoading];
+        [self performSelector:@selector(dissMissLoading) withObject:nil afterDelay:1.0];
+    } else {
+        [self loadData];
+    }
+    
     [self viewWillLayoutSubviews];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardShow) name:UIKeyboardDidShowNotification object:nil];
@@ -549,10 +562,10 @@
 
 - (void)bridgeCallback:(NSString *)callbackId params:(NSDictionary<NSString *,NSObject *> *)params {
     NSString *paramString = [params jsonPrettyStringEncoded];
-    NSString *javascriptString = [NSString stringWithFormat:@"serviceBridge.invokeCallbackHandler('%@', %@)", callbackId, paramString];
+    NSString *javascriptString = [NSString stringWithFormat:@"eval(serviceBridge.invokeCallbackHandler('%@', %@))", callbackId, paramString];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.webView evaluateJavaScript:javascriptString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-            MPLog(@"callback complete, id is %@", callbackId);
+            NSLog(@"callback complete, id is %@", callbackId);
         }];
     });
 }
@@ -701,6 +714,40 @@
     return [textField resignFirstResponder];
 }              // called when 'return' key pressed. return NO to ignore.
 
+#pragma mark - loading加载动画
+#pragma mark -
+
+- (void)beginLoading {
+    // 如果配置里 需要loading 则开始loading
+    // 开始动画的时候 头的的title 也需要隐藏
+    [self.naviView changeTitleHidden:YES];
+    
+    [self.view addSubview:self.titleLoaddingView];
+    
+    [self beginLoadingWithAppIconName:self.pageModel.appIconName appName:self.pageModel.appName];
+}
+
+- (void)dissMissLoading {
+    self.isLoadding = NO;
+    [self.naviView changeTitleHidden:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.titleLoaddingView stopLoadWithCompletion:^{
+        [weakSelf loadData];
+    }];
+}
+
+// 开始动画
+- (void)beginLoadingWithAppIconName:(NSString *)appIconName appName:(NSString *)appName {
+    self.isLoadding = YES;
+    
+    self.titleLoaddingView.iconView.image = [UIImage imageWithContentsOfFile:[CIIMPImage getFullImagePathImageName:appIconName]];
+    
+    self.titleLoaddingView.titleLabel.text = appName;
+    [self.titleLoaddingView layoutViews];
+    [self.titleLoaddingView startLoad];
+}
+
 #pragma mark - NSKeyValueObserving
 #pragma mark -
 
@@ -720,6 +767,15 @@
             }];
         }
     }
+}
+
+#pragma mark lazy init
+
+- (CIMPHomeTitleLoadingView *)titleLoaddingView {
+    if (!_titleLoaddingView) {
+        _titleLoaddingView = [[CIMPHomeTitleLoadingView alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, self.view.bounds.size.width, 120.0)];
+    }
+    return _titleLoaddingView;
 }
 
 @end

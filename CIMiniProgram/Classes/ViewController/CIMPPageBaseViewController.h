@@ -19,8 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isTabBarVC;
 
+@property (nonatomic, assign) BOOL isNeedLoading;
+
 @property (nonatomic, assign) BOOL isRoot;
 
+//
 
 - (void)loadData;
 

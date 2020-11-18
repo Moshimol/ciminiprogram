@@ -17,6 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)writeImageToFile:(UIImage *)image;
 
+// 写文件并且写入后缀
++ (NSString *)writeImageToFile:(UIImage *)image fileNameSuffix:(NSString *)suffixName;
+
+// 得到全路径的image
++ (NSString *)getFullImagePathImageName:(NSString *)imageName;
+
 @end
 
 NS_ASSUME_NONNULL_END

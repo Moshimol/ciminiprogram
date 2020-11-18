@@ -243,11 +243,13 @@
         }
     } success:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject) {
         if (callback) {
-            callback(@{@"errMsg": @"ok"});
+            NSHTTPURLResponse * responses = (NSHTTPURLResponse *)response;
+            callback(@{@"errMsg": @"ok",@"data":responseObject,@"statusCode":@((long)responses.statusCode)});
         }
     } failure:^(NSURLResponse * _Nonnull response, NSError * _Nonnull error) {
         if (callback) {
-            callback(@{@"errMsg": @"fail"});
+            NSHTTPURLResponse * responses = (NSHTTPURLResponse *)response;
+            callback(@{@"errMsg": @"fail",@"statusCode":@((long)responses.statusCode)});
         }
     }];
     [uploadTask resume];

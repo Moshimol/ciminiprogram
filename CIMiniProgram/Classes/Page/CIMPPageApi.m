@@ -20,6 +20,8 @@
 #import "CIMPApp.h"
 #import "CIMPLog.h"
 
+#import <CICategories/CICategories.h>
+
 @interface CIMPPageApi ()
 
 @property (nonatomic, weak) CIMPPageManager *pageManager;
@@ -96,19 +98,35 @@
         }];
     } else if ([command isEqualToString:@"downloadFile"]) {
         [CIMPNetwork downloadFile:param progress:^(NSString * _Nonnull eventName, NSDictionary * _Nonnull result) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeEvent:callbackId eventName:eventName params:result];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+                [vc bridgeEvent:callbackId eventName:eventName params:result];
+            });
         } callback:^(NSDictionary * _Nonnull result) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeCallback:callbackId params:result];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+                [vc bridgeCallback:callbackId params:result];
+            });
         }];
     } else if ([command isEqualToString:@"uploadFile"]) {
         [CIMPNetwork uploadFile:param progress:^(NSString * _Nonnull eventName, NSDictionary * _Nonnull result) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeEvent:callbackId eventName:eventName params:result];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+                [vc bridgeEvent:callbackId eventName:eventName params:result];
+            });
         } callback:^(NSDictionary * _Nonnull result) {
-            CIMPBaseViewController *vc = [self.pageManager.pageStack top];
-            [vc bridgeCallback:callbackId params:result];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 单独data进行转成字符串
+                NSMutableDictionary *resultDic = result.mutableCopy;
+                NSDictionary *dataDic = resultDic[@"data"];
+                NSString *dataString = [dataDic jsonPrettyStringEncoded];
+                
+                [resultDic setValue:dataString forKey:@"data"];
+                
+                // 然后处理给前段进行处理 data转string是前段
+                CIMPBaseViewController *vc = [self.pageManager.pageStack top];
+                [vc bridgeCallback:callbackId params:resultDic];
+            });
         }];
     }
     // MARK: - 交互

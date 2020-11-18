@@ -38,6 +38,8 @@
 #import "UITextField+LimitLength.h"
 #import "CIMPLog.h"
 #import "CIMPStorageUtil.h"
+#import "CIMPHomeTitleLoadingView.h"
+#import "CIMPHomeTitleView.h"
 #import "CIMPLoadingView.h"
 #import "CIMPNavigationView.h"
 #import "CIMPTabBar.h"

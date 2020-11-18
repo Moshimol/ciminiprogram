@@ -9,7 +9,7 @@ target 'CIMiniProgram_Example' do
   pod 'CIMiniProgram', :path => '../'
   pod 'SGQRCode'
   pod 'Masonry'
-  pod 'MBProgressHUD'
+  pod 'MBProgressHUD','0.9.2'
   pod 'SVProgressHUD'
 
   target 'CIMiniProgram_Tests' do

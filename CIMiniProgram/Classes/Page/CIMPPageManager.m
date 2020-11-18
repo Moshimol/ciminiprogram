@@ -368,6 +368,8 @@
         model.pageStyle = pageStyle;
         model.pageRootDir = basePath;
         model.openType = openType;
+        model.appName = config[@"extend"] ? config[@"extend"][@"appName"] : @"";
+        model.appIconName = config[@"extend"] ? config[@"extend"][@"appIcon"] : @"";
         
 //        [self parseConfig:config model:model];
         
@@ -382,6 +384,7 @@
             CIMPPageBaseViewController *vc = [self createPage:model];
             if (isRoot) {
                 vc.isRoot = YES;
+                vc.isNeedLoading = config[@"extend"] ? [config[@"extend"][@"loading"] boolValue] : NO;
                 [self startRootPage:NO page:vc completion:completion];
             } else {
                 [self gotoPage:vc completion:completion];

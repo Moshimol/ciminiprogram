@@ -51,7 +51,7 @@
         
         // 重新确定路径
         if ([imagePath hasPrefix:@"../.."]) {
-            iconPath=[iconPath stringByReplacingOccurrencesOfString:@"../../"withString:@""];
+            iconPath = [iconPath stringByReplacingOccurrencesOfString:@"../../"withString:@""];
         }
         
         UIImage *customIcon = [UIImage imageWithContentsOfFile:iconPath];

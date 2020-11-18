@@ -53,6 +53,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString * query;
 @property (nonatomic, copy) NSString * pagePath;
 @property (nonatomic, copy, nullable) NSString *backType;
+// appIcon的图标
+@property (nonatomic, copy) NSString *appIconName;
+// app启动的名字
+@property (nonatomic, copy) NSString *appName;
 
 - (NSString *) pathKey;
 - (NSString *) wholePageUrl;

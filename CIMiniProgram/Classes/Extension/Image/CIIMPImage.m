@@ -116,6 +116,14 @@
     return [@"/temp/" stringByAppendingString:fileName];
 }
 
++ (NSString *)writeImageToFile:(UIImage *)image fileNameSuffix:(NSString *)suffixName {
+    NSString *fileName = [NSString stringWithFormat:@"%@.%@",[UIImagePNGRepresentation(image) md5String],suffixName];
+    NSString *appPath = [NSString stringWithFormat:@"%@/%@", kMiniProgramPath, [CIMPAppManager sharedManager].currentApp.appInfo.appId];
+    NSString *tempDir = [appPath stringByAppendingString:@"/temp/"];
+    [kFileManager createFileAtPath:[tempDir stringByAppendingString:fileName] contents:UIImagePNGRepresentation(image) attributes:nil];
+    return [@"/temp/" stringByAppendingString:fileName];
+}
+
 + (NSString *)getImageType:(UIImage *)image {
     NSData *data = UIImagePNGRepresentation(image);
     uint8_t type;
@@ -164,6 +172,10 @@
         default:
             return @"";
     }
+}
+
++ (NSString *)getFullImagePathImageName:(NSString *)imageName {
+    return [NSString stringWithFormat:@"%@/%@/Source/assets/%@", kMiniProgramPath, [CIMPAppManager sharedManager].currentApp.appInfo.appId, imageName];
 }
 
 @end

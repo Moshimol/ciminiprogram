@@ -118,6 +118,10 @@
 
 #pragma mark - Public
 
+- (void)changeTitleHidden:(BOOL)hidden {
+    self.titleLabel.hidden = hidden;
+}
+
 - (void)setNavigationTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = _title;

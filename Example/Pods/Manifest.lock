@@ -16,7 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - CICamera (0.2.2)
   - CICategories (0.1.0)
-  - CIMiniProgram (0.1.1):
+  - CIMiniProgram (0.1.2):
     - CICamera
     - CICategories
     - CINetworking
@@ -55,7 +55,7 @@ DEPENDENCIES:
   - CIMiniProgram (from `../`)
   - FBSnapshotTestCase
   - Masonry
-  - MBProgressHUD
+  - MBProgressHUD (= 0.9.2)
   - SGQRCode
   - SVProgressHUD
 
@@ -87,7 +87,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CICamera: 178fdc8285e3a6cc1784e3c7ef0cdc4c0777e9aa
   CICategories: 15c92c86129bf98aad35472785d7871307c99305
-  CIMiniProgram: 5ccc8db8cad1b8e59a5122a67bccf25681c4c87f
+  CIMiniProgram: c5d22a393c31de57eda8a96fe58092c728920cee
   CINetworking: a944634a2f176b9fcf244b71150a19bf68abc75b
   CIPhotoBrowser: 215287a596078ffbe6e2d6bc2d6e7c63182a4026
   CIViewFile: 733291ea107a693394e7ecffa85f2b3730544636
@@ -102,6 +102,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 5b921c782c1b091fd3287e6b7a9adde3a98995fa
+PODFILE CHECKSUM: 68e41b8cabaef75808ac27092b8cc3987ee5091b
 
 COCOAPODS: 1.9.3

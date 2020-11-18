@@ -27,6 +27,10 @@ typedef void(^ButtonClickBlock)(CIMPNavigationView *);
 @property (nonatomic, copy) ButtonClickBlock moreClick;
 @property (nonatomic, copy) ButtonClickBlock exitClick;
 
+// 隐藏titile的标题
+- (void)changeTitleHidden:(BOOL)hidden;
+
+
 /**
  设置标题
  

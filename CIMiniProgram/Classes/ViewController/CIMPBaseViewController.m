@@ -278,10 +278,15 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
             [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
-                for (UIImage *image in photos) {
-                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                for (int i = 0; i< photos.count; i++) {
+                    NSArray *resources = [PHAssetResource assetResourcesForAsset:assets[i]];
+                    NSString *orgFilename = ((PHAssetResource*)resources[i]).originalFilename;
+                    NSArray *array = [orgFilename componentsSeparatedByString:@"."];
+                    
+                    NSString *filePath = [CIIMPImage writeImageToFile:(UIImage *)photos[i] fileNameSuffix:array.lastObject];
                     [tempFilePaths addObject:filePath];
                 }
+                
                 if (callback) {
                     NSDictionary *result = @{@"errMsg": @"ok", @"tempFilePaths": tempFilePaths};
                     callback(result);
@@ -290,8 +295,12 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
         } else if ([type isEqualToString:@"camera"]) {
             [self takePhoto:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
-                for (UIImage *image in photos) {
-                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                for (int i = 0; i< photos.count; i++) {
+                    NSArray *resources = [PHAssetResource assetResourcesForAsset:assets[i]];
+                    NSString *orgFilename = ((PHAssetResource*)resources[i]).originalFilename;
+                    NSArray *array = [orgFilename componentsSeparatedByString:@"."];
+                    
+                    NSString *filePath = [CIIMPImage writeImageToFile:(UIImage *)photos[i] fileNameSuffix:array.lastObject];
                     [tempFilePaths addObject:filePath];
                 }
                 if (callback) {
@@ -312,8 +321,12 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
             [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> * photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
-                for (UIImage *image in photos) {
-                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                for (int i = 0; i< photos.count; i++) {
+                    NSArray *resources = [PHAssetResource assetResourcesForAsset:assets[i]];
+                    NSString *orgFilename = ((PHAssetResource*)resources[i]).originalFilename;
+                    NSArray *array = [orgFilename componentsSeparatedByString:@"."];
+                    
+                    NSString *filePath = [CIIMPImage writeImageToFile:(UIImage *)photos[i] fileNameSuffix:array.lastObject];
                     [tempFilePaths addObject:filePath];
                 }
                 if (callback) {
@@ -325,8 +338,12 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
         UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self takePhoto:^(NSArray<UIImage *> * photos, NSArray * assets, BOOL isSelectOriginalPhoto) {
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
-                for (UIImage *image in photos) {
-                    NSString *filePath = [CIIMPImage writeImageToFile:image];
+                for (int i = 0; i< photos.count; i++) {
+                    NSArray *resources = [PHAssetResource assetResourcesForAsset:assets[i]];
+                    NSString *orgFilename = ((PHAssetResource*)resources[i]).originalFilename;
+                    NSArray *array = [orgFilename componentsSeparatedByString:@"."];
+                    
+                    NSString *filePath = [CIIMPImage writeImageToFile:(UIImage *)photos[i] fileNameSuffix:array.lastObject];
                     [tempFilePaths addObject:filePath];
                 }
                 if (callback) {
