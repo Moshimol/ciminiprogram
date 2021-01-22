@@ -54,6 +54,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 读取页面属性 只会读取一次的显示
+    [self loadStyle];
+    
     self.isBack = NO;
     self.isFirstViewAppear = YES;
     self.toastViews = @[].mutableCopy;
@@ -86,8 +89,6 @@
     [super viewWillAppear:animated];
     
     [self.pageManager activePageWillAppear:self];
-    
-    [self loadStyle];
     
     if (!self.pageModel.backType) {
         self.pageModel.backType = @"navigateBack";
@@ -243,9 +244,9 @@
         self.naviView.leftButton.hidden = self.pageModel.pageStyle.disableNavigationBack;
         
         //window 样式
-        if (self.pageModel.pageStyle.navigationBarTitleText) {
+        if (self.pageModel.pageStyle.navigationBarTitleText.length > 0) {
             self.naviView.title = self.pageModel.pageStyle.navigationBarTitleText;
-        } else if (self.pageModel.windowStyle.navigationBarTitleText) {
+        } else if (self.pageModel.windowStyle.navigationBarTitleText > 0) {
             self.naviView.title = self.pageModel.windowStyle.navigationBarTitleText;
         }
         

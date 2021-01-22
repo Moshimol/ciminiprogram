@@ -26,7 +26,6 @@
         self.moreButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.exitButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.titleLabel = [UILabel new];
-        self.titleLabel.text = @"标题";
         
         [self addSubview:self.leftButton];
         [self addSubview:self.moreButton];
@@ -91,6 +90,10 @@
 #pragma mark - Setter and Getter
 
 - (void)setTitle:(NSString *)title {
+    // 如果标题一样 不会再次进行设置
+    if ([title isEqualToString:_title]) {
+        return;
+    }
     _title = title;
     self.titleLabel.text = title;
 }
@@ -124,7 +127,7 @@
 
 - (void)setNavigationTitle:(NSString *)title {
     _title = title;
-    self.titleLabel.text = _title;
+    self.titleLabel.text = title;
 }
 
 - (void)startLoadingAnimation {

@@ -133,7 +133,7 @@ static NSInteger kLoaddingViewTagId = 1891008;
         loading.alpha = 1;
     }];
     
-    view.userInteractionEnabled = mask;
+    view.userInteractionEnabled = !mask;
 
     [loadingQueue addObject:loading];
 }

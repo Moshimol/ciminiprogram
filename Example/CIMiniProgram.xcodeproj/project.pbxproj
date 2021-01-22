@@ -668,7 +668,7 @@
 				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
@@ -693,7 +693,7 @@
 				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
