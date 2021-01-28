@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "CICaptionView.h"
 #import "CIPhoto.h"
 #import "CIPhotoBrowser.h"
 

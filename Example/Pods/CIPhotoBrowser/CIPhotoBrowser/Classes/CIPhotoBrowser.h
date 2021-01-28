@@ -6,8 +6,6 @@
 //
 
 #import "CIPhoto.h"
-#import "CICaptionView.h"
-#import <MWPhotoBrowser/MWPhotoBrowser.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class CIPhotoBrowser;
@@ -16,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(CIPhotoBrowser *)photoBrowser;
 
-- (id <MWPhoto>)photoBrowser:(CIPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;
+- (CIPhoto *)photoBrowser:(CIPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;
 
 @optional
 
@@ -26,20 +24,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)photoBrowser:(CIPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index;
 
-- (MWCaptionView *)photoBrowser:(CIPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index;
-
 - (void)photoBrowser:(CIPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index;
 
 @end
 
-@interface CIPhotoBrowser : MWPhotoBrowser
+@interface CIPhotoBrowser : UIViewController
 
-@property  id <CIPhotoBrowserDataSource> dataSource;
+@property  (nonatomic, weak) id <CIPhotoBrowserDataSource> dataSource;
 
 -(instancetype)initWithDataSource:(id <CIPhotoBrowserDataSource>)dataSource;
 
-@property BOOL shouldHideDisplayOriginalButton;
-@property BOOL shouldHideToolBar;
+@property (nonatomic) BOOL shouldHideDisplayOriginalButton;
+@property (nonatomic) BOOL shouldHideToolBar;
+
+@property (nonatomic) NSInteger currentPhotoIndex;
 
 @end
 

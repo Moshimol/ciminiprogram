@@ -16,6 +16,7 @@
 #import <CICategories/CICategories.h>
 #import <CIViewFile/CIFileViewHelper.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Photos/Photos.h>
 
 typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
 typedef void(^GetLocationCallBack)(NSDictionary *result);
@@ -623,7 +624,7 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
     return self.urls.count;
 }
 
-- (id<MWPhoto>)photoBrowser:(CIPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+- (CIPhoto *)photoBrowser:(CIPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     NSString *urlString = self.urls[index];
     if ([urlString hasPrefix:@"http"] || [urlString hasPrefix:@"https"]) {
         CIPhoto *photo = [[CIPhoto alloc] initWithURL:[NSURL URLWithString:urlString]];

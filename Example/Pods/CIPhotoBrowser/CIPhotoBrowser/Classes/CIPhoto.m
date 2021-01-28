@@ -9,4 +9,19 @@
 
 @implementation CIPhoto
 
+- (instancetype)initWithImage:(UIImage *)image{
+    self = [super init];
+    if(self){
+        _image = image;
+    }
+    return self;}
+
+- (instancetype)initWithURL:(NSURL *)url{
+    self = [super init];
+    if(self){
+        _photoURL = url;
+    }
+    return self;
+}
+
 @end

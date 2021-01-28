@@ -5,13 +5,19 @@
 //  Created by 曹中浩 on 2020/4/10.
 //
 
-#import <MWPhotoBrowser/MWPhotoBrowser.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CIPhoto : MWPhoto
+@interface CIPhoto : NSObject
 
-@property NSURL * originalURL;
+-(instancetype)initWithImage:(UIImage *)image;
+
+-(instancetype)initWithURL:(NSURL *)url;
+
+@property (nonatomic) UIImage * image;
+
+@property (nonatomic) NSURL * photoURL;
+
+@property (nonatomic)  NSURL * originalURL;
 
 @end
 

@@ -6,143 +6,97 @@
 //
 
 #import "CIPhotoBrowser.h"
+#import <Masonry/Masonry.h>
+#import <CIWebImage/CIWebImage.h>
 
-@interface CIPhotoBrowser ()<MWPhotoBrowserDelegate>
-
+@interface CIPhotoBrowser () <UIScrollViewDelegate>
 
 @property (nonatomic) NSMutableDictionary * originaIndexes;
+
+@property (nonatomic) UIScrollView * scrollView;
 
 @end
 
 @implementation CIPhotoBrowser
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [(UIToolbar *)[self valueForKey:@"_toolbar"] removeFromSuperview];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"完成", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed:)];
-}
-
-- (void)reloadData{
-    [super reloadData];
-    [(UIToolbar *)[self valueForKey:@"_toolbar"] removeFromSuperview];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"完成", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed:)];
-}
-
 - (instancetype)initWithDataSource:(id<CIPhotoBrowserDataSource>)dataSource{
-    self = [super initWithDelegate:self];
+    self = [super init];
     if(self){
-        self.dataSource = dataSource;
-        self.displayActionButton = NO;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(displayOriginalImage) name:@"CIPhotoBrowserDisplayOriginalImage" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(save) name:@"CIPhotoBrowserSave" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(more) name:@"CIPhotoBrowserMore" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(manage) name:@"CIPhotoBrowserManage" object:nil];
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        _dataSource = dataSource;
     }
     return self;
 }
 
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
-    NSUInteger numberOfPhotos = 0;
-    if(self.dataSource){
-        numberOfPhotos =  [self.dataSource numberOfPhotosInPhotoBrowser:self];
-    };
-    return numberOfPhotos;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self.view addSubview:self.scrollView];
 }
 
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
-    CIPhoto * photo;
-    if(self.dataSource){
-        photo = [self.dataSource photoBrowser:self photoAtIndex:index];
-    }
-    assert(photo);
-    if([self.originaIndexes valueForKey:[NSString stringWithFormat:@"%ld",index]]){
-        photo = [[CIPhoto alloc]initWithURL:photo.originalURL];
-    }
-    return photo;
-}
-
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index{
-    CIPhoto * photo;
-    if(self.dataSource){
-        photo = [self.dataSource photoBrowser:self photoAtIndex:index];
-    }
-    return photo;
-}
-
-- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index{
-    CIPhoto * photo = [self photoBrowser:self photoAtIndex:index];
-    if(self.shouldHideToolBar){
-        if([self.dataSource respondsToSelector:@selector(photoBrowser:captionViewForPhotoAtIndex:)]){
-            return [self.dataSource photoBrowser:self captionViewForPhotoAtIndex:index];
-        }
-        else{
-            return nil;
-        }
-    }
-    CICaptionView * captionView = [[CICaptionView alloc]initWithPhoto:photo];
-    if(!photo.originalURL || [self.originaIndexes valueForKey:[NSString stringWithFormat:@"%ld",index]]){
-        captionView.displayOriginalImageButton.hidden = YES;
-    }
-    return captionView;
-}
-
-- (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index{
-    if([self.dataSource respondsToSelector:@selector(photoBrowser:titleForPhotoAtIndex:)]){
-        return [self.dataSource photoBrowser:self titleForPhotoAtIndex:index];
-    }
-    return [NSString stringWithFormat:@"%lu/%lu",(unsigned long)[self currentIndex]+1,(unsigned long)[self.dataSource numberOfPhotosInPhotoBrowser:self]];
-}
-
-- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index{
-    if([self.dataSource respondsToSelector:@selector(photoBrowser:didDisplayPhotoAtIndex:)]){
-        [self.dataSource photoBrowser:self didDisplayPhotoAtIndex:index];
-    }
-}
-
-- (NSMutableDictionary *)originaIndexes{
-    if(!_originaIndexes){
-        _originaIndexes = @{}.mutableCopy;
-    }
-    return _originaIndexes;
-}
-
-- (void)displayOriginalImage{
-    [self.originaIndexes setValue:@"1" forKey:[NSString stringWithFormat:@"%ld",self.currentIndex]];
+- (void)viewWillAppear:(BOOL)animated{
     [self reloadData];
 }
 
+- (void)reloadData{
+    NSInteger number = [self.dataSource numberOfPhotosInPhotoBrowser:self];
+    float width =  CGRectGetWidth(self.view.frame);
+    float height = CGRectGetHeight(self.view.frame);
+    for (int i = 0; i < number; i++) {
+        
+        UIScrollView * scrollView = [UIScrollView new];
+        scrollView.frame = CGRectMake(width * i, 0, width, height);
+        scrollView.delegate = self;
+        scrollView.maximumZoomScale = 2;
+        scrollView.minimumZoomScale = 1;
+        
+        CIPhoto * photo = [self.dataSource photoBrowser:self photoAtIndex:i];
+        UIImageView * imageView = [UIImageView new];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.frame = CGRectMake(0, 0, width, height);
+        [imageView ci_downloadImageWithURL:photo.photoURL placeholderImage:photo.image progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, NSURL * _Nullable imageURL) {
+            float imageWidth = image.size.width > width ? width : image.size.width;
+            float imageHeight = image.size.height / image.size.width * width;
+            float x = (width - imageWidth)/2;
+            float y = (height - imageHeight)/2;
+            if(y < 0){
+                y = 0;
+            }
+            imageView.frame = CGRectMake(x, y, imageWidth, imageHeight);
+            if(imageHeight > height){
+                scrollView.contentSize = CGSizeMake(width, imageHeight);
+            }
+        }];
 
-- (void)save{
-    if(self.dataSource && [self.dataSource respondsToSelector:@selector(saveImageAtIndex:)]){
-        [self.dataSource saveImageAtIndex:self.currentIndex];
+
+        [scrollView addSubview:imageView];
+        [_scrollView addSubview:scrollView];
+
     }
+    self.scrollView.contentSize = CGSizeMake(width * number, 0);
 }
 
-- (void)more{
-    if(self.dataSource && [self.dataSource respondsToSelector:@selector(handleMoreActionAtIndex:)]){
-        [self.dataSource handleMoreActionAtIndex:self.currentIndex];
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return scrollView.subviews.firstObject;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    UIImageView *imV = (UIImageView *)[scrollView.subviews firstObject];
+    CGFloat delta_x= scrollView.bounds.size.width > scrollView.contentSize.width ? (scrollView.bounds.size.width-scrollView.contentSize.width)/2 : 0;
+    CGFloat delta_y= scrollView.bounds.size.height > scrollView.contentSize.height ? (scrollView.bounds.size.height - scrollView.contentSize.height)/2 :0;
+    imV.center=CGPointMake(scrollView.contentSize.width/2 + delta_x, scrollView.contentSize.height/2 + delta_y);
+}
+
+
+- (UIScrollView *)scrollView{
+    if(!_scrollView){
+        _scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+        _scrollView.backgroundColor = UIColor.blackColor;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.pagingEnabled = YES;
+
     }
+    return _scrollView;
 }
-
-- (void)manage{
-    if(self.dataSource){
-        [self performSelector:@selector(showGridAnimated)];
-    }
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
