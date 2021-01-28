@@ -248,7 +248,6 @@
         [SVProgressHUD showInfoWithStatus:@"请输入APPlD，默认将会给当前时间戳"];
         // 默认给当前时间戳
         self.appIdTextField.text = [NSString ciTimestamp];
-        return;
     }
     
     // 判断是不是已经存在相同的APPleID

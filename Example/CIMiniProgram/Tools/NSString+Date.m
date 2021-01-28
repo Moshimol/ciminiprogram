@@ -11,7 +11,12 @@
 @implementation NSString (Date)
 
 + (NSString *)ciTimestamp {
-    return @([[NSDate date] timeIntervalSince1970] * 1000).stringValue;
+    NSDate *detailDate= [NSDate dateWithTimeIntervalSince1970:[[NSDate date] timeIntervalSince1970]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //实例化一个NSDateFormatter对象
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+    NSString *currentDateStr = [dateFormatter stringFromDate: detailDate];
+    return currentDateStr;
 }
 
 @end
