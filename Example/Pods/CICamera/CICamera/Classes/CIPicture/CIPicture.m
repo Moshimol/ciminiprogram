@@ -21,6 +21,10 @@
     BOOL _isAllowPickingVideo;
     BOOL _isAllowPickingImage;
     BOOL _isAllowPickingGif;
+    
+    CGRect _cropRect;
+    BOOL _needCircleCrop;
+    NSInteger _circleCropRadius;
 }
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
@@ -44,6 +48,7 @@
         _isAllowPickingGif = YES;
         _isSelectOriginalPhoto = NO;
         _isSelectedVideoCompressed = YES;
+        _allowCrop = NO;
     }
     return self;
 }
@@ -60,6 +65,12 @@
     _isAllowPickingGif = isAllowPickingGif;
     _isAllowPickingImage = isAllowPickingImage;
     _isAllowPickingVideo = isAllowPickingVideo;
+}
+
+- (void)setCropRectSize:(CGRect)cropRect needCircleCrop:(BOOL)needCircleCrop circleCropRadius:(NSInteger)circleCropRadius {
+    _cropRect = cropRect;
+    _needCircleCrop = needCircleCrop;
+    _circleCropRadius = circleCropRadius;
 }
 
 - (void)showCameraWithPresentViewController:(id)presentViewController {
@@ -250,7 +261,15 @@
     /// 5. Single selection mode, valid when maxImagesCount = 1
     /// 5. 单选模式,maxImagesCount为1时才生效
     tzImagePickerVc.showSelectBtn = NO;
-    tzImagePickerVc.allowCrop = NO;
+    tzImagePickerVc.allowCrop = self.allowCrop;
+    
+    // 设置裁切的尺寸 只有可以裁切的时候才进行设置
+    if (self.allowCrop) {
+        tzImagePickerVc.cropRect = _cropRect;
+        tzImagePickerVc.circleCropRadius = _circleCropRadius;
+        tzImagePickerVc.needCircleCrop = _needCircleCrop;
+    }
+    
     tzImagePickerVc.needCircleCrop = NO;
     // 设置竖屏下的裁剪尺寸
     NSInteger left = 30;

@@ -73,4 +73,12 @@ static CIGalleryManager* _instance = nil;
     
 }
 
+- (void)allowCrop:(BOOL)allowCrop {
+    self.ciPicture.allowCrop = allowCrop;
+}
+
+- (void)setCropRectSize:(CGRect)cropRect needCircleCrop:(BOOL)needCircleCrop circleCropRadius:(NSInteger)circleCropRadius {
+    [self.ciPicture setCropRectSize:cropRect needCircleCrop:needCircleCrop circleCropRadius:circleCropRadius];
+}
+
 @end

@@ -19,10 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isAlbumWithCamera;
 @property (nonatomic, assign) BOOL isSelectOriginalPhoto;
 @property (nonatomic, assign) BOOL isSelectedVideoCompressed;
+//是不是可以进行裁切  默认不可以进行裁切
+@property (nonatomic, assign) BOOL allowCrop;
+
 
 - (void) showAlbumWithPresentViewController: (UIViewController *)presentViewController;
 - (void) showCameraWithPresentViewController: (UIViewController *)presentViewController;
 - (void) IsAllowPickingVideo: (BOOL) isAllowPickingVideo IsAllowPickingImage: (BOOL) isAllowPickingImage isAllowPickingGif: (BOOL) isAllowPickingGif;
+
+// 设置裁切尺寸 是否需要圆切
+- (void)setCropRectSize:(CGRect)cropRect needCircleCrop:(BOOL)needCircleCrop circleCropRadius:(NSInteger)circleCropRadius;
 
 @end
 

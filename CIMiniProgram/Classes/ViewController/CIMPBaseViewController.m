@@ -18,6 +18,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Photos/Photos.h>
 
+#define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+
 typedef void (^ChooseFileCallback)(NSDictionary * _Nonnull);
 typedef void(^GetLocationCallBack)(NSDictionary *result);
 
@@ -252,6 +254,8 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:browser];
     navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
     navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
+    navigationController.navigationBarHidden = YES;
+    
     [self presentViewController:navigationController animated:YES completion:^{
         if (callback) {
             callback(@{@"errMsg": @"ok"});
@@ -277,7 +281,41 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
         if ([type isEqualToString:@"album"]) {
             NSNumber *count = param[@"count"] ? param[@"count"] : [NSNumber numberWithInteger:9];
             NSArray *sizeType = param[@"sizeType"] ? param[@"sizeType"] : @[@"original", @"compressed"];
+            
+            // 裁切的设置
+            if ([param[@"crop"] boolValue]) {
+                // 设置尺寸的大小
+                CGFloat x = [param[@"x"] floatValue] ? [param[@"x"] floatValue] : 0.0;
+                CGFloat y = [param[@"y"] floatValue] ? [param[@"y"] floatValue] : 0.0;
+                
+                CGSize screenSize = [UIScreen mainScreen].bounds.size;
+                
+                // 设置默认的宽高 如果没有设置宽高的话 默认的宽度为屏幕宽度 - 30
+                CGFloat width = [param[@"width"] floatValue] ? [param[@"width"] floatValue] : screenSize.width - 30.0;
+                CGFloat height = [param[@"height"] floatValue] ? [param[@"height"] floatValue] : screenSize.width - 30.0;
+                
+                width = MIN(screenSize.width, width);
+                height = MIN(screenSize.height, height);
+                
+                // 是不是中心 ，如果是中间 改变x和y 宽度和高度不能大于当前屏幕宽高
+                BOOL isCenter = [param[@"isCenter"] boolValue];
+                CGRect rect = CGRectMake(x, y, width, height);
+                
+                // 设置为中心
+                if (isCenter) {
+                    rect = CGRectMake((screenSize.width - width)/ 2.0, (screenSize.height - height) / 2.0, width, height);
+                }
+                
+                BOOL needCircleCrop = [param[@"needCircleCrop"] boolValue];
+                
+                NSInteger circleCropRadius = [param[@"circleCropRadius"] integerValue] ? [param[@"circleCropRadius"] integerValue] : 0;
+                
+                [self photoCropConfigAllowCrop:YES cropRect:rect needCircleCrop:needCircleCrop circleCropRadius:circleCropRadius];
+            }
+
+            WS(ws);
             [self chooseFromAlbum:count sizeType:sizeType completion:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                [ws cancelPhotoCropConfig];
                 NSMutableArray *tempFilePaths = @[].mutableCopy;
                 for (int i = 0; i< photos.count; i++) {
                     NSArray *resources = [PHAssetResource assetResourcesForAsset:assets[i]];
@@ -616,6 +654,21 @@ typedef void(^GetLocationCallBack)(NSDictionary *result);
         // Fallback on earlier versions
         return UIStatusBarStyleDefault;
     }
+}
+
+#pragma mark - CIPhotoCropConfig
+
+// 选择完成之后 应该取消裁切的配置
+- (void)photoCropConfigAllowCrop:(BOOL)allowCrop
+                        cropRect:(CGRect)cropSize
+                  needCircleCrop:(BOOL)needCircleCrop
+                circleCropRadius:(NSInteger)circleCropRadius {
+    [[CIGalleryManager sharedInstance] allowCrop:allowCrop];
+    [[CIGalleryManager sharedInstance] setCropRectSize:cropSize needCircleCrop:needCircleCrop circleCropRadius:circleCropRadius];
+}
+
+- (void)cancelPhotoCropConfig {
+    [[CIGalleryManager sharedInstance] allowCrop:NO];
 }
 
 #pragma mark - CIPhotoBrowserDataSource

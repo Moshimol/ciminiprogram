@@ -23,20 +23,28 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype) sharedInstance;
 
 // 唤起相册选择界面
-- (void) createAlbum: (UIViewController *)presentViewController;
+- (void)createAlbum: (UIViewController *)presentViewController;
 
 // 配置选择图片数
-- (void) setCount: (int) count;
+- (void)setCount: (int) count;
 
 // 设置最小文件大小
-- (void) setMinFileSize;
+- (void)setMinFileSize;
 
 // 设置相册是否包含拍照功能
-- (void) setAlbumWithCamera: (BOOL) isOpen;
+- (void)setAlbumWithCamera: (BOOL) isOpen;
 
 // 设置相册选择的文件格式（默认都可以选择）
 // 是否可以选择视频 or 图片 or gif；
 - (void) IsAllowPickingVideo: (BOOL) isAllowPickingVideo IsAllowPickingImage: (BOOL) isAllowPickingImage isAllowPickingGif: (BOOL) isAllowPickingGif;
+
+// 设置是否可以裁切 默认不可以进行裁切
+- (void)allowCrop:(BOOL)allowCrop;
+
+// 设置裁剪的尺寸 只有当可以裁切的时候 设置的尺寸才有效
+- (void)setCropRectSize:(CGRect)cropRect
+         needCircleCrop:(BOOL)needCircleCrop
+       circleCropRadius:(NSInteger)circleCropRadius;
 
 @end
 

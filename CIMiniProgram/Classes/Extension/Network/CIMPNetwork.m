@@ -108,6 +108,8 @@
     }
     NSDictionary *header = param[@"header"];
     NSNumber *timeout = param[@"timeout"];
+    
+    //下载的名字
     NSString *filePath = param[@"filePath"];
     __block NSString *tempFilePath = @"";
     
@@ -149,16 +151,21 @@
         
         NSString *destination = @"";
         
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        documentPath = [documentPath stringByAppendingPathComponent:@"MiniProgram"];
+        
+        // 如果有文件的名字 filePath 就是下载的文件名
         if (filePath) {
-            destination = [NSString stringWithFormat:@"file://%@/%@/%@", kMiniProgramPath, app.appInfo.appId, filePath];
+            destination = [NSString stringWithFormat:@"%@/%@/%@", documentPath, app.appInfo.appId, filePath];
         } else {
             NSDate *date = [NSDate date];
-            NSTimeInterval time = [date timeIntervalSince1970]*1000;
-            destination = [NSString stringWithFormat:@"file://%@/%@/temp/%.0f%@", kMiniProgramPath, app.appInfo.appId, time * 1000000, suffix];
+            NSTimeInterval time = [date timeIntervalSince1970] * 1000;
+            destination = [NSString stringWithFormat:@"%@/%@/%.0f%@.%@", documentPath, app.appInfo.appId, time * 1000000, response.suggestedFilename,suffix];
             
-            tempFilePath = [NSString stringWithFormat:@"/temp/%.0f%@", time * 1000000, suffix];
+            tempFilePath = [NSString stringWithFormat:@"/%.0f%@", time * 1000000, suffix];
         }
-        return [NSURL URLWithString:destination];
+        //下载到哪个文件夹
+        return [NSURL fileURLWithPath:destination];
     } success:^(NSURLResponse * _Nonnull response, NSURL * _Nonnull fileDownloadPath) {
         if (callback) {
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
