@@ -58,7 +58,7 @@
 		3E5F43C72444601E00895BE4 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 		3E5F43C82444601E00895BE4 /* UIColor+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		3E5F43C92444601E00895BE4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
-		3E5F43CA2444601E00895BE4 /* UIColor+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
+		3E5F43CA2444601E00895BE4 /* UIColor+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; wrapsLines = 0; };
 		3EA326BB247B668C00572995 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3EA326BD247B679C00572995 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3EAE2106244E9A6100B01A62 /* CIMiniProgram_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CIMiniProgram_Example.entitlements; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
@@ -672,7 +672,7 @@
 				CODE_SIGN_ENTITLEMENTS = CIMiniProgram_Example.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = U39HM55PYU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CIMiniProgram/CIMiniProgram-Prefix.pch";
