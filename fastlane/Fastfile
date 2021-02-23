@@ -1,0 +1,49 @@
+lane :release_pod do |options|
+  #fastlane release_pod target_version:0.1.6 target_project:CIMiniProgram target_repo:https://gitlab.oneitfarm.com/basemodule-ios/cibasemodulespec.git
+  
+  # 需要添加的tag值 
+  target_version = options[:target_version]
+
+  # 目标的项目
+  target_project = options[:target_project] || 'CIMiniProgram.podspec'
+  
+  # 目标的repo
+  target_repo  = options[:target_repo] || 'https://gitlab.oneitfarm.com/basemodule-ios/cibasemodulespec.git'
+
+  UI.message("target_version = #{target_version}  target_project 是#{target_project} target_repo是#{target_repo} 🚀，开始发包")
+  
+  spec_path = "#{target_project}.podspec"
+  # git pull
+  git_pull 
+  # 确认是 master 分支
+  ensure_git_branch
+  # 修改 spec 为即将发布的版本
+  version_bump_podspec(path: spec_path, version_number: target_version)
+  # 提交代码到远程仓库
+  git_add(path: '.')
+  git_commit(path: '.', message: 'release pod 版本')
+
+  push_to_git_remote
+  # 检查对于 tag 是否已经存在
+  if git_tag_exists(tag: target_version)
+      # 删除对应 tag
+      remove_git_tag(tag: target_version)
+  end
+  # 添加 tag
+  add_git_tag(tag: target_version)
+  # 提交 tag
+  push_git_tags
+  # 验证 spec 文件
+  pod_lib_lint(verbose: true, allow_warnings: true)
+  # # pod trunk push 'spec_path'
+  # pod_push(path: spec_path, allow_warnings: true,verbose: true)
+    # 检查是否传了 repo 参数
+  if target_repo
+    # pod repo push 'target_repo' 'spec_path'
+    pod_push(path: spec_path, repo: target_repo, allow_warnings: true, verbose: true)
+  else
+    # pod trunk push 'spec_path'
+    pod_push(path: spec_path, allow_warnings: true, verbose: true)
+  end
+  
+end
