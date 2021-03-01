@@ -822,7 +822,7 @@
 
 /* Begin PBXFileReference section */
 		0009F3A3493945E8E5959B8A840B1B6B /* ConfigMacro.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ConfigMacro.h; path = CICamera/Classes/Macro/ConfigMacro.h; sourceTree = "<group>"; };
-		00A499A5723FAFE272B6E23655667716 /* CICategories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CICategories.framework; path = CICategories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A499A5723FAFE272B6E23655667716 /* CICategories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CICategories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0175AADC0C2954CD34B9A227B8E9D62D /* NSDate+CIAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CIAdd.m"; path = "CICategories/Classes/NSDate+CIAdd.m"; sourceTree = "<group>"; };
 		01BA970A77BF73ACC1F0B7FCCF9AE182 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		021367C2F24B6508ACA4E2C9159FD0D3 /* NSImage+Compatibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Compatibility.m"; path = "SDWebImage/NSImage+Compatibility.m"; sourceTree = "<group>"; };
@@ -840,10 +840,10 @@
 		05FBF08D27C80728B7F946BE434F6210 /* NSNumber+CIAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNumber+CIAdd.h"; path = "CICategories/Classes/NSNumber+CIAdd.h"; sourceTree = "<group>"; };
 		06A91174E3B093E5FA029A5C4D8C0EFF /* mz_zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_zip.h; path = SSZipArchive/minizip/mz_zip.h; sourceTree = "<group>"; };
 		06B2386A07ECF6E0E195EAA4D993A595 /* PKShortVideo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKShortVideo.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideo.h; sourceTree = "<group>"; };
-		06C1870DEC95DCB96AAF584C2FC0893B /* mz_zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_zip.c; path = SSZipArchive/minizip/mz_zip.c; sourceTree = "<group>"; };
+		06C1870DEC95DCB96AAF584C2FC0893B /* mz_zip.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_zip.c; path = SSZipArchive/minizip/mz_zip.c; sourceTree = "<group>"; };
 		077F4502AEE3871F1421B28D7D97CAF5 /* SDAnimatedImageRep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageRep.h; path = SDWebImage/SDAnimatedImageRep.h; sourceTree = "<group>"; };
 		0804F5B91D4F1453165E8F16F941447E /* Pods-CIMiniProgram_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CIMiniProgram_Example-Info.plist"; sourceTree = "<group>"; };
-		08A5F54012A359575ECE7AC1A3A791D3 /* Pods_CIMiniProgram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CIMiniProgram_Tests.framework; path = "Pods-CIMiniProgram_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		08A5F54012A359575ECE7AC1A3A791D3 /* Pods_CIMiniProgram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0943C404879BB8C2B22030AA0E5C4FC5 /* pdf@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "pdf@2x.png"; path = "CIViewFile/Assets/pdf@2x.png"; sourceTree = "<group>"; };
 		0998DF408C7D2B0B962467676C507AA7 /* xlsx.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = xlsx.png; path = CIViewFile/Assets/xlsx.png; sourceTree = "<group>"; };
 		09B7D339CC1E70D3847A1F0502C779FB /* SDImageCacheDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCacheDefine.h; path = SDWebImage/SDImageCacheDefine.h; sourceTree = "<group>"; };
@@ -879,7 +879,7 @@
 		16779B847B6BA4BB9AE303D2C8BB0213 /* CIMPPageManagerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPPageManagerProtocol.h; sourceTree = "<group>"; };
 		16AAEB88B54305ABFADC229C3644758A /* CICamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CICamera.debug.xcconfig; sourceTree = "<group>"; };
 		171334ADF0223752A4B27466F277EDE8 /* PKColorConversion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKColorConversion.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoPlayer/PKColorConversion.h; sourceTree = "<group>"; };
-		171C9ABB5E8612C765EB4A894833DFEE /* mz_compat.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_compat.c; path = SSZipArchive/minizip/mz_compat.c; sourceTree = "<group>"; };
+		171C9ABB5E8612C765EB4A894833DFEE /* mz_compat.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_compat.c; path = SSZipArchive/minizip/mz_compat.c; sourceTree = "<group>"; };
 		17611095FEEFFDCB2828AB342A59DA37 /* UIButton+CIWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+CIWebCache.h"; path = "CIWebImage/Classes/UIButton+CIWebCache.h"; sourceTree = "<group>"; };
 		1776CCECE9D6D29D93B283A126CAD5E4 /* SDDiskCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDDiskCache.h; path = SDWebImage/SDDiskCache.h; sourceTree = "<group>"; };
 		17A3508905977BABAE10AE6F03AB7AA6 /* NSBezierPath+RoundedCorners.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBezierPath+RoundedCorners.h"; path = "SDWebImage/Private/NSBezierPath+RoundedCorners.h"; sourceTree = "<group>"; };
@@ -888,7 +888,7 @@
 		18CDA1E59A983990670009A1C9CD1D5D /* CIMPShowActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPShowActionSheet.h; sourceTree = "<group>"; };
 		18E25F429C71873801179B7194C74305 /* SDWebImageCacheKeyFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCacheKeyFilter.h; path = SDWebImage/SDWebImageCacheKeyFilter.h; sourceTree = "<group>"; };
 		1970616AFD1C8D591EFBE165A26FC77A /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
-		19B7861894968CBC97772B452AC1981F /* mz_strm_zlib.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_zlib.c; path = SSZipArchive/minizip/mz_strm_zlib.c; sourceTree = "<group>"; };
+		19B7861894968CBC97772B452AC1981F /* mz_strm_zlib.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_zlib.c; path = SSZipArchive/minizip/mz_strm_zlib.c; sourceTree = "<group>"; };
 		19D1947DEFDC3DAE1D547AE43E95635E /* MJRefresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJRefresh.debug.xcconfig; sourceTree = "<group>"; };
 		19E71C790FE2DA92BBA69391D63D7332 /* UIImage+MemoryCacheCost.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MemoryCacheCost.h"; path = "SDWebImage/UIImage+MemoryCacheCost.h"; sourceTree = "<group>"; };
 		1A0A598D967361BE9E3EF2667ED96D67 /* SGQRCode-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SGQRCode-Info.plist"; sourceTree = "<group>"; };
@@ -917,7 +917,7 @@
 		1F65F876BAEE23011D6E4E3CD47D07BE /* MBProgressHUD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MBProgressHUD.release.xcconfig; sourceTree = "<group>"; };
 		1F7B9D6F76FA901C728648F5725192D2 /* CIViewFile-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIViewFile-prefix.pch"; sourceTree = "<group>"; };
 		1F9151EC6ECDED956D824A3638FA41D2 /* SDImageGraphics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageGraphics.m; path = SDWebImage/SDImageGraphics.m; sourceTree = "<group>"; };
-		1FFED36A657123030ABB700256D73F15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFED36A657123030ABB700256D73F15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		207DD4AF0EDB29B869EFC515491C0829 /* CIMPTabBarViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CIMPTabBarViewController.m; sourceTree = "<group>"; };
 		20DDE6E5873ED0592C8B8997DC56608A /* UIImage+ForceDecode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ForceDecode.m"; path = "SDWebImage/UIImage+ForceDecode.m"; sourceTree = "<group>"; };
 		20E345055E51A04294043985024750EA /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/NSData+ImageContentType.m"; sourceTree = "<group>"; };
@@ -955,7 +955,7 @@
 		2E8B4D7E40E60600DCF88032FD268E75 /* Masonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.release.xcconfig; sourceTree = "<group>"; };
 		2EE1249E80D2F6C5882B30C07DAA9867 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
 		2F41B5766090091AB97A5FD77A65B2FB /* PKChatMessagePlayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKChatMessagePlayerView.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoPlayer/PKChatMessagePlayerView.h; sourceTree = "<group>"; };
-		2F4C3240054FB6C69878B5951371581F /* CIMiniProgram.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CIMiniProgram.bundle; path = "CIMiniProgram-CIMiniProgram.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F4C3240054FB6C69878B5951371581F /* CIMiniProgram.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CIMiniProgram.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4E8F069A79649FC3CC1BFD11F4877E /* GPUImageContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageContext.h; path = CICamera/Classes/Vender/PKShortVideo/GPUImage/GPUImageContext.h; sourceTree = "<group>"; };
 		300716A0D21EB2A46C5B90806DC0FCCE /* SSZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		300C5ACEF432F9515BFC80FB60F12ACE /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -972,7 +972,7 @@
 		331A5853C468EA471021B79D0555E1E7 /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
 		334F2D08B8928A5E7B94E3918A16EAA3 /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		337A815B14F513B3418E59934F639D99 /* UINavigationController+CIMPLifeCycle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CIMPLifeCycle.h"; sourceTree = "<group>"; };
-		3414221FEF816A1008F9F5D29E4A7364 /* CIViewFile.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CIViewFile.bundle; path = "CIViewFile-CIViewFile.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3414221FEF816A1008F9F5D29E4A7364 /* CIViewFile.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CIViewFile.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		34DCA3F5119FBC3D36FC5C12585AF576 /* CIWebImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CIWebImage.release.xcconfig; sourceTree = "<group>"; };
 		3574B4F6F90C91CC1F5E65F1B711DE1D /* CIMPLoadingView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPLoadingView.h; sourceTree = "<group>"; };
 		3643B6CA77E4452A3C09C460B636C13E /* Pods-CIMiniProgram_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CIMiniProgram_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1008,7 +1008,7 @@
 		4176BD6610474D56FC447A0358EB6B20 /* SDImageGIFCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageGIFCoder.h; path = SDWebImage/SDImageGIFCoder.h; sourceTree = "<group>"; };
 		41C2318680640923895EA151F339881C /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
 		429AF36CEC4DD435A2A2109C4F18002C /* SGQRCodeObtain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SGQRCodeObtain.m; path = SGQRCode/SGQRCodeObtain.m; sourceTree = "<group>"; };
-		42D87293157471D9113BE63D381784D8 /* CIPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CIPhotoBrowser.framework; path = CIPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D87293157471D9113BE63D381784D8 /* CIPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CIPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436FD4B863CB536F55356B1F6F78813E /* CIPhoto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CIPhoto.h; path = CIPhotoBrowser/Classes/CIPhoto.h; sourceTree = "<group>"; };
 		439C4CFC6428FC3E1752EBADD3CCD20F /* SDImageFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageFrame.h; path = SDWebImage/SDImageFrame.h; sourceTree = "<group>"; };
 		448A49058B348C90F53C5A9C24FE92F2 /* GPUImageContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPUImageContext.m; path = CICamera/Classes/Vender/PKShortVideo/GPUImage/GPUImageContext.m; sourceTree = "<group>"; };
@@ -1016,7 +1016,7 @@
 		44D091ED9A90AAB2990CA14A8C8E2F89 /* MJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoStateFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
 		45053E21E9D3D48A0FD4B70C6BF7E52C /* CIViewFile-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIViewFile-umbrella.h"; sourceTree = "<group>"; };
 		45803B1304A8718139CE3EDDF66FC28D /* SDWebImage-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SDWebImage-Info.plist"; sourceTree = "<group>"; };
-		45FB3CA80291462493528B66B9321B0F /* mz_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_os_posix.c; path = SSZipArchive/minizip/mz_os_posix.c; sourceTree = "<group>"; };
+		45FB3CA80291462493528B66B9321B0F /* mz_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_os_posix.c; path = SSZipArchive/minizip/mz_os_posix.c; sourceTree = "<group>"; };
 		4641D2277365F053D78A9407E5762DAE /* CICameraImage.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = CICameraImage.bundle; path = CICamera/MUResource/CICameraImage.bundle; sourceTree = "<group>"; };
 		46F436A39BDA1D4AFB3A42D28FB5E3EC /* MP_menu_exit_dark_small@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MP_menu_exit_dark_small@2x.png"; path = "CIMiniProgram/Assets/MP_menu_exit_dark_small@2x.png"; sourceTree = "<group>"; };
 		47C88DCF71E0749FD911801D40C1513A /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
@@ -1036,7 +1036,7 @@
 		4DDCDE4ADE34C58EAD1801E6D8C86AA4 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
 		4E547C1287D564FA449654FCFF845C28 /* CIMPPageApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPPageApi.h; sourceTree = "<group>"; };
 		4EA7058B4CFDD79913980EC6CB3B763E /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshNormalHeader.m; path = MJRefresh/Custom/Header/MJRefreshNormalHeader.m; sourceTree = "<group>"; };
-		4EAEDB2F46D90B13F0B65DAA9BE2D130 /* mz_strm_mem.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_mem.c; path = SSZipArchive/minizip/mz_strm_mem.c; sourceTree = "<group>"; };
+		4EAEDB2F46D90B13F0B65DAA9BE2D130 /* mz_strm_mem.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_mem.c; path = SSZipArchive/minizip/mz_strm_mem.c; sourceTree = "<group>"; };
 		4F8E04D68C9C1182C761233812A5D8B1 /* NSString+CIAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+CIAdd.h"; path = "CICategories/Classes/NSString+CIAdd.h"; sourceTree = "<group>"; };
 		4FD777E38A85652288680E392F9E262F /* mz_crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_crypt.h; path = SSZipArchive/minizip/mz_crypt.h; sourceTree = "<group>"; };
 		50437583B2BFD6E5B7FFC94987B8A9FD /* SGQRCode.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SGQRCode.bundle; path = SGQRCode/SGQRCode.bundle; sourceTree = "<group>"; };
@@ -1093,21 +1093,21 @@
 		651E2C32E27C9E7AB2620BB2C96A7168 /* Pods-CIMiniProgram_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CIMiniProgram_Tests-dummy.m"; sourceTree = "<group>"; };
 		654784CCD7099DAC7B5F377403F84999 /* Pods-CIMiniProgram_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CIMiniProgram_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		65C1013F85742FE75532590BD5EEA358 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		66132C9434B333A2CEC4E4CFC980ABDD /* CIMiniProgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CIMiniProgram.framework; path = CIMiniProgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66132C9434B333A2CEC4E4CFC980ABDD /* CIMiniProgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CIMiniProgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		665C69DB0F4B70F11A987A3A3D1EFF09 /* MJRefreshConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshConst.m; path = MJRefresh/MJRefreshConst.m; sourceTree = "<group>"; };
 		667F410C57B65C8EB966E19CF8FA89F5 /* CIMPManagerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPManagerProtocol.h; sourceTree = "<group>"; };
 		66DF06B9753820FB93A43FD6A407A74A /* SDImageCacheConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCacheConfig.m; path = SDWebImage/SDImageCacheConfig.m; sourceTree = "<group>"; };
-		6721F6A2A3E4DCB9D28346521937A12F /* Pods_CIMiniProgram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CIMiniProgram_Example.framework; path = "Pods-CIMiniProgram_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6721F6A2A3E4DCB9D28346521937A12F /* Pods_CIMiniProgram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CIMiniProgram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		672ECE6F660364ADF8D474A2908A2EC1 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
-		67700CECC0674D4185D91B1640B6F679 /* mz_strm_buf.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_buf.c; path = SSZipArchive/minizip/mz_strm_buf.c; sourceTree = "<group>"; };
+		67700CECC0674D4185D91B1640B6F679 /* mz_strm_buf.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_buf.c; path = SSZipArchive/minizip/mz_strm_buf.c; sourceTree = "<group>"; };
 		6816ED7A7B5148A665BF0422250EA09E /* SDWebImageTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageTransition.m; path = SDWebImage/SDWebImageTransition.m; sourceTree = "<group>"; };
 		68FA47DD723908BA4A1CBB629C5FEF50 /* SSZipArchive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSZipArchive.release.xcconfig; sourceTree = "<group>"; };
 		696230701F1FC8117F1FFCE601FF941E /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		69E5982DF68C0252A8FE87AD387302BF /* mz_strm_wzaes.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_wzaes.c; path = SSZipArchive/minizip/mz_strm_wzaes.c; sourceTree = "<group>"; };
+		69E5982DF68C0252A8FE87AD387302BF /* mz_strm_wzaes.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_wzaes.c; path = SSZipArchive/minizip/mz_strm_wzaes.c; sourceTree = "<group>"; };
 		6A659D593F7A45E12E5F14F9A013BB1A /* CIScanView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIScanView.m; path = CICamera/Classes/CIScan/CIScanView.m; sourceTree = "<group>"; };
 		6A953D7FA63D610AB8298FAC4FA2B40F /* CIGalleryManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIGalleryManager.m; path = CICamera/Classes/CIGalleryManager.m; sourceTree = "<group>"; };
 		6B6CFE6520CED874CEF8247DC0EC6465 /* Masonry-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Masonry-Info.plist"; sourceTree = "<group>"; };
-		6C934BCB0137EC296295E8344EB6DB4B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		6C934BCB0137EC296295E8344EB6DB4B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6CEDFF3B338D5CC9FBBDC44210B6BDB3 /* CINetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CINetworking-prefix.pch"; sourceTree = "<group>"; };
 		6E452CD057FE917526C4CDF406D4D54F /* SDWebImageDownloaderConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderConfig.h; path = SDWebImage/SDWebImageDownloaderConfig.h; sourceTree = "<group>"; };
 		6F5B5791C84ACBC28841DBEEA3C38B5A /* CISecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CISecurityPolicy.m; path = CINetworking/Classes/CISecurityPolicy.m; sourceTree = "<group>"; };
@@ -1128,7 +1128,7 @@
 		77F4398CF88E102CC410E45D98368D5F /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
 		780EDEB4955CFB292E1F21EA2303C29F /* AFNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AFNetworking-Info.plist"; sourceTree = "<group>"; };
 		781CD6EB3FD548D16B0C90F84F07FC35 /* SDAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageView.h; path = SDWebImage/SDAnimatedImageView.h; sourceTree = "<group>"; };
-		78A0233844F03F155420253F3AF92CBC /* CICamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CICamera.framework; path = CICamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78A0233844F03F155420253F3AF92CBC /* CICamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CICamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D25DC26025441F731F659B556F24BC /* txt.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = txt.png; path = CIViewFile/Assets/txt.png; sourceTree = "<group>"; };
 		7BF491A440B89EF6864A6E98EE9E5D80 /* mz_strm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm.h; path = SSZipArchive/minizip/mz_strm.h; sourceTree = "<group>"; };
 		7C2061DC5B07CF26D2FD4A9CAAA502CD /* SGQRCodeScanView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SGQRCodeScanView.m; path = SGQRCode/SGQRCodeScanView.m; sourceTree = "<group>"; };
@@ -1172,7 +1172,7 @@
 		895199B74064377DED7C64F5E36C6B86 /* CIScan.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CIScan.h; path = CICamera/Classes/CIScan/CIScan.h; sourceTree = "<group>"; };
 		898168B32CC90FD39EE2617FC7FBA5B4 /* CIMiniProgram-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CIMiniProgram-Info.plist"; sourceTree = "<group>"; };
 		89D51FB8DAC70217A3A732FAEE88721F /* SGQRCodeObtainConfigure.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SGQRCodeObtainConfigure.m; path = SGQRCode/SGQRCodeObtainConfigure.m; sourceTree = "<group>"; };
-		8B8FAB0D627B17EDE1366984278705D9 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MBProgressHUD.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B8FAB0D627B17EDE1366984278705D9 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B939C15A0381311E7F14DD5096FCA98 /* PKShortVideoRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKShortVideoRecorder.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoWriter/PKShortVideoRecorder.h; sourceTree = "<group>"; };
 		8BE0272508FB28B5C25AAE1D6F3BEC9C /* PKFullScreenPlayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKFullScreenPlayerView.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoPlayer/PKFullScreenPlayerView.h; sourceTree = "<group>"; };
 		8C1F783C4F73AFE4E6C36AD0184B3BA9 /* CIMPAppManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIMPAppManager.m; path = CIMiniProgram/Classes/CIMPAppManager.m; sourceTree = "<group>"; };
@@ -1193,13 +1193,13 @@
 		90AAF297BBD94B95B50BCEFA744A39E7 /* SDImageCachesManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCachesManager.m; path = SDWebImage/SDImageCachesManager.m; sourceTree = "<group>"; };
 		9146B447DE33259F5610EB9FABA1B660 /* TZImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImagePickerController.m; path = CICamera/Classes/Vender/TZImagePickerController/TZImagePickerController.m; sourceTree = "<group>"; };
 		9167113841317793EDE8E2DF332B6C3F /* CIMPBaseViewController+Extension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIMPBaseViewController+Extension.h"; sourceTree = "<group>"; };
-		91B23470DEB9A986332BEB5034234BC7 /* SSZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SSZipArchive.framework; path = SSZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91B23470DEB9A986332BEB5034234BC7 /* SSZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91FDA8150EB0E1BF1BBE211457F35556 /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
 		9227C7C58A695F86BB0E73CDCC3B1C19 /* CIMPNetworkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPNetworkManager.h; sourceTree = "<group>"; };
 		926D7CC44CF08A64124DD0C54990ED95 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+WebCache.h"; path = "SDWebImage/MapKit/MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		9288DD358743B4B6405FF04A04E7DF11 /* CIMPTabBarViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPTabBarViewController.h; sourceTree = "<group>"; };
 		932F7BF5BFFCEB96EFD0136818123F36 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
-		939DDE1F98299FFE2BCA798D5720B5A1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		939DDE1F98299FFE2BCA798D5720B5A1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		93D3B4D2E9F2626D9603C186AC66F67F /* MJRefreshFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshFooter.m; path = MJRefresh/Base/MJRefreshFooter.m; sourceTree = "<group>"; };
 		948742F6FCCDCF5305236C71409C87EC /* UIImage+CIAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CIAdd.m"; path = "CICategories/Classes/UIImage+CIAdd.m"; sourceTree = "<group>"; };
 		94CC04FB458B701E79F1058E19352C1B /* CINetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CINetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1222,13 +1222,13 @@
 		9AF2D063EE12F577E4E3E28E0A49BE53 /* CIMiniProgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CIMiniProgram.debug.xcconfig; sourceTree = "<group>"; };
 		9B2B11F128F1581593120A10746A4C3D /* TZVideoPlayerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZVideoPlayerController.h; path = CICamera/Classes/Vender/TZImagePickerController/TZVideoPlayerController.h; sourceTree = "<group>"; };
 		9B4D976AAFD86BCE7A07626F3E20D8F1 /* TZImageCropManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImageCropManager.h; path = CICamera/Classes/Vender/TZImagePickerController/TZImageCropManager.h; sourceTree = "<group>"; };
-		9C0AF21EA12CF02B6EC87454F30A27CF /* mz_crypt_apple.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_crypt_apple.c; path = SSZipArchive/minizip/mz_crypt_apple.c; sourceTree = "<group>"; };
+		9C0AF21EA12CF02B6EC87454F30A27CF /* mz_crypt_apple.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_crypt_apple.c; path = SSZipArchive/minizip/mz_crypt_apple.c; sourceTree = "<group>"; };
 		9C147A40A1A223F25AFC268B4645DF1F /* CIWebImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIWebImage-umbrella.h"; sourceTree = "<group>"; };
 		9C70E0E11A079BCD6D9C0411E7A31F9D /* CIMPStorageUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CIMPStorageUtil.m; sourceTree = "<group>"; };
 		9D3433D5F7CEDE42D8DD5169F09A2D12 /* MP_back_dark@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MP_back_dark@3x.png"; path = "CIMiniProgram/Assets/MP_back_dark@3x.png"; sourceTree = "<group>"; };
 		9D6D0FEDBB557C9FA42109735F2E3596 /* PKVideoDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKVideoDecoder.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoPlayer/PKVideoDecoder.h; sourceTree = "<group>"; };
 		9D79AAEE87E62E45F2CACAB840535F16 /* UIImage+Metadata.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Metadata.m"; path = "SDWebImage/UIImage+Metadata.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DE46C3930BC2505C9BBA7CE50D0D157 /* Pods-CIMiniProgram_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CIMiniProgram_Tests-umbrella.h"; sourceTree = "<group>"; };
 		9DF4F8B1514F6751C9AEDEF670E9226F /* CICGUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CICGUtilities.h; path = CICategories/Classes/CICGUtilities.h; sourceTree = "<group>"; };
 		9F0535C877EB495735C2175799EF6F4A /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFAutoPurgingImageCache.m; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.m"; sourceTree = "<group>"; };
@@ -1238,17 +1238,17 @@
 		A0FC56CACE86A63255DD5AD7BE3863C6 /* CIMPPageModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPPageModel.h; sourceTree = "<group>"; };
 		A11E0EB5BC345CF7E7AE0595AC8278B7 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
 		A1321E794CA7A6C6C80F37AB31F1FB24 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		A1DD2425200887C3C0E9B158F70E967E /* mz_strm.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm.c; path = SSZipArchive/minizip/mz_strm.c; sourceTree = "<group>"; };
+		A1DD2425200887C3C0E9B158F70E967E /* mz_strm.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm.c; path = SSZipArchive/minizip/mz_strm.c; sourceTree = "<group>"; };
 		A1E66E052400D94E2004F4BE893D6A52 /* UIImage+GIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+GIF.h"; path = "SDWebImage/UIImage+GIF.h"; sourceTree = "<group>"; };
 		A2510DE0CF69B7C6ABE6C79C696828C4 /* unknow.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = unknow.png; path = CIViewFile/Assets/unknow.png; sourceTree = "<group>"; };
 		A257372A5B35D42B414CC879B040AE76 /* UIImageView+CIWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+CIWebCache.h"; path = "CIWebImage/Classes/UIImageView+CIWebCache.h"; sourceTree = "<group>"; };
 		A257CEF1E8D60064E4C1A16D80F07002 /* SVProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SVProgressHUD-Info.plist"; sourceTree = "<group>"; };
 		A30897E5AC423B0043AE5FD9E417A372 /* CIPhotoBrowser-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CIPhotoBrowser-Info.plist"; sourceTree = "<group>"; };
 		A35E153FE99B01C17D4721DFA013E635 /* ResourceBundle-CIViewFile-CIViewFile-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CIViewFile-CIViewFile-Info.plist"; sourceTree = "<group>"; };
-		A3C6C81F7F85ECE9F210CE6800A1F6E8 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CIMiniProgram.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFNetworking.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3C6C81F7F85ECE9F210CE6800A1F6E8 /* CIMiniProgram.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CIMiniProgram.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55609EE0FD151FB7CD2C645E6E906E2 /* UIImage+Transform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Transform.h"; path = "SDWebImage/UIImage+Transform.h"; sourceTree = "<group>"; };
-		A563785CBC86E1A70358D62099EE7F83 /* mz_os.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_os.c; path = SSZipArchive/minizip/mz_os.c; sourceTree = "<group>"; };
+		A563785CBC86E1A70358D62099EE7F83 /* mz_os.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_os.c; path = SSZipArchive/minizip/mz_os.c; sourceTree = "<group>"; };
 		A5BCBD2E78420BBD3449482A5EEE74FF /* CIURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIURLRequestSerialization.m; path = CINetworking/Classes/CIURLRequestSerialization.m; sourceTree = "<group>"; };
 		A5E4E0D4A72691BB8D85658DF6339203 /* CIZipListViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIZipListViewController.m; path = CIViewFile/Classes/CIZipListViewController.m; sourceTree = "<group>"; };
 		A5FA39C4A36C40D036B8BD704F74C8DB /* UIImageView+CIWebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+CIWebCache.m"; path = "CIWebImage/Classes/UIImageView+CIWebCache.m"; sourceTree = "<group>"; };
@@ -1261,7 +1261,7 @@
 		A8F63D04B71F60AB81B7571DDE02ACE6 /* CICategories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CICategories.release.xcconfig; sourceTree = "<group>"; };
 		A918009C8C8A7A945727E5C1CA2D9EB7 /* UIButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+WebCache.h"; path = "SDWebImage/UIButton+WebCache.h"; sourceTree = "<group>"; };
 		AA62EA59C1E4C416AC316BDDA1DFA9F5 /* CIMPLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CIMPLog.m; sourceTree = "<group>"; };
-		AA777C9EEBA8EB1373AC11B8CDD0B1A3 /* mz_zip_rw.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_zip_rw.c; path = SSZipArchive/minizip/mz_zip_rw.c; sourceTree = "<group>"; };
+		AA777C9EEBA8EB1373AC11B8CDD0B1A3 /* mz_zip_rw.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_zip_rw.c; path = SSZipArchive/minizip/mz_zip_rw.c; sourceTree = "<group>"; };
 		AAAE95C48BADBC3871838EF90E826D81 /* CIScanViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CIScanViewController.h; path = CICamera/Classes/CIScan/CIScanViewController.h; sourceTree = "<group>"; };
 		AAB5F7AC1209FC80C0FCB1E9BC2BE0AB /* CIMiniProgram-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIMiniProgram-umbrella.h"; sourceTree = "<group>"; };
 		AAECD3C353B908B4D3A7D1E72FC3CF0E /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
@@ -1283,7 +1283,7 @@
 		AF95F1258B25AFEA56D8F46CD8260DFA /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPreviewController.h; path = CICamera/Classes/Vender/TZImagePickerController/TZPhotoPreviewController.h; sourceTree = "<group>"; };
 		B0430F010B10D77B30C9A40D1AAA60D7 /* MJRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MJRefresh-dummy.m"; sourceTree = "<group>"; };
 		B059E7A9ECFFFDD1FF3DBC4E022B2C02 /* UIView+CIAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+CIAdd.h"; path = "CICategories/Classes/UIView+CIAdd.h"; sourceTree = "<group>"; };
-		B0B214D775196BA7CA8E17E53048A493 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0B214D775196BA7CA8E17E53048A493 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1439F8203277D5B2162F42B4740860A /* CIMiniProgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CIMiniProgram.release.xcconfig; sourceTree = "<group>"; };
 		B1951C41782C346794E6B072239AE60D /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		B1A3D90E9CA98FF8A1957A2B48D3362E /* TZImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImageManager.m; path = CICamera/Classes/Vender/TZImagePickerController/TZImageManager.m; sourceTree = "<group>"; };
@@ -1301,7 +1301,7 @@
 		B61A9A3641889E3BB5A1597309AAAEF2 /* SVProgressHUD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.debug.xcconfig; sourceTree = "<group>"; };
 		B6C7EA94AF07B45B7FDC95B2F2E0AA9C /* CIMPBaseViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPBaseViewController.h; sourceTree = "<group>"; };
 		B6CEBBAA7E2FD652630158F3839C4765 /* Pods-CIMiniProgram_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CIMiniProgram_Example.modulemap"; sourceTree = "<group>"; };
-		B725F96A98CB22A783C643BB02401232 /* SGQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SGQRCode.framework; path = SGQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B725F96A98CB22A783C643BB02401232 /* SGQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7752985356ADDCA95B57724FCE13905 /* GPUImageFramebuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageFramebuffer.h; path = CICamera/Classes/Vender/PKShortVideo/GPUImage/GPUImageFramebuffer.h; sourceTree = "<group>"; };
 		B8F73084F3066641958583BC8B115875 /* SGQRCode-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SGQRCode-umbrella.h"; sourceTree = "<group>"; };
 		B9042C3285C8CEA017A1E3FD0CEC81FB /* CIMPAppAppletViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CIMPAppAppletViewController.m; sourceTree = "<group>"; };
@@ -1377,7 +1377,7 @@
 		CFADAE1D97389E6FE1725AC463CADBE7 /* UIView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCache.h"; path = "SDWebImage/UIView+WebCache.h"; sourceTree = "<group>"; };
 		D0137D14F4FB3269EECB8CED761D3437 /* UIColor+HexString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HexString.m"; path = "SDWebImage/Private/UIColor+HexString.m"; sourceTree = "<group>"; };
 		D0209E92159027EC38D664AA363A5310 /* SDAnimatedImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAnimatedImageView.m; path = SDWebImage/SDAnimatedImageView.m; sourceTree = "<group>"; };
-		D02A1AECEA22535085F3C0896D4E7BDA /* CINetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CINetworking.framework; path = CINetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D02A1AECEA22535085F3C0896D4E7BDA /* CINetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CINetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D02C783EF9C35CD2CB23593246D3960B /* PKFullScreenPlayerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PKFullScreenPlayerViewController.m; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoPlayer/PKFullScreenPlayerViewController.m; sourceTree = "<group>"; };
 		D02F021FACD94C35BE021BA468BD572A /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPreviewCell.m; path = CICamera/Classes/Vender/TZImagePickerController/TZPhotoPreviewCell.m; sourceTree = "<group>"; };
 		D0747B5F4BF6887063981DC365319D54 /* CIPhotoBrowser-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIPhotoBrowser-umbrella.h"; sourceTree = "<group>"; };
@@ -1423,7 +1423,7 @@
 		DB3BF81EFDD71A093BEB6D1B3FC3CDB0 /* NSArray+CIAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+CIAdd.h"; path = "CICategories/Classes/NSArray+CIAdd.h"; sourceTree = "<group>"; };
 		DB7E752740643911AD4E26E8E75E840F /* CIPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CIPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7F9F3FFE3C1F64F674EAF9C661C311 /* SDAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImage.h; path = SDWebImage/SDAnimatedImage.h; sourceTree = "<group>"; };
-		DB900C26029CD650E5862A31ED0DB525 /* mz_crypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_crypt.c; path = SSZipArchive/minizip/mz_crypt.c; sourceTree = "<group>"; };
+		DB900C26029CD650E5862A31ED0DB525 /* mz_crypt.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_crypt.c; path = SSZipArchive/minizip/mz_crypt.c; sourceTree = "<group>"; };
 		DC2993700BD23A7EEE48681A7AD24616 /* SDImageAPNGCoderInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageAPNGCoderInternal.h; path = SDWebImage/Private/SDImageAPNGCoderInternal.h; sourceTree = "<group>"; };
 		DE17ED92EFAA6BEEDB3745A537A008AE /* CIMPStorageUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIMPStorageUtil.h; sourceTree = "<group>"; };
 		DF3DBD3D0B877742E2CBDD24A8149FF2 /* SDInternalMacros.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDInternalMacros.m; path = SDWebImage/Private/SDInternalMacros.m; sourceTree = "<group>"; };
@@ -1432,10 +1432,10 @@
 		E021C037F20017815BA8756C902574E6 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		E0B336101FD04E98A5A07BE672010B2B /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
 		E1576AD165DF11CF196BEA9A53E25C7A /* CIMiniProgram-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIMiniProgram-prefix.pch"; sourceTree = "<group>"; };
-		E15B9D8F6A5C13F02C2AB6F02641D115 /* mz_strm_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_os_posix.c; path = SSZipArchive/minizip/mz_strm_os_posix.c; sourceTree = "<group>"; };
+		E15B9D8F6A5C13F02C2AB6F02641D115 /* mz_strm_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_os_posix.c; path = SSZipArchive/minizip/mz_strm_os_posix.c; sourceTree = "<group>"; };
 		E160728DB7259FA53EAD77816CBC8074 /* CIWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CIWebImage.modulemap; sourceTree = "<group>"; };
 		E1F3CB0AE701618EFFEEA3AEE77A34A7 /* mz_zip_rw.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_zip_rw.h; path = SSZipArchive/minizip/mz_zip_rw.h; sourceTree = "<group>"; };
-		E25E72B89F0A16B787A9B45A03DF2DAF /* CIWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CIWebImage.framework; path = CIWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E25E72B89F0A16B787A9B45A03DF2DAF /* CIWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CIWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29B33542A7B1745216B3A1AA6F6994C /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AFNetworking.modulemap; sourceTree = "<group>"; };
 		E2B8D49B5DCC62B3FCD294789AE75FCA /* CIWebImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CIWebImage-prefix.pch"; sourceTree = "<group>"; };
 		E2FDC69535C952A773D927D64D836568 /* SDImageAssetManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageAssetManager.h; path = SDWebImage/Private/SDImageAssetManager.h; sourceTree = "<group>"; };
@@ -1444,7 +1444,7 @@
 		E3BA10266B33C2D712E644CACD8CE026 /* UIGestureRecognizer+CIAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+CIAdd.m"; path = "CICategories/Classes/UIGestureRecognizer+CIAdd.m"; sourceTree = "<group>"; };
 		E41B588EF934E34E440839063C455E44 /* SDImageAssetManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageAssetManager.m; path = SDWebImage/Private/SDImageAssetManager.m; sourceTree = "<group>"; };
 		E42FD02F27AF5AD56179022F6C6868A7 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
-		E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MJRefresh.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A96B780F70D5052D87FEF0A45B363F /* SDAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SDAnimatedImageView+WebCache.h"; path = "SDWebImage/SDAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		E4D86034C5A721B3098CAE585BDF6923 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZVideoPlayerController.m; path = CICamera/Classes/Vender/TZImagePickerController/TZVideoPlayerController.m; sourceTree = "<group>"; };
 		E4DB063796F8693E6A036C8581EA908B /* CIURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CIURLRequestSerialization.h; path = CINetworking/Classes/CIURLRequestSerialization.h; sourceTree = "<group>"; };
@@ -1454,7 +1454,7 @@
 		E6420C84F41117B573D9D706C0EFA1AE /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		E7837F8689DE56BCA83F251BCE9C4DC7 /* UIView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
 		E84F78B4DC2025D58529B1AEB4B0C7DA /* AFNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.debug.xcconfig; sourceTree = "<group>"; };
-		E97D43C46A45EE515A4DA3AF94398441 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97D43C46A45EE515A4DA3AF94398441 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CBE3BB386920E35E2D616857A3B7D7 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
 		EA64D4B237F77FC7C5350D2A79474119 /* SDAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "SDAnimatedImageView+WebCache.m"; path = "SDWebImage/SDAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
 		EAF9995A2B741B8F2DCEA457AF74DA9D /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
@@ -1482,7 +1482,7 @@
 		F42A8196E0568D9B82926B6A78703E9A /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
 		F537F699CC1747B5B73C6247B57808D6 /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshStateHeader.m; path = MJRefresh/Custom/Header/MJRefreshStateHeader.m; sourceTree = "<group>"; };
 		F569D3363B15613FEF6D2592B4D36A59 /* MKAnnotationView+CIWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+CIWebCache.h"; path = "CIWebImage/Classes/MKAnnotationView+CIWebCache.h"; sourceTree = "<group>"; };
-		F57BA64D7CCE82197DD2163DF5F692FB /* mz_strm_pkcrypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_pkcrypt.c; path = SSZipArchive/minizip/mz_strm_pkcrypt.c; sourceTree = "<group>"; };
+		F57BA64D7CCE82197DD2163DF5F692FB /* mz_strm_pkcrypt.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_pkcrypt.c; path = SSZipArchive/minizip/mz_strm_pkcrypt.c; sourceTree = "<group>"; };
 		F5911370B03BED2E767AF1E1C1604DC6 /* CIPhotoBrowser.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CIPhotoBrowser.modulemap; sourceTree = "<group>"; };
 		F5F15D0F2087815CD34DA746E06EB780 /* CIZipCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIZipCell.m; path = CIViewFile/Classes/CIZipCell.m; sourceTree = "<group>"; };
 		F67DE28EA9AE32C4A79C99923F1581FD /* PKRecordShortVideoViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKRecordShortVideoViewController.h; path = CICamera/Classes/Vender/PKShortVideo/PKShortVideoWriter/PKRecordShortVideoViewController.h; sourceTree = "<group>"; };
@@ -1503,10 +1503,10 @@
 		FBE22AD393F72991994537B42ACDA171 /* docx@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "docx@2x.png"; path = "CIViewFile/Assets/docx@2x.png"; sourceTree = "<group>"; };
 		FC196ACDED509D87638B9718E37B3CFC /* TZImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImageManager.h; path = CICamera/Classes/Vender/TZImagePickerController/TZImageManager.h; sourceTree = "<group>"; };
 		FC1AD7EC8509F72411DC290D930C26B1 /* CIScriptMessageHandlerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CIScriptMessageHandlerDelegate.h; sourceTree = "<group>"; };
-		FC39C20C4B8867B989E178D4B8503570 /* mz_strm_split.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_split.c; path = SSZipArchive/minizip/mz_strm_split.c; sourceTree = "<group>"; };
+		FC39C20C4B8867B989E178D4B8503570 /* mz_strm_split.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mz_strm_split.c; path = SSZipArchive/minizip/mz_strm_split.c; sourceTree = "<group>"; };
 		FE8EE530F24F69447B03E0CEBC6926C4 /* CIFileViewHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CIFileViewHelper.m; path = CIViewFile/Classes/CIFileViewHelper.m; sourceTree = "<group>"; };
 		FECD0687594CBADC57483A0AA7267FE6 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoNormalFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
-		FED6666C9353969440A01828718DFAD1 /* CIViewFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CIViewFile.framework; path = CIViewFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED6666C9353969440A01828718DFAD1 /* CIViewFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CIViewFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF48967403C07123411A5315068521E1 /* CIMPFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CIMPFile.m; sourceTree = "<group>"; };
 		FF521F31B3DEAA13A77C2525C71C4A08 /* SDImageCoderHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCoderHelper.h; path = SDWebImage/SDImageCoderHelper.h; sourceTree = "<group>"; };
 		FF8B91E32A937781D6AE5D39E573B036 /* Masonry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.debug.xcconfig; sourceTree = "<group>"; };
@@ -1936,7 +1936,6 @@
 				43316480DD271093ADA1C62DE0FEFF8D /* Support Files */,
 				F6962CFED656F0AA0C7D97E38FEAD867 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -2059,7 +2058,6 @@
 				3EA0309F4C03D60987BF339166F35A5A /* UIView+CIAdd.m */,
 				5E2A7554FCC11225BF995C6081BD06DC /* Support Files */,
 			);
-			name = CICategories;
 			path = CICategories;
 			sourceTree = "<group>";
 		};
@@ -2102,7 +2100,6 @@
 				D67AC43D9FDC3250AC34DCEE6F367595 /* CIPhotoBrowser.m */,
 				9D84FE804978B43B18CDDF2152DFA069 /* Support Files */,
 			);
-			name = CIPhotoBrowser;
 			path = CIPhotoBrowser;
 			sourceTree = "<group>";
 		};
@@ -2194,7 +2191,6 @@
 				72E85E69D3B6ADC039EB29E20B7E9689 /* ZipArchive.h */,
 				B96EBAEACE0EB83AAE99054E808239BD /* Support Files */,
 			);
-			name = SSZipArchive;
 			path = SSZipArchive;
 			sourceTree = "<group>";
 		};
@@ -2204,7 +2200,6 @@
 				4C30D5B4786B37E88584324A454E3661 /* CIMPDataCache.h */,
 				8F6E94864A02F6B79CA161DC1F795C53 /* CIMPDataCache.m */,
 			);
-			name = DataCache;
 			path = DataCache;
 			sourceTree = "<group>";
 		};
@@ -2222,7 +2217,6 @@
 				E5B1C4E12D36F6609CE015C26402900C /* Resources */,
 				43A9EAA11C00E8049785EEB3250D9676 /* Support Files */,
 			);
-			name = SVProgressHUD;
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -2243,7 +2237,6 @@
 				8E40D194FDB6832D3C2617D2505D6C9E /* CIURLResponseSerialization.m */,
 				3BF8E4F98E065B870657D420D41C5790 /* Support Files */,
 			);
-			name = CINetworking;
 			path = CINetworking;
 			sourceTree = "<group>";
 		};
@@ -2315,7 +2308,6 @@
 				BE528C62693C30C62E9A5AA9C26BA058 /* Resources */,
 				1FBB911A0895207A97792642C784D3F0 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -2349,7 +2341,6 @@
 				AF9CDDCFCDDA0F2B71A73E1375BFC8BA /* Resources */,
 				1FD1BBEB5288061A0F491C7F6BB00828 /* Support Files */,
 			);
-			name = CIViewFile;
 			path = CIViewFile;
 			sourceTree = "<group>";
 		};
@@ -2377,7 +2368,6 @@
 				0AD8A1929F4549E9890A1F9854128B89 /* MapKit */,
 				C807C27F901599113B56CB230FC6F532 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -2430,7 +2420,6 @@
 				0C4DE83CD9871E345A555D4C77976783 /* CIMPFile.h */,
 				FF48967403C07123411A5315068521E1 /* CIMPFile.m */,
 			);
-			name = File;
 			path = File;
 			sourceTree = "<group>";
 		};
@@ -2447,7 +2436,6 @@
 				674963F54A828B709C0B47BE2B3C7108 /* Resources */,
 				3BD7C7B5A0C302BACA8347382E9C340A /* Support Files */,
 			);
-			name = SGQRCode;
 			path = SGQRCode;
 			sourceTree = "<group>";
 		};
@@ -2457,7 +2445,6 @@
 				74DFDC01ECCAD8E7FA8ACAC263A6F853 /* CIIMPImage.h */,
 				0AB98EF62A489FAEC8F6A46BD0A6936F /* CIIMPImage.m */,
 			);
-			name = Image;
 			path = Image;
 			sourceTree = "<group>";
 		};
@@ -2509,7 +2496,6 @@
 				9227C7C58A695F86BB0E73CDCC3B1C19 /* CIMPNetworkManager.h */,
 				D3952AD4A465E162B22EC59C3F6F0D6A /* CIMPNetworkManager.m */,
 			);
-			name = Network;
 			path = Network;
 			sourceTree = "<group>";
 		};
@@ -2561,7 +2547,6 @@
 				5E9B96075DC1E7D6805EA9F568E43214 /* CIMPVideo.h */,
 				7D314C3A1657D5C0B3A0422706E791A3 /* CIMPVideo.m */,
 			);
-			name = Video;
 			path = Video;
 			sourceTree = "<group>";
 		};
@@ -2588,7 +2573,6 @@
 				18CDA1E59A983990670009A1C9CD1D5D /* CIMPShowActionSheet.h */,
 				3BC916AA6B0A7ECEFB2B91D5A61B7654 /* CIMPShowActionSheet.m */,
 			);
-			name = UI;
 			path = UI;
 			sourceTree = "<group>";
 		};
@@ -2642,7 +2626,6 @@
 				A5FA39C4A36C40D036B8BD704F74C8DB /* UIImageView+CIWebCache.m */,
 				C468F60AA1F4ABF4FE74FB7661CF2F4E /* Support Files */,
 			);
-			name = CIWebImage;
 			path = CIWebImage;
 			sourceTree = "<group>";
 		};
@@ -2797,7 +2780,6 @@
 				C25D622661EDE3CD88FF4AFFBE3A2998 /* Resources */,
 				A07F2C1AB3AFFB9F46A30F1F569675C7 /* Support Files */,
 			);
-			name = CICamera;
 			path = CICamera;
 			sourceTree = "<group>";
 		};
@@ -2843,7 +2825,6 @@
 				AAECD3C353B908B4D3A7D1E72FC3CF0E /* ViewController+MASAdditions.m */,
 				3403B320EF4E4D97C17EF34A8A77A9A4 /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -2936,7 +2917,6 @@
 				AD87B30EDB44A5AE43804F73CE600F76 /* MBProgressHUD.m */,
 				33425A6EBF0A6B94E8D3197B47CD06C9 /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -3718,7 +3698,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1210;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4510,7 +4490,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIMiniProgram/CIMiniProgram-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIMiniProgram/CIMiniProgram-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIMiniProgram/CIMiniProgram.modulemap";
 				PRODUCT_MODULE_NAME = CIMiniProgram;
@@ -4532,7 +4512,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CIMiniProgram";
 				IBSC_MODULE = CIMiniProgram;
 				INFOPLIST_FILE = "Target Support Files/CIMiniProgram/ResourceBundle-CIMiniProgram-CIMiniProgram-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = CIMiniProgram;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -4556,7 +4536,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CINetworking/CINetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CINetworking/CINetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CINetworking/CINetworking.modulemap";
 				PRODUCT_MODULE_NAME = CINetworking;
@@ -4586,7 +4566,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AFNetworking/AFNetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
 				PRODUCT_MODULE_NAME = AFNetworking;
@@ -4616,7 +4596,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AFNetworking/AFNetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
 				PRODUCT_MODULE_NAME = AFNetworking;
@@ -4646,7 +4626,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SSZipArchive/SSZipArchive-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SSZipArchive/SSZipArchive-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SSZipArchive/SSZipArchive.modulemap";
 				PRODUCT_MODULE_NAME = SSZipArchive;
@@ -4714,7 +4694,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -4742,7 +4722,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = SVProgressHUD;
@@ -4764,7 +4744,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CIViewFile";
 				IBSC_MODULE = CIViewFile;
 				INFOPLIST_FILE = "Target Support Files/CIViewFile/ResourceBundle-CIViewFile-CIViewFile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = CIViewFile;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -4788,7 +4768,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIWebImage/CIWebImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIWebImage/CIWebImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIWebImage/CIWebImage.modulemap";
 				PRODUCT_MODULE_NAME = CIWebImage;
@@ -4819,7 +4799,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = SVProgressHUD;
@@ -4842,7 +4822,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CIViewFile";
 				IBSC_MODULE = CIViewFile;
 				INFOPLIST_FILE = "Target Support Files/CIViewFile/ResourceBundle-CIViewFile-CIViewFile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = CIViewFile;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -4866,7 +4846,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CICategories/CICategories-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CICategories/CICategories-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CICategories/CICategories.modulemap";
 				PRODUCT_MODULE_NAME = CICategories;
@@ -4897,7 +4877,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIWebImage/CIWebImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIWebImage/CIWebImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIWebImage/CIWebImage.modulemap";
 				PRODUCT_MODULE_NAME = CIWebImage;
@@ -4927,7 +4907,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SGQRCode/SGQRCode-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SGQRCode/SGQRCode-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SGQRCode/SGQRCode.modulemap";
 				PRODUCT_MODULE_NAME = SGQRCode;
@@ -4958,7 +4938,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.modulemap";
@@ -4990,7 +4970,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/SDWebImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
 				PRODUCT_MODULE_NAME = SDWebImage;
@@ -5019,7 +4999,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SSZipArchive/SSZipArchive-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SSZipArchive/SSZipArchive-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SSZipArchive/SSZipArchive.modulemap";
 				PRODUCT_MODULE_NAME = SSZipArchive;
@@ -5050,7 +5030,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MJRefresh/MJRefresh-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MJRefresh/MJRefresh.modulemap";
 				PRODUCT_MODULE_NAME = MJRefresh;
@@ -5080,7 +5060,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CINetworking/CINetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CINetworking/CINetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CINetworking/CINetworking.modulemap";
 				PRODUCT_MODULE_NAME = CINetworking;
@@ -5111,7 +5091,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/SDWebImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
 				PRODUCT_MODULE_NAME = SDWebImage;
@@ -5142,7 +5122,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Masonry/Masonry-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Masonry/Masonry.modulemap";
 				PRODUCT_MODULE_NAME = Masonry;
@@ -5173,7 +5153,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIMiniProgram/CIMiniProgram-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIMiniProgram/CIMiniProgram-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIMiniProgram/CIMiniProgram.modulemap";
 				PRODUCT_MODULE_NAME = CIMiniProgram;
@@ -5204,7 +5184,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CICamera/CICamera-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CICamera/CICamera-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CICamera/CICamera.modulemap";
 				PRODUCT_MODULE_NAME = CICamera;
@@ -5235,7 +5215,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CICategories/CICategories-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CICategories/CICategories-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CICategories/CICategories.modulemap";
 				PRODUCT_MODULE_NAME = CICategories;
@@ -5265,7 +5245,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MJRefresh/MJRefresh-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MJRefresh/MJRefresh.modulemap";
 				PRODUCT_MODULE_NAME = MJRefresh;
@@ -5296,7 +5276,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = MBProgressHUD;
@@ -5326,7 +5306,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CICamera/CICamera-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CICamera/CICamera-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CICamera/CICamera.modulemap";
 				PRODUCT_MODULE_NAME = CICamera;
@@ -5356,7 +5336,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIPhotoBrowser/CIPhotoBrowser-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIPhotoBrowser/CIPhotoBrowser-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIPhotoBrowser/CIPhotoBrowser.modulemap";
 				PRODUCT_MODULE_NAME = CIPhotoBrowser;
@@ -5386,7 +5366,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = MBProgressHUD;
@@ -5417,7 +5397,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIViewFile/CIViewFile-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIViewFile/CIViewFile-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIViewFile/CIViewFile.modulemap";
 				PRODUCT_MODULE_NAME = CIViewFile;
@@ -5448,7 +5428,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Masonry/Masonry-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Masonry/Masonry.modulemap";
 				PRODUCT_MODULE_NAME = Masonry;
@@ -5513,13 +5493,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -5540,7 +5519,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CIMiniProgram_Tests/Pods-CIMiniProgram_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CIMiniProgram_Tests/Pods-CIMiniProgram_Tests.modulemap";
@@ -5572,7 +5551,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CIMiniProgram_Tests/Pods-CIMiniProgram_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CIMiniProgram_Tests/Pods-CIMiniProgram_Tests.modulemap";
@@ -5605,7 +5584,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIViewFile/CIViewFile-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIViewFile/CIViewFile-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIViewFile/CIViewFile.modulemap";
 				PRODUCT_MODULE_NAME = CIViewFile;
@@ -5635,7 +5614,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SGQRCode/SGQRCode-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SGQRCode/SGQRCode-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SGQRCode/SGQRCode.modulemap";
 				PRODUCT_MODULE_NAME = SGQRCode;
@@ -5665,7 +5644,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CIPhotoBrowser/CIPhotoBrowser-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CIPhotoBrowser/CIPhotoBrowser-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CIPhotoBrowser/CIPhotoBrowser.modulemap";
 				PRODUCT_MODULE_NAME = CIPhotoBrowser;
@@ -5696,7 +5675,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CIMiniProgram_Example/Pods-CIMiniProgram_Example.modulemap";
@@ -5721,7 +5700,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CIMiniProgram";
 				IBSC_MODULE = CIMiniProgram;
 				INFOPLIST_FILE = "Target Support Files/CIMiniProgram/ResourceBundle-CIMiniProgram-CIMiniProgram-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = CIMiniProgram;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

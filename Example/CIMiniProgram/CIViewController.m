@@ -67,7 +67,7 @@
 // 对弹框进行默认设置
 - (void)setDeafultSVHUD {
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setMaximumDismissTimeInterval:3.0];
+    [SVProgressHUD setMaximumDismissTimeInterval:0.8];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
 }
 
@@ -276,8 +276,7 @@
 }
 
 - (void)downloadBtnClicked:(id)sender {
-    // 当文字为0的时候，则需要
-    self.urlTextView.text = @"https://s2-cdn.oneitfarm.com/94ae6005ca63402ab3ae9ec970994c5adist.zip";
+    // 当文字为0的时候，则需要输入下载程序地址
     if (self.urlTextView.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入小程序下载地址"];
         return;
