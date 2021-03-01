@@ -119,6 +119,16 @@
     miniProgramListLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:16.0];
     [self.view addSubview:miniProgramListLabel];
     
+    // 清除所有小程序
+    UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    clearButton.layer.cornerRadius = 5.0;
+    clearButton.layer.masksToBounds = YES;
+    [clearButton setTitle:@"清除" forState:UIControlStateNormal];
+    [clearButton setTitleColor:kRGBA(255, 255, 255, 1.0) forState:UIControlStateNormal];
+    [clearButton setBackgroundImage:[UIImage imageWithColor:kRGBA(255, 0, 24, 0.8)] forState:UIControlStateNormal];
+    [clearButton addTarget:self action:@selector(clearButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:clearButton];
+    
     _mpListView = [[UITableView alloc] init];
     _mpListView.backgroundColor = UIColor.whiteColor;
     _mpListView.dataSource = self;
@@ -161,14 +171,20 @@
     }];
     
     [miniProgramListLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(downloadButton.mas_bottom).offset(10);
+        make.top.equalTo(downloadButton.mas_bottom).offset(15);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(20);
     }];
     
+    [clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(60.0, 30.0));
+        make.right.equalTo(self.view).offset(-10.0);
+        make.centerY.equalTo(miniProgramListLabel);
+    }];
+    
     [_mpListView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(miniProgramListLabel.mas_bottom);
+        make.top.equalTo(miniProgramListLabel.mas_bottom).offset(20.0);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-49);
@@ -181,7 +197,6 @@
 - (void)reloadMPList {
     _mpList = [[[CIMPAppManager sharedManager] getApplist] mutableCopy];
     [self.mpListView reloadData];
-    
 }
 
 - (void)showCodeScan:(QRCodeScanViewController *)codeScanViewController {
@@ -237,8 +252,32 @@
     [self showCodeScan:codeScanViewController];
 }
 
+- (void)clearButtonClicked:(id)sender {
+    if (_mpList.count == 0) {
+        return;
+    }
+    [SVProgressHUD showInfoWithStatus:@"开始清除"];
+    for (NSString *name in _mpList) {
+        // 删除对应的app
+        CIMPAppInfo *appInfo = [[CIMPAppInfo alloc] init];
+        appInfo.appId = name;
+        CIMPApp *app = [[CIMPApp alloc] initWithAppInfo:appInfo];
+        [app deleteApp:^(BOOL success, NSString * _Nonnull errMsg) {
+            if (success) {
+                NSLog(@"%@", errMsg);
+            } else {
+                NSLog(@"%@", errMsg);
+            }
+        }];
+    }
+    // 重新刷新小程序列表
+    [self reloadMPList];
+    [SVProgressHUD showSuccessWithStatus:@"清除小程序列表完成"];
+}
+
 - (void)downloadBtnClicked:(id)sender {
     // 当文字为0的时候，则需要
+    self.urlTextView.text = @"https://s2-cdn.oneitfarm.com/94ae6005ca63402ab3ae9ec970994c5adist.zip";
     if (self.urlTextView.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入小程序下载地址"];
         return;
